@@ -1,0 +1,127 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:38.784034815"><title>Getting Started with GraphInterop | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"tl-dr","level":0,"title":"TL;DR","anchor":"#tl-dr"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Getting Started with GraphInterop | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/getting-started.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Getting Started with GraphInterop | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/getting-started.html#webpage",
+    "url": "writerside-documentation/getting-started.html",
+    "name": "Getting Started with GraphInterop | GraphInterop",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "GraphInterop Help"
+}</script><!-- End Schema.org --></head><body data-id="getting-started" data-main-title="Getting Started with GraphInterop" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="getting-started" id="getting-started.md">Getting Started with GraphInterop</h1><section class="chapter"><h2 id="tl-dr" data-toc="tl-dr">TL;DR</h2><p id="o5qo6d_4"><span class="control" id="o5qo6d_15">GraphInterop</span> is a Unity package that provides a unified node-graph API compatible with both Unity's <span class="control" id="o5qo6d_16">GraphView</span> and <span class="control" id="o5qo6d_17">GraphToolkit</span>. It enables you to create visual node-based tools and runtime graph execution systems with a stable, semantic-versioned API.</p><section class="chapter"><h3 id="what-is-graphinterop" data-toc="what-is-graphinterop">What is GraphInterop?</h3><p id="o5qo6d_18">GraphInterop is an <span class="control" id="o5qo6d_21">interoperability layer</span> that:</p><ul class="list _bullet" id="o5qo6d_19"><li class="list__item" id="o5qo6d_22"><p id="o5qo6d_26">✅ Adapts Unity's GraphToolkit API for use with GraphView</p></li><li class="list__item" id="o5qo6d_23"><p id="o5qo6d_27">✅ Provides a stable, semver-compatible public API</p></li><li class="list__item" id="o5qo6d_24"><p id="o5qo6d_28">✅ Enables runtime graph execution with async and Burst support</p></li><li class="list__item" id="o5qo6d_25"><p id="o5qo6d_29">✅ Works with Unity 2021.3+</p></li></ul><aside class="prompt" data-type="tip" data-title="" id="o5qo6d_20"><p id="o5qo6d_30"><span class="control" id="o5qo6d_31">Key Philosophy</span>: GraphInterop aims to be feature-compatible with GraphToolkit's API while supporting GraphView in the editor. As GraphToolkit is Unity's intended successor to GraphView, we prioritize GTK's features, which may require breaking changes from legacy GraphView patterns.</p></aside></section><section class="chapter"><h3 id="quick-start-5-minutes" data-toc="quick-start-5-minutes">Quick Start (5 Minutes)</h3><section class="chapter"><h4 id="1-installation" data-toc="1-installation">1. Installation</h4><p id="o5qo6d_37">Add the package to your Unity project via Package Manager:</p><div class="code-block" data-lang="none">
+https://github.com/qhun-gaming/graph-interop.git
+</div><p id="o5qo6d_39">Or add to <code class="code" id="o5qo6d_41">manifest.json</code>:</p><div class="code-block" data-lang="json">
+{
+  &quot;dependencies&quot;: {
+    &quot;de.qhun.gaming.graphinterop&quot;: &quot;https://github.com/qhun-gaming/graph-interop.git&quot;
+  }
+}
+</div></section><section class="chapter"><h4 id="2-create-your-first-node" data-toc="2-create-your-first-node">2. Create Your First Node</h4><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+
+[NodeInfo(
+    DisplayName = &quot;Add Numbers&quot;,
+    Category = &quot;Math&quot;,
+    Description = &quot;Adds two numbers together&quot;
+)]
+public class AddNode : GraphNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;float&gt;(&quot;a&quot;)
+            .WithDisplayName(&quot;A&quot;)
+            .WithDefaultValue(0f)
+            .Build();
+
+        context.AddInputPort&lt;float&gt;(&quot;b&quot;)
+            .WithDisplayName(&quot;B&quot;)
+            .WithDefaultValue(0f)
+            .Build();
+
+        context.AddOutputPort&lt;float&gt;(&quot;result&quot;)
+            .WithDisplayName(&quot;Result&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var a = this.GetInputValue&lt;float&gt;(&quot;a&quot;, context);
+        var b = this.GetInputValue&lt;float&gt;(&quot;b&quot;, context);
+
+        this.SetOutputValue(&quot;result&quot;, a + b, context);
+    }
+}
+</div></section><section class="chapter"><h4 id="3-create-a-graph-asset" data-toc="3-create-a-graph-asset">3. Create a Graph Asset</h4><p id="o5qo6d_43">Right-click in the Project window:</p><div class="code-block" data-lang="none">
+Create &gt; GraphInterop &gt; Graph Asset
+</div></section><section class="chapter"><h4 id="4-open-the-graph-editor" data-toc="4-open-the-graph-editor">4. Open the Graph Editor</h4><p id="o5qo6d_45">Double-click the graph asset, or go to:</p><div class="code-block" data-lang="none">
+Window &gt; GraphInterop &gt; Graph Editor
+</div></section><section class="chapter"><h4 id="5-add-nodes-and-execute" data-toc="5-add-nodes-and-execute">5. Add Nodes and Execute</h4><ul class="list _bullet" id="o5qo6d_47"><li class="list__item" id="o5qo6d_48"><p id="o5qo6d_51"><span class="control" id="o5qo6d_52">Space</span> or <span class="control" id="o5qo6d_53">Right-click</span> to open the node search menu</p></li><li class="list__item" id="o5qo6d_49"><p id="o5qo6d_54">Add your <code class="code" id="o5qo6d_55">AddNode</code> and connect ports</p></li><li class="list__item" id="o5qo6d_50"><p id="o5qo6d_56">Click <span class="control" id="o5qo6d_57">Execute</span> in the toolbar to test</p></li></ul></section></section><section class="chapter"><h3 id="core-concepts" data-toc="core-concepts">Core Concepts</h3><div class="table-wrapper"><table class="wide" id="o5qo6d_58"><thead><tr class="ijRowHead" id="o5qo6d_59"><th id="o5qo6d_66"><p>Concept</p></th><th id="o5qo6d_67"><p>Description</p></th></tr></thead><tbody><tr id="o5qo6d_60"><td id="o5qo6d_68"><p><span class="control" id="o5qo6d_70">GraphAsset</span></p></td><td id="o5qo6d_69"><p>Serializable container for your node graph</p></td></tr><tr id="o5qo6d_61"><td id="o5qo6d_71"><p><span class="control" id="o5qo6d_73">GraphNode</span></p></td><td id="o5qo6d_72"><p>Base class for all custom nodes</p></td></tr><tr id="o5qo6d_62"><td id="o5qo6d_74"><p><span class="control" id="o5qo6d_76">GraphExecutor</span></p></td><td id="o5qo6d_75"><p>Executes graphs at runtime with topological sorting</p></td></tr><tr id="o5qo6d_63"><td id="o5qo6d_77"><p><span class="control" id="o5qo6d_79">Ports</span></p></td><td id="o5qo6d_78"><p>Typed inputs and outputs for data flow</p></td></tr><tr id="o5qo6d_64"><td id="o5qo6d_80"><p><span class="control" id="o5qo6d_82">Blackboard</span></p></td><td id="o5qo6d_81"><p>Parameter management system</p></td></tr><tr id="o5qo6d_65"><td id="o5qo6d_83"><p><span class="control" id="o5qo6d_85">Context</span></p></td><td id="o5qo6d_84"><p>Execution context carrying data between nodes</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="feature-highlights" data-toc="feature-highlights">Feature Highlights</h3><section class="chapter"><h4 id="type-safe-port-system" data-toc="type-safe-port-system">Type-Safe Port System</h4><div class="code-block" data-lang="csharp">
+// Automatic type compatibility checking
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;).Build();
+context.AddOutputPort&lt;GameObject&gt;(&quot;object&quot;).Build();
+// ❌ Cannot connect - types incompatible
+
+context.AddInputPort&lt;float&gt;(&quot;value&quot;).Build();
+context.AddOutputPort&lt;int&gt;(&quot;count&quot;).Build();
+// ✅ Can connect - numeric types auto-convert
+</div></section><section class="chapter"><h4 id="async-node-support" data-toc="async-node-support">Async Node Support</h4><div class="code-block" data-lang="csharp">
+public class LoadAssetNode : GraphNode, IAsyncNode
+{
+    public async Task ProcessAsync(GraphContext context)
+    {
+        var address = this.GetInputValue&lt;string&gt;(&quot;address&quot;, context);
+        var handle = Addressables.LoadAssetAsync&lt;GameObject&gt;(address);
+        await handle.Task;
+
+        this.SetOutputValue(&quot;result&quot;, handle.Result, context);
+    }
+}
+</div></section><section class="chapter"><h4 id="burst-compiled-nodes" data-toc="burst-compiled-nodes">Burst-Compiled Nodes</h4><div class="code-block" data-lang="csharp">
+public class BurstMathNode : GraphNode, IBurstNode
+{
+    private NativeArray&lt;float&gt; _input, _output;
+
+    public JobHandle ScheduleBurstJob(GraphContext context)
+    {
+        _input[0] = this.GetInputValue&lt;float&gt;(&quot;value&quot;, context);
+        var job = new MathJob { Input = _input, Output = _output };
+        return job.Schedule();
+    }
+
+    public void CompleteBurstJob(GraphContext context)
+    {
+        this.SetOutputValue(&quot;result&quot;, _output[0], context);
+        _input.Dispose();
+        _output.Dispose();
+    }
+}
+</div></section><section class="chapter"><h4 id="portal-system-clean-long-connections" data-toc="portal-system-clean-long-connections">Portal System (Clean Long Connections)</h4><div class="code-block" data-lang="csharp">
+// Instead of long visual connections:
+[SendPortalNode] ---&gt; (invisible) ---&gt; [ReceivePortalNode]
+
+// Keeps graphs readable!
+</div></section></section><section class="chapter"><h3 id="when-to-use-graphinterop" data-toc="when-to-use-graphinterop">When to Use GraphInterop</h3><p id="o5qo6d_94">✅ <span class="control" id="o5qo6d_98">Good Fit:</span></p><ul class="list _bullet" id="o5qo6d_95"><li class="list__item" id="o5qo6d_99"><p id="o5qo6d_105">Building visual scripting tools</p></li><li class="list__item" id="o5qo6d_100"><p id="o5qo6d_106">Node-based game logic systems</p></li><li class="list__item" id="o5qo6d_101"><p id="o5qo6d_107">Data processing pipelines</p></li><li class="list__item" id="o5qo6d_102"><p id="o5qo6d_108">AI behavior trees</p></li><li class="list__item" id="o5qo6d_103"><p id="o5qo6d_109">Shader graph-like editors</p></li><li class="list__item" id="o5qo6d_104"><p id="o5qo6d_110">Quest/dialogue systems</p></li></ul><p id="o5qo6d_96">❌ <span class="control" id="o5qo6d_111">Not Ideal For:</span></p><ul class="list _bullet" id="o5qo6d_97"><li class="list__item" id="o5qo6d_112"><p id="o5qo6d_115">Simple linear scripts (use C# directly)</p></li><li class="list__item" id="o5qo6d_113"><p id="o5qo6d_116">Performance-critical inner loops (though Burst nodes help!)</p></li><li class="list__item" id="o5qo6d_114"><p id="o5qo6d_117">One-off prototypes (overhead not worth it)</p></li></ul></section><section class="chapter"><h3 id="graphview-vs-graphtoolkit" data-toc="graphview-vs-graphtoolkit">GraphView vs GraphToolkit</h3><p id="o5qo6d_118">GraphInterop provides an <span class="control" id="o5qo6d_123">abstraction layer</span> between two Unity graph systems:</p><div class="table-wrapper"><table class="wide" id="o5qo6d_119"><thead><tr class="ijRowHead" id="o5qo6d_124"><th id="o5qo6d_130"><p>Aspect</p></th><th id="o5qo6d_131"><p>GraphView</p></th><th id="o5qo6d_132"><p>GraphToolkit</p></th><th id="o5qo6d_133"><p>GraphInterop</p></th></tr></thead><tbody><tr id="o5qo6d_125"><td id="o5qo6d_134"><p><span class="control" id="o5qo6d_138">Status</span></p></td><td id="o5qo6d_135"><p>Legacy (UI Toolkit)</p></td><td id="o5qo6d_136"><p>Future official API</p></td><td id="o5qo6d_137"><p>Stable interop layer</p></td></tr><tr id="o5qo6d_126"><td id="o5qo6d_139"><p><span class="control" id="o5qo6d_143">Editor Support</span></p></td><td id="o5qo6d_140"><p>✅ Full</p></td><td id="o5qo6d_141"><p>🚧 Experimental</p></td><td id="o5qo6d_142"><p>✅ GraphView backend</p></td></tr><tr id="o5qo6d_127"><td id="o5qo6d_144"><p><span class="control" id="o5qo6d_148">Runtime API</span></p></td><td id="o5qo6d_145"><p>❌ None</p></td><td id="o5qo6d_146"><p>✅ Official</p></td><td id="o5qo6d_147"><p>✅ Adapted from GTK</p></td></tr><tr id="o5qo6d_128"><td id="o5qo6d_149"><p><span class="control" id="o5qo6d_153">API Stability</span></p></td><td id="o5qo6d_150"><p>⚠️ Internal API</p></td><td id="o5qo6d_151"><p>⚠️ Experimental</p></td><td id="o5qo6d_152"><p>✅ Semver-compatible</p></td></tr><tr id="o5qo6d_129"><td id="o5qo6d_154"><p><span class="control" id="o5qo6d_158">Feature Set</span></p></td><td id="o5qo6d_155"><p>UI-only</p></td><td id="o5qo6d_156"><p>Graph + UI</p></td><td id="o5qo6d_157"><p>Runtime + UI</p></td></tr></tbody></table></div><p id="o5qo6d_120"><span class="control" id="o5qo6d_159">Our Approach:</span></p><ol class="list _decimal" id="o5qo6d_121" type="1"><li class="list__item" id="o5qo6d_160"><p id="o5qo6d_164">Adopt GraphToolkit's runtime API design</p></li><li class="list__item" id="o5qo6d_161"><p id="o5qo6d_165">Implement GraphView-based editor (while GTK UI is experimental)</p></li><li class="list__item" id="o5qo6d_162"><p id="o5qo6d_166">Provide stable API that won't break your code</p></li><li class="list__item" id="o5qo6d_163"><p id="o5qo6d_167">Gradually integrate new GTK features as they stabilize</p></li></ol><aside class="prompt" data-type="tip" data-title="" id="o5qo6d_122"><p id="o5qo6d_168">See <a href="feature-comparison-overview.html" id="o5qo6d_169" data-tooltip="GraphInterop sits between Unity's GraphView (legacy UI) and GraphToolkit (future official API). This page explains what features are available, where they come from, and what's still in development.">Feature Comparison</a> for detailed feature mapping.</p></aside></section><section class="chapter"><h3 id="architecture-at-a-glance" data-toc="architecture-at-a-glance">Architecture at a Glance</h3><div class="code-block" data-lang="none">
+┌─────────────────────────────────────────┐
+│         Your Custom Nodes               │
+│    (AddNode, LoadAssetNode, etc.)       │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│       GraphInterop Runtime API          │
+│  (GraphAsset, GraphNode, GraphExecutor) │
+└──────────────┬──────────────────────────┘
+               │
+        ┌──────┴──────┐
+        ▼             ▼
+┌──────────────┐ ┌──────────────┐
+│  GraphView   │ │ GraphToolkit │
+│   Backend    │ │   Backend    │
+│  (Current)   │ │   (Future)   │
+└──────────────┘ └──────────────┘
+</div><p id="o5qo6d_171"><span class="control" id="o5qo6d_172">Key Insight</span>: Your custom nodes only depend on the stable GraphInterop API. The backend (GraphView/GTK) can change without breaking your code.</p></section><section class="chapter"><h3 id="api-stability-guarantee" data-toc="api-stability-guarantee">API Stability Guarantee</h3><p id="o5qo6d_173">GraphInterop follows <span class="control" id="o5qo6d_177">semantic versioning</span>:</p><ul class="list _bullet" id="o5qo6d_174"><li class="list__item" id="o5qo6d_178"><p id="o5qo6d_181"><span class="control" id="o5qo6d_182">Major version</span> (1.x.x &rarr; 2.0.0): Breaking API changes</p></li><li class="list__item" id="o5qo6d_179"><p id="o5qo6d_183"><span class="control" id="o5qo6d_184">Minor version</span> (1.0.x &rarr; 1.1.0): New features, backward-compatible</p></li><li class="list__item" id="o5qo6d_180"><p id="o5qo6d_185"><span class="control" id="o5qo6d_186">Patch version</span> (1.0.0 &rarr; 1.0.1): Bug fixes</p></li></ul><p id="o5qo6d_175"><span class="control" id="o5qo6d_187">Breaking Changes Policy:</span></p><ul class="list _bullet" id="o5qo6d_176"><li class="list__item" id="o5qo6d_188"><p id="o5qo6d_191">We may break backward compatibility with <span class="control" id="o5qo6d_192">GraphView</span> to align with GraphToolkit</p></li><li class="list__item" id="o5qo6d_189"><p id="o5qo6d_193">We will <span class="control" id="o5qo6d_194">never</span> break the public <code class="code" id="o5qo6d_195">GraphInterop</code> API without a major version bump</p></li><li class="list__item" id="o5qo6d_190"><p id="o5qo6d_196">Migration guides provided for all breaking changes</p></li></ul></section><section class="chapter"><h3 id="next-steps" data-toc="next-steps">Next Steps</h3><section class="procedure-steps"><h3 id="learn-graphinterop" data-toc="learn-graphinterop">Learn GraphInterop</h3><ol class="list _decimal"><li class="list__item" id="o5qo6d_198"><p><b id="o5qo6d_203">Explore Features</b>: Read the <a href="feature-comparison-overview.html" id="o5qo6d_204" data-tooltip="GraphInterop sits between Unity's GraphView (legacy UI) and GraphToolkit (future official API). This page explains what features are available, where they come from, and what's still in development.">Feature Comparison</a> to understand what's possible</p></li><li class="list__item" id="o5qo6d_199"><p><b id="o5qo6d_205">Understand Architecture</b>: Review <a href="architecture.html" id="o5qo6d_206" data-tooltip="GraphInterop follows a layered architecture that separates runtime logic from editor visualization, enabling flexibility and maintainability.">Architecture</a> to see how components fit together</p></li><li class="list__item" id="o5qo6d_200"><p><b id="o5qo6d_207">Create Custom Nodes</b>: Follow <a href="creating-nodes.html" id="o5qo6d_208" data-tooltip="This guide explains how to create custom nodes for use in GraphInterop graphs.">Creating Nodes</a> guide</p></li><li class="list__item" id="o5qo6d_201"><p><b id="o5qo6d_209">Runtime Execution</b>: Learn about <a href="graph-executor.html" id="o5qo6d_210" data-tooltip="Executes a graph by processing nodes in topological order, resolving connections automatically.">GraphExecutor</a> for game logic</p></li><li class="list__item" id="o5qo6d_202"><p><b id="o5qo6d_211">Check Examples</b>: Study <a href="examples.html" id="o5qo6d_212" data-tooltip="This section provides complete examples of using GraphInterop for common scenarios.">Examples</a> for real implementations</p></li></ol></section></section><section class="chapter"><h3 id="community-and-support" data-toc="community-and-support">Community and Support</h3><ul class="list _bullet" id="o5qo6d_213"><li class="list__item" id="o5qo6d_216"><p id="o5qo6d_219"><span class="control" id="o5qo6d_220">Issues</span>: <a href="https://github.com/qhun-gaming/graph-interop/issues" id="o5qo6d_221" data-external="true" rel="noopener noreferrer" target="_blank">GitHub Issues</a></p></li><li class="list__item" id="o5qo6d_217"><p id="o5qo6d_222"><span class="control" id="o5qo6d_223">Discussions</span>: <a href="https://github.com/qhun-gaming/graph-interop/discussions" id="o5qo6d_224" data-external="true" rel="noopener noreferrer" target="_blank">GitHub Discussions</a></p></li><li class="list__item" id="o5qo6d_218"><p id="o5qo6d_225"><span class="control" id="o5qo6d_226">License</span>: MIT</p></li></ul><p id="o5qo6d_215"><span class="control" id="o5qo6d_227">Ready to build?</span> Let's dive into <a href="feature-comparison-overview.html" id="o5qo6d_228" data-tooltip="GraphInterop sits between Unity's GraphView (legacy UI) and GraphToolkit (future official API). This page explains what features are available, where they come from, and what's still in development.">Feature Comparison</a> to see what GraphInterop can do!</p></section></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="feature-comparison-overview.html" class="navigation-links__next">Feature Comparison Overview</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>

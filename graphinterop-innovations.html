@@ -1,0 +1,532 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:40.078754531"><title>GraphInterop Innovations | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"overview","level":0,"title":"Overview","anchor":"#overview"},{"id":"portal-system","level":0,"title":"Portal System","anchor":"#portal-system"},{"id":"burst-node-support","level":0,"title":"Burst Node Support","anchor":"#burst-node-support"},{"id":"enhanced-type-system","level":0,"title":"Enhanced Type System","anchor":"#enhanced-type-system"},{"id":"parameter-organization","level":0,"title":"Parameter Organization","anchor":"#parameter-organization"},{"id":"context-variable-system","level":0,"title":"Context Variable System","anchor":"#context-variable-system"},{"id":"compact-node-layout","level":0,"title":"Compact Node Layout","anchor":"#compact-node-layout"},{"id":"backend-abstraction","level":0,"title":"Backend Abstraction","anchor":"#backend-abstraction"},{"id":"validation-extensions","level":0,"title":"Validation Extensions","anchor":"#validation-extensions"},{"id":"comparison-with-base-systems","level":0,"title":"Comparison with Base Systems","anchor":"#comparison-with-base-systems"},{"id":"future-innovations","level":0,"title":"Future Innovations","anchor":"#future-innovations"},{"id":"summary","level":0,"title":"Summary","anchor":"#summary"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="GraphInterop Innovations | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/graphinterop-innovations.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="GraphInterop Innovations | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/graphinterop-innovations.html#webpage",
+    "url": "writerside-documentation/graphinterop-innovations.html",
+    "name": "GraphInterop Innovations | GraphInterop",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "GraphInterop Help"
+}</script><!-- End Schema.org --></head><body data-id="graphinterop-innovations" data-main-title="GraphInterop Innovations" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="feature-comparison-overview.md|Feature Comparison Overview"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="graphinterop-innovations" id="graphinterop-innovations.md">GraphInterop Innovations</h1><p id="-eb7nxf_3">This page highlights features unique to GraphInterop that go beyond both GraphView and GraphToolkit.</p><section class="chapter"><h2 id="overview" data-toc="overview">Overview</h2><p id="-eb7nxf_16">While GraphInterop adapts GraphToolkit's API and uses GraphView's UI, it also introduces several innovations to improve usability, performance, and developer experience.</p></section><section class="chapter"><h2 id="portal-system" data-toc="portal-system">Portal System</h2><section class="chapter"><h3 id="problem" data-toc="problem">Problem</h3><p id="-eb7nxf_23">In complex graphs, long-distance connections create visual clutter:</p><div class="code-block" data-lang="none">
+[Node A]───────────────────────────────────────────┐
+                                                    │
+                                                    │
+[Node B]                                            │
+                                                    │
+[Node C]                                            │
+                                                    ▼
+                                              [Node D]
+</div><p id="-eb7nxf_25">This makes graphs hard to read and navigate.</p></section><section class="chapter"><h3 id="solution-send-receive-portals" data-toc="solution-send-receive-portals">Solution: Send/Receive Portals</h3><p id="-eb7nxf_26">GraphInterop introduces <span class="control" id="-eb7nxf_30">portal nodes</span> for invisible connections:</p><div class="code-block" data-lang="none">
+[Node A] ──→ [Send Portal: &quot;PlayerData&quot;]
+
+                    (invisible connection)
+
+[Receive Portal: &quot;PlayerData&quot;] ──→ [Node D]
+
+[Node B]
+
+[Node C]
+</div><p id="-eb7nxf_28"><span class="control" id="-eb7nxf_31">Benefits:</span></p><ul class="list _bullet" id="-eb7nxf_29"><li class="list__item" id="-eb7nxf_32"><p id="-eb7nxf_36">Clean visual layout</p></li><li class="list__item" id="-eb7nxf_33"><p id="-eb7nxf_37">Reduced edge crossings</p></li><li class="list__item" id="-eb7nxf_34"><p id="-eb7nxf_38">Easier to follow data flow</p></li><li class="list__item" id="-eb7nxf_35"><p id="-eb7nxf_39">Organizes complex graphs</p></li></ul></section><section class="chapter"><h3 id="implementation" data-toc="implementation">Implementation</h3><p id="-eb7nxf_40"><span class="control" id="-eb7nxf_44">Send Portal:</span></p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Send Portal&quot;,
+    Category = &quot;Flow&quot;,
+    Icon = &quot;d_winbtn_mac_max&quot;
+)]
+public class SendPortalNode : GraphNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;string&gt;(&quot;portalId&quot;)
+            .WithDisplayName(&quot;Portal ID&quot;)
+            .WithDefaultValue(&quot;Portal&quot;)
+            .Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;object&gt;(&quot;value&quot;)
+            .WithDisplayName(&quot;Value&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var value = this.GetInputValue&lt;object&gt;(&quot;value&quot;, context);
+        // Value stored in context, retrieved by ReceivePortal
+    }
+}
+</div><p id="-eb7nxf_42"><span class="control" id="-eb7nxf_45">Receive Portal:</span></p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Receive Portal&quot;,
+    Category = &quot;Flow&quot;,
+    Icon = &quot;d_winbtn_mac_min&quot;
+)]
+public class ReceivePortalNode : GraphNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;string&gt;(&quot;portalId&quot;)
+            .WithDisplayName(&quot;Portal ID&quot;)
+            .WithDefaultValue(&quot;Portal&quot;)
+            .Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddOutputPort&lt;object&gt;(&quot;value&quot;)
+            .WithDisplayName(&quot;Value&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        // Retrieves value from matching SendPortal
+        var portalId = this.GetOptionValue&lt;string&gt;(&quot;portalId&quot;);
+        // Value resolved from context
+    }
+}
+</div></section><section class="chapter"><h3 id="usage-example" data-toc="usage-example">Usage Example</h3><div class="code-block" data-lang="csharp">
+// Graph setup
+var sendPortal = graph.AddNode&lt;SendPortalNode&gt;();
+sendPortal.SetOptionValue(&quot;portalId&quot;, &quot;PlayerHealth&quot;);
+
+var receivePortal = graph.AddNode&lt;ReceivePortalNode&gt;();
+receivePortal.SetOptionValue(&quot;portalId&quot;, &quot;PlayerHealth&quot;);
+
+// Connection
+graph.Connect(healthNode, &quot;health&quot;, sendPortal, &quot;value&quot;);
+// ReceivePortal automatically receives value during execution
+
+// Execution dependency
+// GraphExecutor ensures SendPortal runs before ReceivePortal
+</div></section><section class="chapter"><h3 id="portal-dependency-resolution" data-toc="portal-dependency-resolution">Portal Dependency Resolution</h3><p id="-eb7nxf_47">GraphExecutor handles portal dependencies in topological sort:</p><div class="code-block" data-lang="csharp">
+// Pseudo-code for dependency resolution
+foreach (var receivePortal in graph.GetNodes&lt;ReceivePortalNode&gt;())
+{
+    var portalId = receivePortal.GetOptionValue&lt;string&gt;(&quot;portalId&quot;);
+    var sendPortal = graph.FindNode&lt;SendPortalNode&gt;(n =&gt;
+        n.GetOptionValue&lt;string&gt;(&quot;portalId&quot;) == portalId
+    );
+
+    if (sendPortal != null)
+    {
+        // Add implicit dependency: receivePortal depends on sendPortal
+        AddDependency(receivePortal, sendPortal);
+    }
+}
+</div><p id="-eb7nxf_49">This ensures correct execution order without visual connections.</p></section><section class="chapter"><h3 id="editor-integration" data-toc="editor-integration">Editor Integration</h3><p id="-eb7nxf_50">Portal suggestions when dragging long edges:</p><div class="code-block" data-lang="csharp">
+// In edge connector listener
+if (edgeLength &gt; 500f)
+{
+    ShowContextMenu(new[]
+    {
+        &quot;Create Direct Connection&quot;,
+        &quot;Create Portal Connection&quot; // ← Creates Send + Receive pair
+    });
+}
+</div></section></section><section class="chapter"><h2 id="burst-node-support" data-toc="burst-node-support">Burst Node Support</h2><section class="chapter"><h3 id="problem" data-toc="problem">Problem</h3><p id="-eb7nxf_58">Unity's Burst compiler provides massive performance gains for data-oriented code, but GraphView and GraphToolkit don't support it.</p></section><section class="chapter"><h3 id="solution-iburstnode-interface" data-toc="solution-iburstnode-interface">Solution: IBurstNode Interface</h3><p id="-eb7nxf_59">GraphInterop adds Burst support via <code class="code" id="-eb7nxf_61">IBurstNode</code>:</p><div class="code-block" data-lang="csharp">
+public interface IBurstNode
+{
+    JobHandle ScheduleBurstJob(GraphContext context);
+    void CompleteBurstJob(GraphContext context);
+}
+</div></section><section class="chapter"><h3 id="implementation-example" data-toc="implementation-example">Implementation Example</h3><div class="code-block" data-lang="csharp">
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+
+[NodeInfo(
+    DisplayName = &quot;Burst Vector Add&quot;,
+    Category = &quot;Math/Burst&quot;
+)]
+public class BurstAddVectorsNode : GraphNode, IBurstNode
+{
+    private NativeArray&lt;Vector3&gt; _input1, _input2, _output;
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;Vector3&gt;(&quot;a&quot;).WithDisplayName(&quot;A&quot;).Build();
+        context.AddInputPort&lt;Vector3&gt;(&quot;b&quot;).WithDisplayName(&quot;B&quot;).Build();
+        context.AddOutputPort&lt;Vector3&gt;(&quot;result&quot;).WithDisplayName(&quot;Result&quot;).Build();
+    }
+
+    public JobHandle ScheduleBurstJob(GraphContext context)
+    {
+        // Allocate native arrays
+        _input1 = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+        _input2 = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+        _output = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+
+        // Get input values
+        _input1[0] = this.GetInputValue&lt;Vector3&gt;(&quot;a&quot;, context);
+        _input2[0] = this.GetInputValue&lt;Vector3&gt;(&quot;b&quot;, context);
+
+        // Schedule job
+        var job = new AddVectorsJob
+        {
+            Input1 = _input1,
+            Input2 = _input2,
+            Output = _output
+        };
+
+        return job.Schedule();
+    }
+
+    public void CompleteBurstJob(GraphContext context)
+    {
+        // Set output value
+        this.SetOutputValue(&quot;result&quot;, _output[0], context);
+
+        // Dispose arrays
+        _input1.Dispose();
+        _input2.Dispose();
+        _output.Dispose();
+    }
+
+    [BurstCompile]
+    private struct AddVectorsJob : IJob
+    {
+        [ReadOnly] public NativeArray&lt;Vector3&gt; Input1;
+        [ReadOnly] public NativeArray&lt;Vector3&gt; Input2;
+        public NativeArray&lt;Vector3&gt; Output;
+
+        public void Execute()
+        {
+            Output[0] = Input1[0] + Input2[0];
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="execution-flow" data-toc="execution-flow">Execution Flow</h3><div class="code-block" data-lang="csharp">
+// GraphExecutor handles Burst nodes specially
+if (node is IBurstNode burstNode)
+{
+    var jobHandle = burstNode.ScheduleBurstJob(context);
+    jobHandle.Complete(); // Wait for completion
+    burstNode.CompleteBurstJob(context);
+}
+else if (node is IAsyncNode asyncNode)
+{
+    await asyncNode.ProcessAsync(context);
+}
+else
+{
+    node.Process(context);
+}
+</div></section><section class="chapter"><h3 id="performance-comparison" data-toc="performance-comparison">Performance Comparison</h3><p id="-eb7nxf_64"><span class="control" id="-eb7nxf_68">Regular Node (C#):</span></p><div class="code-block" data-lang="csharp">
+// ~10ms for 10,000 vector operations
+public override void Process(GraphContext context)
+{
+    var a = this.GetInputValue&lt;Vector3&gt;(&quot;a&quot;, context);
+    var b = this.GetInputValue&lt;Vector3&gt;(&quot;b&quot;, context);
+    this.SetOutputValue(&quot;result&quot;, a + b, context);
+}
+</div><p id="-eb7nxf_66"><span class="control" id="-eb7nxf_69">Burst Node:</span></p><div class="code-block" data-lang="csharp">
+// ~0.1ms for 10,000 vector operations (100x faster!)
+public JobHandle ScheduleBurstJob(GraphContext context) { ... }
+</div></section><section class="chapter"><h3 id="use-cases" data-toc="use-cases">Use Cases</h3><ul class="list _bullet" id="-eb7nxf_70"><li class="list__item" id="-eb7nxf_71"><p id="-eb7nxf_76">Massive data processing (thousands of operations)</p></li><li class="list__item" id="-eb7nxf_72"><p id="-eb7nxf_77">Physics calculations</p></li><li class="list__item" id="-eb7nxf_73"><p id="-eb7nxf_78">Mesh generation</p></li><li class="list__item" id="-eb7nxf_74"><p id="-eb7nxf_79">Pathfinding</p></li><li class="list__item" id="-eb7nxf_75"><p id="-eb7nxf_80">AI computations</p></li></ul></section></section><section class="chapter"><h2 id="enhanced-type-system" data-toc="enhanced-type-system">Enhanced Type System</h2><section class="chapter"><h3 id="numeric-auto-conversion" data-toc="numeric-auto-conversion">Numeric Auto-Conversion</h3><p id="-eb7nxf_85">GraphInterop automatically converts between numeric types:</p><div class="code-block" data-lang="csharp">
+// Output: int
+context.AddOutputPort&lt;int&gt;(&quot;count&quot;).Build();
+
+// Input: float
+context.AddInputPort&lt;float&gt;(&quot;value&quot;).Build();
+
+// ✅ Can connect int → float (automatic conversion)
+</div><p id="-eb7nxf_87"><span class="control" id="-eb7nxf_89">Supported Conversions:</span></p><div class="table-wrapper"><table class="wide" id="-eb7nxf_88"><thead><tr class="ijRowHead" id="-eb7nxf_90"><th id="-eb7nxf_98"><p>From</p></th><th id="-eb7nxf_99"><p>To</p></th><th id="-eb7nxf_100"><p>Notes</p></th></tr></thead><tbody><tr id="-eb7nxf_91"><td id="-eb7nxf_101"><p><code class="code" id="-eb7nxf_104">int</code></p></td><td id="-eb7nxf_102"><p><code class="code" id="-eb7nxf_105">float</code></p></td><td id="-eb7nxf_103"><p>Exact</p></td></tr><tr id="-eb7nxf_92"><td id="-eb7nxf_106"><p><code class="code" id="-eb7nxf_109">int</code></p></td><td id="-eb7nxf_107"><p><code class="code" id="-eb7nxf_110">double</code></p></td><td id="-eb7nxf_108"><p>Exact</p></td></tr><tr id="-eb7nxf_93"><td id="-eb7nxf_111"><p><code class="code" id="-eb7nxf_114">float</code></p></td><td id="-eb7nxf_112"><p><code class="code" id="-eb7nxf_115">double</code></p></td><td id="-eb7nxf_113"><p>Exact</p></td></tr><tr id="-eb7nxf_94"><td id="-eb7nxf_116"><p><code class="code" id="-eb7nxf_119">long</code></p></td><td id="-eb7nxf_117"><p><code class="code" id="-eb7nxf_120">float</code></p></td><td id="-eb7nxf_118"><p>May lose precision</p></td></tr><tr id="-eb7nxf_95"><td id="-eb7nxf_121"><p><code class="code" id="-eb7nxf_124">byte</code></p></td><td id="-eb7nxf_122"><p><code class="code" id="-eb7nxf_125">int</code></p></td><td id="-eb7nxf_123"><p>Exact</p></td></tr><tr id="-eb7nxf_96"><td id="-eb7nxf_126"><p><code class="code" id="-eb7nxf_129">short</code></p></td><td id="-eb7nxf_127"><p><code class="code" id="-eb7nxf_130">int</code></p></td><td id="-eb7nxf_128"><p>Exact</p></td></tr><tr id="-eb7nxf_97"><td id="-eb7nxf_131"><p>All numeric</p></td><td id="-eb7nxf_132"><p>All numeric</p></td><td id="-eb7nxf_133"><p>With appropriate casting</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="custom-type-converters" data-toc="custom-type-converters">Custom Type Converters</h3><p id="-eb7nxf_134">Register custom conversions:</p><div class="code-block" data-lang="csharp">
+// Convert Vector3 to float (magnitude)
+TypeCompatibility.RegisterConverter&lt;Vector3, float&gt;(
+    v =&gt; v.magnitude
+);
+
+// Convert Transform to GameObject
+TypeCompatibility.RegisterConverter&lt;Transform, GameObject&gt;(
+    t =&gt; t.gameObject
+);
+
+// Convert string to int (parse)
+TypeCompatibility.RegisterConverter&lt;string, int&gt;(
+    s =&gt; int.Parse(s)
+);
+</div><p id="-eb7nxf_136"><span class="control" id="-eb7nxf_138">Usage:</span></p><div class="code-block" data-lang="csharp">
+// Output: Vector3
+context.AddOutputPort&lt;Vector3&gt;(&quot;position&quot;).Build();
+
+// Input: float
+context.AddInputPort&lt;float&gt;(&quot;distance&quot;).Build();
+
+// ✅ Can connect Vector3 → float (custom converter)
+// Automatically converts position.magnitude → distance
+</div></section><section class="chapter"><h3 id="type-compatibility-scoring" data-toc="type-compatibility-scoring">Type Compatibility Scoring</h3><p id="-eb7nxf_139">GraphInterop ranks type compatibility:</p><div class="code-block" data-lang="csharp">
+int score = TypeCompatibility.GetCompatibilityScore(
+    outputType,
+    inputType
+);
+</div><p id="-eb7nxf_141"><span class="control" id="-eb7nxf_145">Scoring System:</span></p><div class="table-wrapper"><table class="wide" id="-eb7nxf_142"><thead><tr class="ijRowHead" id="-eb7nxf_146"><th id="-eb7nxf_154"><p>Match Type</p></th><th id="-eb7nxf_155"><p>Score</p></th><th id="-eb7nxf_156"><p>Example</p></th></tr></thead><tbody><tr id="-eb7nxf_147"><td id="-eb7nxf_157"><p>Exact match</p></td><td id="-eb7nxf_158"><p>100</p></td><td id="-eb7nxf_159"><p><code class="code" id="-eb7nxf_160">int</code> &rarr; <code class="code" id="-eb7nxf_161">int</code></p></td></tr><tr id="-eb7nxf_148"><td id="-eb7nxf_162"><p>Derived &rarr; Base</p></td><td id="-eb7nxf_163"><p>90 - distance*5</p></td><td id="-eb7nxf_164"><p><code class="code" id="-eb7nxf_165">Transform</code> &rarr; <code class="code" id="-eb7nxf_166">Component</code></p></td></tr><tr id="-eb7nxf_149"><td id="-eb7nxf_167"><p>Interface</p></td><td id="-eb7nxf_168"><p>90 - distance*5</p></td><td id="-eb7nxf_169"><p><code class="code" id="-eb7nxf_170">IEnumerable&lt;T&gt;</code> &rarr; <code class="code" id="-eb7nxf_171">IList&lt;T&gt;</code></p></td></tr><tr id="-eb7nxf_150"><td id="-eb7nxf_172"><p>Numeric conversion</p></td><td id="-eb7nxf_173"><p>50</p></td><td id="-eb7nxf_174"><p><code class="code" id="-eb7nxf_175">int</code> &rarr; <code class="code" id="-eb7nxf_176">float</code></p></td></tr><tr id="-eb7nxf_151"><td id="-eb7nxf_177"><p>Custom converter</p></td><td id="-eb7nxf_178"><p>30</p></td><td id="-eb7nxf_179"><p><code class="code" id="-eb7nxf_180">Vector3</code> &rarr; <code class="code" id="-eb7nxf_181">float</code></p></td></tr><tr id="-eb7nxf_152"><td id="-eb7nxf_182"><p>Target is <code class="code" id="-eb7nxf_185">object</code></p></td><td id="-eb7nxf_183"><p>10</p></td><td id="-eb7nxf_184"><p>Any &rarr; <code class="code" id="-eb7nxf_186">object</code></p></td></tr><tr id="-eb7nxf_153"><td id="-eb7nxf_187"><p>Incompatible</p></td><td id="-eb7nxf_188"><p>0</p></td><td id="-eb7nxf_189"><p><code class="code" id="-eb7nxf_190">string</code> &rarr; <code class="code" id="-eb7nxf_191">int</code> (no converter)</p></td></tr></tbody></table></div><p id="-eb7nxf_143"><span class="control" id="-eb7nxf_192">Used For:</span></p><ul class="list _bullet" id="-eb7nxf_144"><li class="list__item" id="-eb7nxf_193"><p id="-eb7nxf_196">Port connection validation</p></li><li class="list__item" id="-eb7nxf_194"><p id="-eb7nxf_197">Best-match selection in search window</p></li><li class="list__item" id="-eb7nxf_195"><p id="-eb7nxf_198">Error highlighting</p></li></ul></section><section class="chapter"><h3 id="port-type-display-names" data-toc="port-type-display-names">Port Type Display Names</h3><p id="-eb7nxf_199">Customize type labels in UI:</p><div class="code-block" data-lang="csharp">
+[PortInfo(DisplayName = &quot;World Position&quot;)]
+public struct WorldPosition
+{
+    public Vector3 position;
+}
+
+// Port shows &quot;World Position&quot; instead of &quot;WorldPosition&quot;
+</div><p id="-eb7nxf_201"><span class="control" id="-eb7nxf_203">Built-in Display Names:</span></p><div class="table-wrapper"><table class="wide" id="-eb7nxf_202"><thead><tr class="ijRowHead" id="-eb7nxf_204"><th id="-eb7nxf_212"><p>Type</p></th><th id="-eb7nxf_213"><p>Display Name</p></th></tr></thead><tbody><tr id="-eb7nxf_205"><td id="-eb7nxf_214"><p><code class="code" id="-eb7nxf_216">float</code></p></td><td id="-eb7nxf_215"><p>float</p></td></tr><tr id="-eb7nxf_206"><td id="-eb7nxf_217"><p><code class="code" id="-eb7nxf_219">int</code></p></td><td id="-eb7nxf_218"><p>int</p></td></tr><tr id="-eb7nxf_207"><td id="-eb7nxf_220"><p><code class="code" id="-eb7nxf_222">bool</code></p></td><td id="-eb7nxf_221"><p>bool</p></td></tr><tr id="-eb7nxf_208"><td id="-eb7nxf_223"><p><code class="code" id="-eb7nxf_225">string</code></p></td><td id="-eb7nxf_224"><p>string</p></td></tr><tr id="-eb7nxf_209"><td id="-eb7nxf_226"><p><code class="code" id="-eb7nxf_228">Vector3</code></p></td><td id="-eb7nxf_227"><p>Vector3</p></td></tr><tr id="-eb7nxf_210"><td id="-eb7nxf_229"><p><code class="code" id="-eb7nxf_231">Transform</code></p></td><td id="-eb7nxf_230"><p>Transform</p></td></tr><tr id="-eb7nxf_211"><td id="-eb7nxf_232"><p><code class="code" id="-eb7nxf_234">GameObject</code></p></td><td id="-eb7nxf_233"><p>GameObject</p></td></tr></tbody></table></div></section></section><section class="chapter"><h2 id="parameter-organization" data-toc="parameter-organization">Parameter Organization</h2><section class="chapter"><h3 id="categories" data-toc="categories">Categories</h3><p id="-eb7nxf_237">GraphInterop adds category support to blackboard parameters:</p><div class="code-block" data-lang="csharp">
+var speed = graph.Blackboard.AddParameter&lt;float&gt;(&quot;MoveSpeed&quot;);
+speed.Category = &quot;Movement&quot;;
+
+var damage = graph.Blackboard.AddParameter&lt;int&gt;(&quot;Damage&quot;);
+damage.Category = &quot;Combat&quot;;
+
+var health = graph.Blackboard.AddParameter&lt;int&gt;(&quot;MaxHealth&quot;);
+health.Category = &quot;Combat&quot;;
+</div><p id="-eb7nxf_239"><span class="control" id="-eb7nxf_241">Blackboard UI:</span></p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ Blackboard          │
+├─────────────────────┤
+│ 📁 Movement         │
+│   • MoveSpeed       │
+├─────────────────────┤
+│ 📁 Combat           │
+│   • Damage          │
+│   • MaxHealth       │
+└─────────────────────┘
+</div></section><section class="chapter"><h3 id="sort-order" data-toc="sort-order">Sort Order</h3><p id="-eb7nxf_242">Control parameter ordering within categories:</p><div class="code-block" data-lang="csharp">
+var speed = graph.Blackboard.AddParameter&lt;float&gt;(&quot;MoveSpeed&quot;);
+speed.Category = &quot;Movement&quot;;
+speed.SortOrder = 0; // First
+
+var jumpForce = graph.Blackboard.AddParameter&lt;float&gt;(&quot;JumpForce&quot;);
+jumpForce.Category = &quot;Movement&quot;;
+jumpForce.SortOrder = 1; // Second
+
+var runMultiplier = graph.Blackboard.AddParameter&lt;float&gt;(&quot;RunMultiplier&quot;);
+runMultiplier.Category = &quot;Movement&quot;;
+runMultiplier.SortOrder = 2; // Third
+</div><p id="-eb7nxf_244"><span class="control" id="-eb7nxf_246">Benefits:</span></p><ul class="list _bullet" id="-eb7nxf_245"><li class="list__item" id="-eb7nxf_247"><p id="-eb7nxf_251">Organized parameter lists</p></li><li class="list__item" id="-eb7nxf_248"><p id="-eb7nxf_252">Logical grouping</p></li><li class="list__item" id="-eb7nxf_249"><p id="-eb7nxf_253">Easier to find parameters</p></li><li class="list__item" id="-eb7nxf_250"><p id="-eb7nxf_254">Clearer graph structure</p></li></ul></section></section><section class="chapter"><h2 id="context-variable-system" data-toc="context-variable-system">Context Variable System</h2><section class="chapter"><h3 id="problem" data-toc="problem">Problem</h3><p id="-eb7nxf_258">Graphs often need runtime-provided data (e.g., <code class="code" id="-eb7nxf_259">Transform</code>, <code class="code" id="-eb7nxf_260">DeltaTime</code>) that shouldn't be editable in the editor.</p></section><section class="chapter"><h3 id="solution-context-variables" data-toc="solution-context-variables">Solution: Context Variables</h3><p id="-eb7nxf_261">GraphInterop distinguishes between:</p><ul class="list _bullet" id="-eb7nxf_262"><li class="list__item" id="-eb7nxf_270"><p id="-eb7nxf_272"><span class="control" id="-eb7nxf_273">Parameters</span> (editable in editor, serialized)</p></li><li class="list__item" id="-eb7nxf_271"><p id="-eb7nxf_274"><span class="control" id="-eb7nxf_275">Context Variables</span> (runtime-provided, read-only)</p></li></ul><div class="code-block" data-lang="csharp">
+public class GameplayGraph : GraphAsset
+{
+    public override IEnumerable&lt;ContextVariableDefinition&gt; GetContextVariables()
+    {
+        yield return new ContextVariableDefinition(
+            name: &quot;transform&quot;,
+            type: typeof(Transform),
+            displayName: &quot;Transform&quot;,
+            isRequired: true
+        );
+
+        yield return new ContextVariableDefinition(
+            name: &quot;deltaTime&quot;,
+            type: typeof(float),
+            displayName: &quot;Delta Time&quot;,
+            isRequired: true
+        );
+
+        yield return new ContextVariableDefinition(
+            name: &quot;input&quot;,
+            type: typeof(Vector2),
+            displayName: &quot;Input Vector&quot;,
+            isRequired: false // Optional
+        );
+    }
+}
+</div><p id="-eb7nxf_264"><span class="control" id="-eb7nxf_276">Runtime Usage:</span></p><div class="code-block" data-lang="csharp">
+var context = new GraphContext();
+context.SetContextVariable(&quot;transform&quot;, transform);
+context.SetContextVariable(&quot;deltaTime&quot;, Time.deltaTime);
+context.SetContextVariable(&quot;input&quot;, new Vector2(
+    Input.GetAxis(&quot;Horizontal&quot;),
+    Input.GetAxis(&quot;Vertical&quot;)
+));
+
+await executor.ExecuteAsync(context);
+</div><p id="-eb7nxf_266"><span class="control" id="-eb7nxf_277">Editor Display:</span></p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ Blackboard          │
+├─────────────────────┤
+│ 📁 Movement         │
+│   • MoveSpeed (5.0) │ ← Editable parameter
+├─────────────────────┤
+│ 📁 Context          │ ← Read-only section
+│   🔒 Transform      │
+│   🔒 DeltaTime      │
+│   🔒 Input Vector   │
+└─────────────────────┘
+</div><p id="-eb7nxf_268"><span class="control" id="-eb7nxf_278">Validation:</span></p><div class="code-block" data-lang="csharp">
+// Before execution, validate context
+var errors = graph.ValidateContext(context);
+if (errors.Count &gt; 0)
+{
+    Debug.LogError(&quot;Missing required context variables:&quot;);
+    foreach (var error in errors)
+        Debug.LogError($&quot;  - {error}&quot;);
+    return;
+}
+
+await executor.ExecuteAsync(context);
+</div></section><section class="chapter"><h3 id="getcontextvariablenode" data-toc="getcontextvariablenode">GetContextVariableNode</h3><p id="-eb7nxf_279">Retrieve context variables in graph:</p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Get Context Variable&quot;,
+    Category = &quot;Variables&quot;
+)]
+public class GetContextVariableNode : CompactNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;string&gt;(&quot;variableName&quot;)
+            .WithDisplayName(&quot;Variable&quot;)
+            .Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddOutputPort&lt;object&gt;(&quot;value&quot;)
+            .WithDisplayName(&quot;Value&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var variableName = this.GetOptionValue&lt;string&gt;(&quot;variableName&quot;);
+        var value = context.GetContextVariable(variableName);
+        this.SetOutputValue(&quot;value&quot;, value, context);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="compact-node-layout" data-toc="compact-node-layout">Compact Node Layout</h2><section class="chapter"><h3 id="problem" data-toc="problem">Problem</h3><p id="-eb7nxf_283">Utility nodes (constants, getters) clutter graphs with unnecessary UI elements.</p></section><section class="chapter"><h3 id="solution-compactnode-base-class" data-toc="solution-compactnode-base-class">Solution: CompactNode Base Class</h3><div class="code-block" data-lang="csharp">
+public abstract class CompactNode : GraphNode
+{
+    // No title bar
+    // Minimal visual footprint
+    // Only shows: ports and essential fields
+}
+</div><p id="-eb7nxf_285"><span class="control" id="-eb7nxf_295">Standard Node:</span></p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ 🔧 Get Parameter    │ ← Title bar (takes space)
+├─────────────────────┤
+│ Category: Variables │ ← Description
+├─────────────────────┤
+│ [Parameter: Speed]  │ ← Options
+├─────────────────────┤
+│ Value ○             │ ← Ports
+└─────────────────────┘
+</div><p id="-eb7nxf_287"><span class="control" id="-eb7nxf_296">Compact Node:</span></p><div class="code-block" data-lang="none">
+[Speed] Value ○
+</div><p id="-eb7nxf_289"><span class="control" id="-eb7nxf_297">Example:</span></p><div class="code-block" data-lang="csharp">
+public class GetParameterNode : CompactNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;string&gt;(&quot;parameterName&quot;).Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddOutputPort&lt;object&gt;(&quot;value&quot;).Build();
+    }
+}
+</div><p id="-eb7nxf_291"><span class="control" id="-eb7nxf_298">Used For:</span></p><ul class="list _bullet" id="-eb7nxf_292"><li class="list__item" id="-eb7nxf_299"><p id="-eb7nxf_303"><code class="code" id="-eb7nxf_304">GetParameterNode</code></p></li><li class="list__item" id="-eb7nxf_300"><p id="-eb7nxf_305"><code class="code" id="-eb7nxf_306">GetContextVariableNode</code></p></li><li class="list__item" id="-eb7nxf_301"><p id="-eb7nxf_307"><code class="code" id="-eb7nxf_308">ConstantNode</code></p></li><li class="list__item" id="-eb7nxf_302"><p id="-eb7nxf_309"><code class="code" id="-eb7nxf_310">SendPortalNode</code>/<code class="code" id="-eb7nxf_311">ReceivePortalNode</code></p></li></ul><p id="-eb7nxf_293"><span class="control" id="-eb7nxf_312">Benefits:</span></p><ul class="list _bullet" id="-eb7nxf_294"><li class="list__item" id="-eb7nxf_313"><p id="-eb7nxf_317">Cleaner graph layout</p></li><li class="list__item" id="-eb7nxf_314"><p id="-eb7nxf_318">More nodes visible on screen</p></li><li class="list__item" id="-eb7nxf_315"><p id="-eb7nxf_319">Reduced visual noise</p></li><li class="list__item" id="-eb7nxf_316"><p id="-eb7nxf_320">Easier to scan</p></li></ul></section></section><section class="chapter"><h2 id="backend-abstraction" data-toc="backend-abstraction">Backend Abstraction</h2><section class="chapter"><h3 id="problem" data-toc="problem">Problem</h3><p id="-eb7nxf_324">Tightly coupling to GraphView prevents future migration to GraphToolkit UI.</p></section><section class="chapter"><h3 id="solution-igrapheditorbackend" data-toc="solution-igrapheditorbackend">Solution: IGraphEditorBackend</h3><p id="-eb7nxf_325">GraphInterop abstracts the editor implementation:</p><div class="code-block" data-lang="csharp">
+public interface IGraphEditorBackend
+{
+    GraphAsset CurrentGraph { get; }
+    void Initialize(EditorWindow window, VisualElement root);
+    void LoadGraph(GraphAsset graph);
+    void OnDisable();
+}
+</div><p id="-eb7nxf_327"><span class="control" id="-eb7nxf_333">Multiple Backend Support:</span></p><div class="code-block" data-lang="csharp">
+// GraphView backend (current)
+public class GraphViewEditorBackend : IGraphEditorBackend { }
+
+// Future GraphToolkit backend
+public class GraphToolkitEditorBackend : IGraphEditorBackend { }
+
+// Custom backends
+public class MyCustomBackend : IGraphEditorBackend { }
+</div><p id="-eb7nxf_329"><span class="control" id="-eb7nxf_334">Registration:</span></p><div class="code-block" data-lang="csharp">
+[InitializeOnLoadMethod]
+private static void RegisterBackends()
+{
+    // Priority order: first registered = first tried
+    GraphInteropEditorWindow.RegisterBackend(() =&gt; new GraphViewEditorBackend());
+    GraphInteropEditorWindow.RegisterBackend(() =&gt; new GraphToolkitEditorBackend());
+}
+</div><p id="-eb7nxf_331"><span class="control" id="-eb7nxf_335">Benefits:</span></p><ul class="list _bullet" id="-eb7nxf_332"><li class="list__item" id="-eb7nxf_336"><p id="-eb7nxf_340">Future-proof architecture</p></li><li class="list__item" id="-eb7nxf_337"><p id="-eb7nxf_341">Easy to switch backends</p></li><li class="list__item" id="-eb7nxf_338"><p id="-eb7nxf_342">Custom editor support</p></li><li class="list__item" id="-eb7nxf_339"><p id="-eb7nxf_343">No user code changes needed</p></li></ul></section><section class="chapter"><h3 id="example-custom-backend" data-toc="example-custom-backend">Example: Custom Backend</h3><div class="code-block" data-lang="csharp">
+public class MyDebugBackend : IGraphEditorBackend
+{
+    public GraphAsset CurrentGraph { get; private set; }
+
+    public void Initialize(EditorWindow window, VisualElement root)
+    {
+        var label = new Label(&quot;Debug Backend Active&quot;);
+        root.Add(label);
+
+        var nodeList = new ListView();
+        root.Add(nodeList);
+    }
+
+    public void LoadGraph(GraphAsset graph)
+    {
+        CurrentGraph = graph;
+        // Update UI
+    }
+
+    public void OnDisable()
+    {
+        // Cleanup
+    }
+}
+
+// Register
+[InitializeOnLoadMethod]
+private static void Register()
+{
+    GraphInteropEditorWindow.RegisterBackend(() =&gt; new MyDebugBackend());
+}
+</div></section></section><section class="chapter"><h2 id="validation-extensions" data-toc="validation-extensions">Validation Extensions</h2><section class="chapter"><h3 id="required-port-validation" data-toc="required-port-validation">Required Port Validation</h3><p id="-eb7nxf_347">Mark ports as required:</p><div class="code-block" data-lang="csharp">
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;)
+    .Required() // ← GraphInterop extension
+    .Build();
+</div><p id="-eb7nxf_349"><span class="control" id="-eb7nxf_351">Validation:</span></p><div class="code-block" data-lang="csharp">
+var errors = graph.Validate();
+// &quot;Node 'TransformNode' has required input 'target' that is not connected or set&quot;
+</div></section><section class="chapter"><h3 id="custom-node-validation" data-toc="custom-node-validation">Custom Node Validation</h3><p id="-eb7nxf_352">Override <code class="code" id="-eb7nxf_354">Validate()</code> for custom checks:</p><div class="code-block" data-lang="csharp">
+public override void Validate(List&lt;string&gt; errors)
+{
+    base.Validate(errors);
+
+    var path = this.GetOptionValue&lt;string&gt;(&quot;filePath&quot;);
+    if (string.IsNullOrEmpty(path))
+    {
+        errors.Add($&quot;Node '{this.Id}': File path is required&quot;);
+    }
+
+    if (!File.Exists(path))
+    {
+        errors.Add($&quot;Node '{this.Id}': File '{path}' does not exist&quot;);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="comparison-with-base-systems" data-toc="comparison-with-base-systems">Comparison with Base Systems</h2><div class="table-wrapper"><table class="wide" id="-eb7nxf_355"><thead><tr class="ijRowHead" id="-eb7nxf_356"><th id="-eb7nxf_369"><p>Feature</p></th><th id="-eb7nxf_370"><p>GraphView</p></th><th id="-eb7nxf_371"><p>GraphToolkit</p></th><th id="-eb7nxf_372"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-eb7nxf_357"><td id="-eb7nxf_373"><p><span class="control" id="-eb7nxf_377">Portal System</span></p></td><td id="-eb7nxf_374"><p>❌</p></td><td id="-eb7nxf_375"><p>❌</p></td><td id="-eb7nxf_376"><p>✅</p></td></tr><tr id="-eb7nxf_358"><td id="-eb7nxf_378"><p><span class="control" id="-eb7nxf_382">Burst Support</span></p></td><td id="-eb7nxf_379"><p>❌</p></td><td id="-eb7nxf_380"><p>❌</p></td><td id="-eb7nxf_381"><p>✅</p></td></tr><tr id="-eb7nxf_359"><td id="-eb7nxf_383"><p><span class="control" id="-eb7nxf_387">Numeric Auto-Conversion</span></p></td><td id="-eb7nxf_384"><p>❌</p></td><td id="-eb7nxf_385"><p>❌</p></td><td id="-eb7nxf_386"><p>✅</p></td></tr><tr id="-eb7nxf_360"><td id="-eb7nxf_388"><p><span class="control" id="-eb7nxf_392">Custom Type Converters</span></p></td><td id="-eb7nxf_389"><p>❌</p></td><td id="-eb7nxf_390"><p>❌</p></td><td id="-eb7nxf_391"><p>✅</p></td></tr><tr id="-eb7nxf_361"><td id="-eb7nxf_393"><p><span class="control" id="-eb7nxf_397">Type Compatibility Scoring</span></p></td><td id="-eb7nxf_394"><p>❌</p></td><td id="-eb7nxf_395"><p>❌</p></td><td id="-eb7nxf_396"><p>✅</p></td></tr><tr id="-eb7nxf_362"><td id="-eb7nxf_398"><p><span class="control" id="-eb7nxf_402">Parameter Categories</span></p></td><td id="-eb7nxf_399"><p>❌</p></td><td id="-eb7nxf_400"><p>❌</p></td><td id="-eb7nxf_401"><p>✅</p></td></tr><tr id="-eb7nxf_363"><td id="-eb7nxf_403"><p><span class="control" id="-eb7nxf_407">Parameter Sort Order</span></p></td><td id="-eb7nxf_404"><p>❌</p></td><td id="-eb7nxf_405"><p>❌</p></td><td id="-eb7nxf_406"><p>✅</p></td></tr><tr id="-eb7nxf_364"><td id="-eb7nxf_408"><p><span class="control" id="-eb7nxf_412">Context Variables</span></p></td><td id="-eb7nxf_409"><p>❌</p></td><td id="-eb7nxf_410"><p>❌</p></td><td id="-eb7nxf_411"><p>✅</p></td></tr><tr id="-eb7nxf_365"><td id="-eb7nxf_413"><p><span class="control" id="-eb7nxf_417">Compact Node Layout</span></p></td><td id="-eb7nxf_414"><p>❌</p></td><td id="-eb7nxf_415"><p>❌</p></td><td id="-eb7nxf_416"><p>✅</p></td></tr><tr id="-eb7nxf_366"><td id="-eb7nxf_418"><p><span class="control" id="-eb7nxf_422">Backend Abstraction</span></p></td><td id="-eb7nxf_419"><p>❌</p></td><td id="-eb7nxf_420"><p>❌</p></td><td id="-eb7nxf_421"><p>✅</p></td></tr><tr id="-eb7nxf_367"><td id="-eb7nxf_423"><p><span class="control" id="-eb7nxf_427">Required Port Validation</span></p></td><td id="-eb7nxf_424"><p>❌</p></td><td id="-eb7nxf_425"><p>Partial</p></td><td id="-eb7nxf_426"><p>✅</p></td></tr><tr id="-eb7nxf_368"><td id="-eb7nxf_428"><p><span class="control" id="-eb7nxf_432">Custom Node Validation</span></p></td><td id="-eb7nxf_429"><p>❌</p></td><td id="-eb7nxf_430"><p>✅</p></td><td id="-eb7nxf_431"><p>✅ Enhanced</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="future-innovations" data-toc="future-innovations">Future Innovations</h2><p id="-eb7nxf_433">GraphInterop continues to innovate. Planned features:</p><section class="chapter"><h3 id="copy-paste-system" data-toc="copy-paste-system">Copy/Paste System</h3><div class="code-block" data-lang="csharp">
+// Select nodes
+Ctrl+C → Copy nodes and connections
+Ctrl+V → Paste with new IDs
+</div></section><section class="chapter"><h3 id="node-templates" data-toc="node-templates">Node Templates</h3><div class="code-block" data-lang="csharp">
+[NodeTemplate(&quot;Common Patterns/Movement&quot;)]
+public static GraphTemplate CreateMovementPattern()
+{
+    var template = new GraphTemplate();
+    // Pre-configured node group
+    return template;
+}
+</div></section><section class="chapter"><h3 id="visual-debugging" data-toc="visual-debugging">Visual Debugging</h3><div class="code-block" data-lang="csharp">
+// Show values on edges during execution
+[Node A] ──(5.0)──&gt; [Node B]
+          ↑
+      Live value
+</div></section><section class="chapter"><h3 id="performance-profiling" data-toc="performance-profiling">Performance Profiling</h3><div class="code-block" data-lang="csharp">
+// Measure node execution time
+Node A: 0.5ms
+Node B: 2.1ms ← Bottleneck!
+Node C: 0.3ms
+</div></section></section><section class="chapter"><h2 id="summary" data-toc="summary">Summary</h2><p id="-eb7nxf_442">GraphInterop innovations solve real-world problems:</p><ul class="list _bullet" id="-eb7nxf_443"><li class="list__item" id="-eb7nxf_445"><p id="-eb7nxf_452">✅ <span class="control" id="-eb7nxf_453">Portal System</span>: Cleaner large graphs</p></li><li class="list__item" id="-eb7nxf_446"><p id="-eb7nxf_454">✅ <span class="control" id="-eb7nxf_455">Burst Support</span>: 100x performance gains</p></li><li class="list__item" id="-eb7nxf_447"><p id="-eb7nxf_456">✅ <span class="control" id="-eb7nxf_457">Enhanced Type System</span>: More flexible connections</p></li><li class="list__item" id="-eb7nxf_448"><p id="-eb7nxf_458">✅ <span class="control" id="-eb7nxf_459">Parameter Organization</span>: Better UX</p></li><li class="list__item" id="-eb7nxf_449"><p id="-eb7nxf_460">✅ <span class="control" id="-eb7nxf_461">Context Variables</span>: Clear runtime/editor separation</p></li><li class="list__item" id="-eb7nxf_450"><p id="-eb7nxf_462">✅ <span class="control" id="-eb7nxf_463">Compact Nodes</span>: Reduced visual clutter</p></li><li class="list__item" id="-eb7nxf_451"><p id="-eb7nxf_464">✅ <span class="control" id="-eb7nxf_465">Backend Abstraction</span>: Future-proof architecture</p></li></ul><p id="-eb7nxf_444">These features make GraphInterop more than just a bridge&mdash;it's a complete node graph solution.</p></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="graphview-features.html" class="navigation-links__prev">GraphView Features in GraphInterop</a><a href="feature-roadmap.html" class="navigation-links__next">Feature Roadmap</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>

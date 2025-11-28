@@ -1,0 +1,486 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:39.818471656"><title>GraphView Features in GraphInterop | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"overview","level":0,"title":"Overview","anchor":"#overview"},{"id":"editor-ui","level":0,"title":"Editor UI Features","anchor":"#editor-ui"},{"id":"graphview-backend-implementation","level":0,"title":"GraphView Backend Implementation","anchor":"#graphview-backend-implementation"},{"id":"advanced-graphview-features","level":0,"title":"Advanced GraphView Features","anchor":"#advanced-graphview-features"},{"id":"graphview-limitations-and-workarounds","level":0,"title":"GraphView Limitations and Workarounds","anchor":"#graphview-limitations-and-workarounds"},{"id":"graphview-vs-graphtoolkit-ui","level":0,"title":"GraphView vs GraphToolkit UI","anchor":"#graphview-vs-graphtoolkit-ui"},{"id":"graphview-integration-details","level":0,"title":"GraphView Integration Details","anchor":"#graphview-integration-details"},{"id":"customization-examples","level":0,"title":"Customization Examples","anchor":"#customization-examples"},{"id":"best-practices","level":0,"title":"Best Practices","anchor":"#best-practices"},{"id":"summary","level":0,"title":"Summary","anchor":"#summary"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="GraphView Features in GraphInterop | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/graphview-features.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="GraphView Features in GraphInterop | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/graphview-features.html#webpage",
+    "url": "writerside-documentation/graphview-features.html",
+    "name": "GraphView Features in GraphInterop | GraphInterop",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "GraphInterop Help"
+}</script><!-- End Schema.org --></head><body data-id="graphview-features" data-main-title="GraphView Features in GraphInterop" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="feature-comparison-overview.md|Feature Comparison Overview"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="graphview-features" id="graphview-features.md">GraphView Features in GraphInterop</h1><p id="z7ykvhy_3">This page explains how GraphInterop uses Unity's GraphView for visual graph editing and what features are supported.</p><section class="chapter"><h2 id="overview" data-toc="overview">Overview</h2><p id="z7ykvhy_14"><span class="control" id="z7ykvhy_17">GraphView</span> is Unity's UI Toolkit-based graph visualization framework. While considered legacy (GraphToolkit is the intended replacement), GraphView provides a mature, feature-rich editor experience.</p><section class="chapter"><h3 id="why-use-graphview" data-toc="why-use-graphview">Why Use GraphView?</h3><ol class="list _decimal" id="z7ykvhy_18" type="1"><li class="list__item" id="z7ykvhy_19"><p id="z7ykvhy_23"><span class="control" id="z7ykvhy_24">Mature and Stable</span>: Battle-tested in Unity's official tools (Shader Graph, Visual Effect Graph)</p></li><li class="list__item" id="z7ykvhy_20"><p id="z7ykvhy_25"><span class="control" id="z7ykvhy_26">Feature-Complete UI</span>: Robust visual editing capabilities</p></li><li class="list__item" id="z7ykvhy_21"><p id="z7ykvhy_27"><span class="control" id="z7ykvhy_28">Production-Ready</span>: Not experimental (unlike GraphToolkit UI)</p></li><li class="list__item" id="z7ykvhy_22"><p id="z7ykvhy_29"><span class="control" id="z7ykvhy_30">UI Toolkit Integration</span>: Modern Unity UI framework</p></li></ol></section><section class="chapter"><h3 id="graphinterop-s-approach" data-toc="graphinterop-s-approach">GraphInterop's Approach</h3><p id="z7ykvhy_31">GraphInterop uses GraphView for the <span class="control" id="z7ykvhy_33">editor experience only</span>:</p><ul class="list _bullet" id="z7ykvhy_32"><li class="list__item" id="z7ykvhy_34"><p id="z7ykvhy_37">Runtime API is GraphToolkit-based</p></li><li class="list__item" id="z7ykvhy_35"><p id="z7ykvhy_38">Editor UI is GraphView-based</p></li><li class="list__item" id="z7ykvhy_36"><p id="z7ykvhy_39">Clean separation via <code class="code" id="z7ykvhy_40">IGraphEditorBackend</code></p></li></ul></section></section><section class="chapter"><h2 id="editor-ui" data-toc="editor-ui">Editor UI Features</h2><section class="chapter"><h3 id="visual-graph-editor" data-toc="visual-graph-editor">Visual Graph Editor</h3><p id="z7ykvhy_51">GraphInterop provides a full-featured graph editor powered by GraphView:</p><div class="code-block" data-lang="csharp">
+// Open via menu
+Window &gt; GraphInterop &gt; Graph Editor
+
+// Or double-click any GraphAsset
+</div><p id="z7ykvhy_53"><span class="control" id="z7ykvhy_55">Features:</span></p><ul class="list _bullet" id="z7ykvhy_54"><li class="list__item" id="z7ykvhy_56"><p id="z7ykvhy_62">Node placement via drag &amp; drop</p></li><li class="list__item" id="z7ykvhy_57"><p id="z7ykvhy_63">Edge creation via port connections</p></li><li class="list__item" id="z7ykvhy_58"><p id="z7ykvhy_64">Pan/zoom navigation</p></li><li class="list__item" id="z7ykvhy_59"><p id="z7ykvhy_65">Selection and multi-selection</p></li><li class="list__item" id="z7ykvhy_60"><p id="z7ykvhy_66">Copy/paste (planned)</p></li><li class="list__item" id="z7ykvhy_61"><p id="z7ykvhy_67">Undo/redo (planned)</p></li></ul></section><section class="chapter"><h3 id="node-creation" data-toc="node-creation">Node Creation</h3><p id="z7ykvhy_68"><span class="control" id="z7ykvhy_74">Search Window (Space Key):</span></p><div class="code-block" data-lang="none">
+Space → Opens node search window
+Type to filter by name/category
+Enter to create node
+</div><p id="z7ykvhy_70"><span class="control" id="z7ykvhy_75">Context Menu (Right-Click):</span></p><div class="code-block" data-lang="none">
+Right-click canvas → Add Node menu
+Organized by category
+Hierarchical navigation
+</div><p id="z7ykvhy_72"><span class="control" id="z7ykvhy_76">Features:</span></p><ul class="list _bullet" id="z7ykvhy_73"><li class="list__item" id="z7ykvhy_77"><p id="z7ykvhy_81">Search by node name</p></li><li class="list__item" id="z7ykvhy_78"><p id="z7ykvhy_82">Filter by category</p></li><li class="list__item" id="z7ykvhy_79"><p id="z7ykvhy_83">Type-based filtering</p></li><li class="list__item" id="z7ykvhy_80"><p id="z7ykvhy_84">Recent nodes (planned)</p></li></ul></section><section class="chapter"><h3 id="port-connection-system" data-toc="port-connection-system">Port Connection System</h3><p id="z7ykvhy_85"><span class="control" id="z7ykvhy_94">Connection Rules:</span></p><ul class="list _bullet" id="z7ykvhy_86"><li class="list__item" id="z7ykvhy_95"><p id="z7ykvhy_99">Drag from output &rarr; input port</p></li><li class="list__item" id="z7ykvhy_96"><p id="z7ykvhy_100">Type compatibility checked visually</p></li><li class="list__item" id="z7ykvhy_97"><p id="z7ykvhy_101">Compatible ports highlighted</p></li><li class="list__item" id="z7ykvhy_98"><p id="z7ykvhy_102">Invalid connections prevented</p></li></ul><p id="z7ykvhy_87"><span class="control" id="z7ykvhy_103">Visual Feedback:</span></p><div class="code-block" data-lang="csharp">
+// Port colors indicate type compatibility
+Green outline = compatible
+Red outline = incompatible
+Gray = no connection
+</div><p id="z7ykvhy_89"><span class="control" id="z7ykvhy_104">Port Styling:</span></p><p id="z7ykvhy_90">GraphInterop customizes port appearance based on type:</p><div class="code-block" data-lang="csharp">
+[PortInfo(
+    Color = &quot;#FF6B35&quot;,
+    DisplayName = &quot;Position&quot;,
+    Icon = &quot;d_Transform Icon&quot;
+)]
+public struct WorldPosition
+{
+    public Vector3 position;
+}
+</div><p id="z7ykvhy_92"><span class="control" id="z7ykvhy_105">Supported Customizations:</span></p><div class="table-wrapper"><table class="wide" id="z7ykvhy_93"><thead><tr class="ijRowHead" id="z7ykvhy_106"><th id="z7ykvhy_111"><p>Attribute</p></th><th id="z7ykvhy_112"><p>Effect</p></th></tr></thead><tbody><tr id="z7ykvhy_107"><td id="z7ykvhy_113"><p><code class="code" id="z7ykvhy_115">Color = &quot;#RRGGBB&quot;</code></p></td><td id="z7ykvhy_114"><p>Port circle color</p></td></tr><tr id="z7ykvhy_108"><td id="z7ykvhy_116"><p><code class="code" id="z7ykvhy_118">Color = &quot;red&quot;</code></p></td><td id="z7ykvhy_117"><p>Named color (red, blue, green, orange, yellow, purple, pink)</p></td></tr><tr id="z7ykvhy_109"><td id="z7ykvhy_119"><p><code class="code" id="z7ykvhy_121">DisplayName = &quot;...&quot;</code></p></td><td id="z7ykvhy_120"><p>Type label in UI</p></td></tr><tr id="z7ykvhy_110"><td id="z7ykvhy_122"><p><code class="code" id="z7ykvhy_124">Icon = &quot;d_IconName&quot;</code></p></td><td id="z7ykvhy_123"><p>Unity icon next to port</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="node-views" data-toc="node-views">Node Views</h3><p id="z7ykvhy_125">GraphInterop provides two node view styles:</p><section class="chapter"><h4 id="standard-node-view" data-toc="standard-node-view">Standard Node View</h4><div class="code-block" data-lang="csharp">
+┌─────────────────────────┐
+│ 🔧 Node Title          │ ← Title bar with icon
+├─────────────────────────┤
+│ Category: Math          │ ← Description
+├─────────────────────────┤
+│ [Option Field]          │ ← Node options
+├─────────────────────────┤
+│ ● Input A        Result ○ │ ← Ports
+└─────────────────────────┘
+</div><p id="z7ykvhy_129"><span class="control" id="z7ykvhy_133">Used For:</span></p><ul class="list _bullet" id="z7ykvhy_130"><li class="list__item" id="z7ykvhy_134"><p id="z7ykvhy_137">Standard computational nodes</p></li><li class="list__item" id="z7ykvhy_135"><p id="z7ykvhy_138">Nodes with options</p></li><li class="list__item" id="z7ykvhy_136"><p id="z7ykvhy_139">Nodes requiring description</p></li></ul><p id="z7ykvhy_131"><span class="control" id="z7ykvhy_140">Example:</span></p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Add&quot;,
+    Category = &quot;Math&quot;,
+    Description = &quot;Adds two numbers&quot;
+)]
+public class AddNode : GraphNode { }
+</div></section><section class="chapter"><h4 id="compact-node-view" data-toc="compact-node-view">Compact Node View</h4><div class="code-block" data-lang="none">
+● Value: [___] Result ○
+</div><p id="z7ykvhy_142"><span class="control" id="z7ykvhy_146">Used For:</span></p><ul class="list _bullet" id="z7ykvhy_143"><li class="list__item" id="z7ykvhy_147"><p id="z7ykvhy_151">Parameter getters (<code class="code" id="z7ykvhy_152">GetParameterNode</code>)</p></li><li class="list__item" id="z7ykvhy_148"><p id="z7ykvhy_153">Constant nodes</p></li><li class="list__item" id="z7ykvhy_149"><p id="z7ykvhy_154">Portal nodes</p></li><li class="list__item" id="z7ykvhy_150"><p id="z7ykvhy_155">Utility nodes</p></li></ul><p id="z7ykvhy_144"><span class="control" id="z7ykvhy_156">Example:</span></p><div class="code-block" data-lang="csharp">
+public class GetParameterNode : CompactNode { }
+</div></section></section><section class="chapter"><h3 id="blackboard-system" data-toc="blackboard-system">Blackboard System</h3><p id="z7ykvhy_157">The blackboard manages graph parameters:</p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ Blackboard          │
+├─────────────────────┤
+│ 📁 Movement         │ ← Category
+│   • Speed (float)   │
+│   • MaxSpeed (float)│
+├─────────────────────┤
+│ 📁 Combat           │
+│   • Damage (int)    │
+├─────────────────────┤
+│ 📁 Context          │ ← Runtime variables
+│   🔒 Transform      │ (read-only)
+│   🔒 DeltaTime      │
+└─────────────────────┘
+</div><p id="z7ykvhy_159"><span class="control" id="z7ykvhy_165">Features:</span></p><ul class="list _bullet" id="z7ykvhy_160"><li class="list__item" id="z7ykvhy_166"><p id="z7ykvhy_171"><span class="control" id="z7ykvhy_172">Categories</span>: Organize parameters by group</p></li><li class="list__item" id="z7ykvhy_167"><p id="z7ykvhy_173"><span class="control" id="z7ykvhy_174">Sort Order</span>: Custom ordering within categories</p></li><li class="list__item" id="z7ykvhy_168"><p id="z7ykvhy_175"><span class="control" id="z7ykvhy_176">Drag to Graph</span>: Create <code class="code" id="z7ykvhy_177">GetParameterNode</code> instantly</p></li><li class="list__item" id="z7ykvhy_169"><p id="z7ykvhy_178"><span class="control" id="z7ykvhy_179">Context Variables</span>: Shows runtime-injected variables</p></li><li class="list__item" id="z7ykvhy_170"><p id="z7ykvhy_180"><span class="control" id="z7ykvhy_181">Add/Remove</span>: Manage parameters via context menu</p></li></ul><p id="z7ykvhy_161"><span class="control" id="z7ykvhy_182">Creating Parameters:</span></p><div class="code-block" data-lang="csharp">
+// Via editor UI
+Right-click Blackboard → Add Parameter
+Set name, type, category
+
+// Via code
+var param = graphAsset.Blackboard.AddParameter&lt;float&gt;(&quot;Speed&quot;);
+param.Category = &quot;Movement&quot;;
+param.SortOrder = 1;
+param.SetValue(5.0f);
+</div><p id="z7ykvhy_163"><span class="control" id="z7ykvhy_183">Parameter Categories Example:</span></p><div class="code-block" data-lang="csharp">
+public class GameGraph : GraphAsset
+{
+    private void OnEnable()
+    {
+        // Movement category
+        var speed = Blackboard.AddParameter&lt;float&gt;(&quot;MoveSpeed&quot;);
+        speed.Category = &quot;Movement&quot;;
+        speed.SortOrder = 0;
+
+        var jumpForce = Blackboard.AddParameter&lt;float&gt;(&quot;JumpForce&quot;);
+        jumpForce.Category = &quot;Movement&quot;;
+        jumpForce.SortOrder = 1;
+
+        // Combat category
+        var damage = Blackboard.AddParameter&lt;int&gt;(&quot;Damage&quot;);
+        damage.Category = &quot;Combat&quot;;
+    }
+
+    public override IEnumerable&lt;ContextVariableDefinition&gt; GetContextVariables()
+    {
+        // Context variables (read-only in editor)
+        yield return new ContextVariableDefinition(
+            &quot;transform&quot;,
+            typeof(Transform),
+            &quot;Transform&quot;,
+            isRequired: true
+        );
+    }
+}
+</div></section><section class="chapter"><h3 id="inspector-panel" data-toc="inspector-panel">Inspector Panel</h3><p id="z7ykvhy_184">Shows details for selected nodes/parameters:</p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ Inspector           │
+├─────────────────────┤
+│ Node: Add Numbers   │
+│                     │
+│ 📝 Options          │
+│   [No options]      │
+│                     │
+│ 🔌 Ports            │
+│   Input A: float    │
+│     [0.0] ← embedded│
+│   Input B: float    │
+│     [0.0]           │
+│   Result: float     │
+│     (output)        │
+└─────────────────────┘
+</div><p id="z7ykvhy_186"><span class="control" id="z7ykvhy_188">Displays:</span></p><ul class="list _bullet" id="z7ykvhy_187"><li class="list__item" id="z7ykvhy_189"><p id="z7ykvhy_193">Node name and type</p></li><li class="list__item" id="z7ykvhy_190"><p id="z7ykvhy_194">Node options (editable)</p></li><li class="list__item" id="z7ykvhy_191"><p id="z7ykvhy_195">Port types and values</p></li><li class="list__item" id="z7ykvhy_192"><p id="z7ykvhy_196">Embedded field values (when unconnected)</p></li></ul></section><section class="chapter"><h3 id="minimap" data-toc="minimap">Minimap</h3><p id="z7ykvhy_197">Visual overview for large graphs:</p><div class="code-block" data-lang="none">
+┌─────────────┐
+│   Minimap   │
+│ ┌─────────┐ │
+│ │ █ █     │ │ ← Nodes
+│ │  █ █ █  │ │
+│ │ [viewport] │ ← Current view
+│ └─────────┘ │
+└─────────────┘
+</div><p id="z7ykvhy_199"><span class="control" id="z7ykvhy_201">Features:</span></p><ul class="list _bullet" id="z7ykvhy_200"><li class="list__item" id="z7ykvhy_202"><p id="z7ykvhy_206">Clickable navigation</p></li><li class="list__item" id="z7ykvhy_203"><p id="z7ykvhy_207">Shows all nodes</p></li><li class="list__item" id="z7ykvhy_204"><p id="z7ykvhy_208">Viewport indicator</p></li><li class="list__item" id="z7ykvhy_205"><p id="z7ykvhy_209">Auto-sizing</p></li></ul></section><section class="chapter"><h3 id="toolbar" data-toc="toolbar">Toolbar</h3><div class="code-block" data-lang="none">
+[Asset: MyGraph ▼] [Save] [Validate] [Execute]
+</div><p id="z7ykvhy_211"><span class="control" id="z7ykvhy_215">Buttons:</span></p><div class="table-wrapper"><table class="wide" id="z7ykvhy_212"><thead><tr class="ijRowHead" id="z7ykvhy_216"><th id="z7ykvhy_221"><p>Button</p></th><th id="z7ykvhy_222"><p>Action</p></th></tr></thead><tbody><tr id="z7ykvhy_217"><td id="z7ykvhy_223"><p><span class="control" id="z7ykvhy_225">Asset Dropdown</span></p></td><td id="z7ykvhy_224"><p>Load different graph</p></td></tr><tr id="z7ykvhy_218"><td id="z7ykvhy_226"><p><span class="control" id="z7ykvhy_228">Save</span></p></td><td id="z7ykvhy_227"><p>Persist changes</p></td></tr><tr id="z7ykvhy_219"><td id="z7ykvhy_229"><p><span class="control" id="z7ykvhy_231">Validate</span></p></td><td id="z7ykvhy_230"><p>Check for errors</p></td></tr><tr id="z7ykvhy_220"><td id="z7ykvhy_232"><p><span class="control" id="z7ykvhy_234">Execute</span></p></td><td id="z7ykvhy_233"><p>Test run with empty context</p></td></tr></tbody></table></div><p id="z7ykvhy_213"><span class="control" id="z7ykvhy_235">Execute Button:</span></p><ul class="list _bullet" id="z7ykvhy_214"><li class="list__item" id="z7ykvhy_236"><p id="z7ykvhy_241">Validates graph first</p></li><li class="list__item" id="z7ykvhy_237"><p id="z7ykvhy_242">Creates empty <code class="code" id="z7ykvhy_243">GraphContext</code></p></li><li class="list__item" id="z7ykvhy_238"><p id="z7ykvhy_244">Runs <code class="code" id="z7ykvhy_245">GraphExecutor.ExecuteAsync()</code></p></li><li class="list__item" id="z7ykvhy_239"><p id="z7ykvhy_246">Logs results to console</p></li><li class="list__item" id="z7ykvhy_240"><p id="z7ykvhy_247">Useful for quick testing</p></li></ul></section><section class="chapter"><h3 id="node-styling" data-toc="node-styling">Node Styling</h3><p id="z7ykvhy_248">GraphInterop uses <code class="code" id="z7ykvhy_256">NodeInfoAttribute</code> for visual customization:</p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Damage Calculator&quot;,
+    Category = &quot;Combat&quot;,
+    Description = &quot;Calculates damage based on stats&quot;,
+    Icon = &quot;d_Profiler.Physics&quot;,
+    Color = &quot;#FF5733&quot;
+)]
+public class DamageNode : GraphNode { }
+</div><p id="z7ykvhy_250"><span class="control" id="z7ykvhy_257">Styling Options:</span></p><div class="table-wrapper"><table class="wide" id="z7ykvhy_251"><thead><tr class="ijRowHead" id="z7ykvhy_258"><th id="z7ykvhy_264"><p>Property</p></th><th id="z7ykvhy_265"><p>Effect</p></th><th id="z7ykvhy_266"><p>Example</p></th></tr></thead><tbody><tr id="z7ykvhy_259"><td id="z7ykvhy_267"><p><code class="code" id="z7ykvhy_270">DisplayName</code></p></td><td id="z7ykvhy_268"><p>Node title</p></td><td id="z7ykvhy_269"><p>&quot;Damage Calculator&quot;</p></td></tr><tr id="z7ykvhy_260"><td id="z7ykvhy_271"><p><code class="code" id="z7ykvhy_274">Category</code></p></td><td id="z7ykvhy_272"><p>Search menu category</p></td><td id="z7ykvhy_273"><p>&quot;Combat&quot;</p></td></tr><tr id="z7ykvhy_261"><td id="z7ykvhy_275"><p><code class="code" id="z7ykvhy_278">Description</code></p></td><td id="z7ykvhy_276"><p>Subtitle text</p></td><td id="z7ykvhy_277"><p>&quot;Calculates damage...&quot;</p></td></tr><tr id="z7ykvhy_262"><td id="z7ykvhy_279"><p><code class="code" id="z7ykvhy_282">Icon</code></p></td><td id="z7ykvhy_280"><p>Title bar icon</p></td><td id="z7ykvhy_281"><p>&quot;d_Profiler.Physics&quot;</p></td></tr><tr id="z7ykvhy_263"><td id="z7ykvhy_283"><p><code class="code" id="z7ykvhy_286">Color</code></p></td><td id="z7ykvhy_284"><p>Title bar color</p></td><td id="z7ykvhy_285"><p>&quot;#FF5733&quot; (red-orange)</p></td></tr></tbody></table></div><p id="z7ykvhy_252"><span class="control" id="z7ykvhy_287">Icon Reference:</span></p><p id="z7ykvhy_253">Unity builtin icons (prefix with <code class="code" id="z7ykvhy_288">d_</code> for dark theme):</p><ul class="list _bullet" id="z7ykvhy_254"><li class="list__item" id="z7ykvhy_289"><p id="z7ykvhy_295"><code class="code" id="z7ykvhy_296">d_Transform Icon</code> - Transform</p></li><li class="list__item" id="z7ykvhy_290"><p id="z7ykvhy_297"><code class="code" id="z7ykvhy_298">d_GameObject Icon</code> - GameObject</p></li><li class="list__item" id="z7ykvhy_291"><p id="z7ykvhy_299"><code class="code" id="z7ykvhy_300">d_Profiler.Physics</code> - Physics</p></li><li class="list__item" id="z7ykvhy_292"><p id="z7ykvhy_301"><code class="code" id="z7ykvhy_302">d_Animation.Play</code> - Animation</p></li><li class="list__item" id="z7ykvhy_293"><p id="z7ykvhy_303"><code class="code" id="z7ykvhy_304">d_SceneAsset Icon</code> - Scene</p></li><li class="list__item" id="z7ykvhy_294"><p id="z7ykvhy_305"><code class="code" id="z7ykvhy_306">d_Prefab Icon</code> - Prefab</p></li></ul><p id="z7ykvhy_255">Find more in Unity editor: Preferences &gt; Icon Browser (if available) or use <a href="https://github.com/halak/unity-editor-icons" id="z7ykvhy_307" data-external="true" rel="noopener noreferrer" target="_blank">Unity Icon Browser tool</a>.</p></section><section class="chapter"><h3 id="port-styling" data-toc="port-styling">Port Styling</h3><p id="z7ykvhy_308">GraphInterop uses <code class="code" id="z7ykvhy_317">PortInfoAttribute</code> for type-specific styling:</p><div class="code-block" data-lang="csharp">
+[PortInfo(
+    Color = &quot;#4CAF50&quot;,
+    DisplayName = &quot;World Transform&quot;,
+    Icon = &quot;d_Transform Icon&quot;
+)]
+public class TransformData
+{
+    public Vector3 position;
+    public Quaternion rotation;
+}
+</div><p id="z7ykvhy_310"><span class="control" id="z7ykvhy_318">Color Options:</span></p><p id="z7ykvhy_311">Hex colors:</p><div class="code-block" data-lang="csharp">
+Color = &quot;#FF5733&quot; // Red-orange
+Color = &quot;#4CAF50&quot; // Green
+Color = &quot;#2196F3&quot; // Blue
+</div><p id="z7ykvhy_313">Named colors:</p><div class="code-block" data-lang="csharp">
+Color = &quot;red&quot;
+Color = &quot;blue&quot;
+Color = &quot;green&quot;
+Color = &quot;orange&quot;
+Color = &quot;yellow&quot;
+Color = &quot;purple&quot;
+Color = &quot;pink&quot;
+</div><p id="z7ykvhy_315"><span class="control" id="z7ykvhy_319">Visual Effect:</span></p><ul class="list _bullet" id="z7ykvhy_316"><li class="list__item" id="z7ykvhy_320"><p id="z7ykvhy_323">Port circle uses specified color</p></li><li class="list__item" id="z7ykvhy_321"><p id="z7ykvhy_324">Type label shows <code class="code" id="z7ykvhy_325">DisplayName</code></p></li><li class="list__item" id="z7ykvhy_322"><p id="z7ykvhy_326">Icon appears next to label (if specified)</p></li></ul></section></section><section class="chapter"><h2 id="graphview-backend-implementation" data-toc="graphview-backend-implementation">GraphView Backend Implementation</h2><p id="z7ykvhy_327">GraphInterop uses a backend abstraction to support multiple editors:</p><div class="code-block" data-lang="csharp">
+public interface IGraphEditorBackend
+{
+    GraphAsset CurrentGraph { get; }
+    void Initialize(EditorWindow window, VisualElement root);
+    void LoadGraph(GraphAsset graph);
+    void OnDisable();
+}
+</div><p id="z7ykvhy_329"><span class="control" id="z7ykvhy_334">GraphView Backend:</span></p><div class="code-block" data-lang="csharp">
+public class GraphViewEditorBackend : IGraphEditorBackend
+{
+    private InteropGraphView _graphView;
+    private InteropBlackboard _blackboard;
+    private InteropInspector _inspector;
+
+    public void Initialize(EditorWindow window, VisualElement root)
+    {
+        // Create GraphView
+        _graphView = new InteropGraphView(window);
+
+        // Create Blackboard
+        _blackboard = new InteropBlackboard(_graphView);
+
+        // Create Inspector
+        _inspector = new InteropInspector();
+
+        // Layout
+        root.Add(_graphView);
+        _graphView.Add(_blackboard);
+        _graphView.Add(_inspector);
+    }
+}
+</div><p id="z7ykvhy_331"><span class="control" id="z7ykvhy_335">Registration:</span></p><div class="code-block" data-lang="csharp">
+[InitializeOnLoadMethod]
+private static void RegisterBackend()
+{
+    GraphInteropEditorWindow.RegisterBackend(() =&gt; new GraphViewEditorBackend());
+}
+</div><p id="z7ykvhy_333">This allows future GraphToolkit backend without changing user code.</p></section><section class="chapter"><h2 id="advanced-graphview-features" data-toc="advanced-graphview-features">Advanced GraphView Features</h2><section class="chapter"><h3 id="edge-connector-listeners" data-toc="edge-connector-listeners">Edge Connector Listeners</h3><p id="z7ykvhy_339">GraphInterop customizes connection behavior:</p><div class="code-block" data-lang="csharp">
+public class InteropEdgeConnectorListener : IEdgeConnectorListener
+{
+    public void OnDrop(GraphView graphView, Edge edge)
+    {
+        // Custom connection logic
+        var outputPort = edge.output as InteropPort;
+        var inputPort = edge.input as InteropPort;
+
+        // Type compatibility check
+        if (!TypeCompatibility.AreCompatible(
+            outputPort.PortType,
+            inputPort.PortType))
+        {
+            // Show error
+            return;
+        }
+
+        // Create connection
+        graph.Connect(outputNode, outputPort, inputNode, inputPort);
+    }
+}
+</div><p id="z7ykvhy_341"><span class="control" id="z7ykvhy_343">Features:</span></p><ul class="list _bullet" id="z7ykvhy_342"><li class="list__item" id="z7ykvhy_344"><p id="z7ykvhy_347">Type validation before connection</p></li><li class="list__item" id="z7ykvhy_345"><p id="z7ykvhy_348">Portal node suggestions</p></li><li class="list__item" id="z7ykvhy_346"><p id="z7ykvhy_349">Auto-conversion hints</p></li></ul></section><section class="chapter"><h3 id="portal-node-suggestions" data-toc="portal-node-suggestions">Portal Node Suggestions</h3><p id="z7ykvhy_350">When dragging long connections, GraphInterop suggests portals:</p><div class="code-block" data-lang="none">
+Dragging edge 500+ pixels?
+→ Shows &quot;Create Send Portal&quot; option
+→ Creates SendPortal + ReceivePortal pair
+→ Cleaner graph layout!
+</div><p id="z7ykvhy_352"><span class="control" id="z7ykvhy_354">Implementation:</span></p><div class="code-block" data-lang="csharp">
+if (distance &gt; 500f)
+{
+    suggestPortal = true;
+    // Show portal creation UI
+}
+</div></section><section class="chapter"><h3 id="search-window-integration" data-toc="search-window-integration">Search Window Integration</h3><p id="z7ykvhy_355">GraphInterop customizes the search window:</p><div class="code-block" data-lang="csharp">
+public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
+{
+    public List&lt;SearchTreeEntry&gt; CreateSearchTree(SearchWindowContext context)
+    {
+        var tree = new List&lt;SearchTreeEntry&gt;();
+
+        // Add categories
+        tree.Add(new SearchTreeGroupEntry(new GUIContent(&quot;Create Node&quot;)));
+
+        // Group by category
+        foreach (var category in GetCategories())
+        {
+            tree.Add(new SearchTreeGroupEntry(new GUIContent(category), 1));
+
+            // Add nodes in category
+            foreach (var nodeType in GetNodesInCategory(category))
+            {
+                tree.Add(new SearchTreeEntry(new GUIContent(nodeType.Name))
+                {
+                    level = 2,
+                    userData = nodeType
+                });
+            }
+        }
+
+        return tree;
+    }
+}
+</div><p id="z7ykvhy_357"><span class="control" id="z7ykvhy_359">Features:</span></p><ul class="list _bullet" id="z7ykvhy_358"><li class="list__item" id="z7ykvhy_360"><p id="z7ykvhy_364">Hierarchical categories</p></li><li class="list__item" id="z7ykvhy_361"><p id="z7ykvhy_365">Type filtering</p></li><li class="list__item" id="z7ykvhy_362"><p id="z7ykvhy_366">Icon support</p></li><li class="list__item" id="z7ykvhy_363"><p id="z7ykvhy_367">Custom node factories</p></li></ul></section></section><section class="chapter"><h2 id="graphview-limitations-and-workarounds" data-toc="graphview-limitations-and-workarounds">GraphView Limitations and Workarounds</h2><section class="chapter"><h3 id="limitation-1-no-built-in-minimap-zoom" data-toc="limitation-1-no-built-in-minimap-zoom">Limitation 1: No Built-in Minimap Zoom</h3><p id="z7ykvhy_371"><span class="control" id="z7ykvhy_374">Issue</span>: GraphView minimap doesn't zoom properly.</p><p id="z7ykvhy_372"><span class="control" id="z7ykvhy_375">Workaround</span>:</p><div class="code-block" data-lang="csharp">
+// Custom minimap scaling
+minimap.SetZoomScale(graphView.scale);
+</div></section><section class="chapter"><h3 id="limitation-2-port-reordering" data-toc="limitation-2-port-reordering">Limitation 2: Port Reordering</h3><p id="z7ykvhy_376"><span class="control" id="z7ykvhy_379">Issue</span>: Changing port order requires node rebuild.</p><p id="z7ykvhy_377"><span class="control" id="z7ykvhy_380">Workaround</span>:</p><div class="code-block" data-lang="csharp">
+// Define ports in desired order
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    // Inputs first
+    context.AddInputPort&lt;float&gt;(&quot;input1&quot;).Build();
+    context.AddInputPort&lt;float&gt;(&quot;input2&quot;).Build();
+
+    // Outputs last
+    context.AddOutputPort&lt;float&gt;(&quot;output&quot;).Build();
+}
+</div></section><section class="chapter"><h3 id="limitation-3-embedded-field-types" data-toc="limitation-3-embedded-field-types">Limitation 3: Embedded Field Types</h3><p id="z7ykvhy_381"><span class="control" id="z7ykvhy_384">Issue</span>: GraphView supports limited embedded field types (primitives, Vector3, Color, etc.).</p><p id="z7ykvhy_382"><span class="control" id="z7ykvhy_385">Workaround</span>:</p><div class="code-block" data-lang="csharp">
+// Use custom property drawers
+[CustomPropertyDrawer(typeof(MyCustomType))]
+public class MyCustomTypeDrawer : PropertyDrawer { }
+
+// Or use multiple ports
+context.AddInputPort&lt;float&gt;(&quot;x&quot;).Build();
+context.AddInputPort&lt;float&gt;(&quot;y&quot;).Build();
+context.AddInputPort&lt;float&gt;(&quot;z&quot;).Build();
+</div></section></section><section class="chapter"><h2 id="graphview-vs-graphtoolkit-ui" data-toc="graphview-vs-graphtoolkit-ui">GraphView vs GraphToolkit UI</h2><div class="table-wrapper"><table class="wide" id="z7ykvhy_386"><thead><tr class="ijRowHead" id="z7ykvhy_388"><th id="z7ykvhy_400"><p>Feature</p></th><th id="z7ykvhy_401"><p>GraphView</p></th><th id="z7ykvhy_402"><p>GraphToolkit UI</p></th><th id="z7ykvhy_403"><p>GraphInterop</p></th></tr></thead><tbody><tr id="z7ykvhy_389"><td id="z7ykvhy_404"><p><span class="control" id="z7ykvhy_408">Maturity</span></p></td><td id="z7ykvhy_405"><p>Production</p></td><td id="z7ykvhy_406"><p>Experimental</p></td><td id="z7ykvhy_407"><p>Production (via GraphView)</p></td></tr><tr id="z7ykvhy_390"><td id="z7ykvhy_409"><p><span class="control" id="z7ykvhy_413">Node Editor</span></p></td><td id="z7ykvhy_410"><p>✅ Full</p></td><td id="z7ykvhy_411"><p>🚧 Partial</p></td><td id="z7ykvhy_412"><p>✅ Full</p></td></tr><tr id="z7ykvhy_391"><td id="z7ykvhy_414"><p><span class="control" id="z7ykvhy_418">Blackboard</span></p></td><td id="z7ykvhy_415"><p>✅</p></td><td id="z7ykvhy_416"><p>🚧</p></td><td id="z7ykvhy_417"><p>✅</p></td></tr><tr id="z7ykvhy_392"><td id="z7ykvhy_419"><p><span class="control" id="z7ykvhy_423">Inspector</span></p></td><td id="z7ykvhy_420"><p>✅</p></td><td id="z7ykvhy_421"><p>🚧</p></td><td id="z7ykvhy_422"><p>✅</p></td></tr><tr id="z7ykvhy_393"><td id="z7ykvhy_424"><p><span class="control" id="z7ykvhy_428">Minimap</span></p></td><td id="z7ykvhy_425"><p>✅</p></td><td id="z7ykvhy_426"><p>❌</p></td><td id="z7ykvhy_427"><p>✅</p></td></tr><tr id="z7ykvhy_394"><td id="z7ykvhy_429"><p><span class="control" id="z7ykvhy_433">Search Window</span></p></td><td id="z7ykvhy_430"><p>✅</p></td><td id="z7ykvhy_431"><p>🚧</p></td><td id="z7ykvhy_432"><p>✅</p></td></tr><tr id="z7ykvhy_395"><td id="z7ykvhy_434"><p><span class="control" id="z7ykvhy_438">Copy/Paste</span></p></td><td id="z7ykvhy_435"><p>✅</p></td><td id="z7ykvhy_436"><p>❌</p></td><td id="z7ykvhy_437"><p>📋 Planned</p></td></tr><tr id="z7ykvhy_396"><td id="z7ykvhy_439"><p><span class="control" id="z7ykvhy_443">Undo/Redo</span></p></td><td id="z7ykvhy_440"><p>✅</p></td><td id="z7ykvhy_441"><p>❌</p></td><td id="z7ykvhy_442"><p>📋 Planned</p></td></tr><tr id="z7ykvhy_397"><td id="z7ykvhy_444"><p><span class="control" id="z7ykvhy_448">Zoom/Pan</span></p></td><td id="z7ykvhy_445"><p>✅</p></td><td id="z7ykvhy_446"><p>✅</p></td><td id="z7ykvhy_447"><p>✅</p></td></tr><tr id="z7ykvhy_398"><td id="z7ykvhy_449"><p><span class="control" id="z7ykvhy_453">Edge Routing</span></p></td><td id="z7ykvhy_450"><p>Basic</p></td><td id="z7ykvhy_451"><p>Advanced</p></td><td id="z7ykvhy_452"><p>Basic</p></td></tr><tr id="z7ykvhy_399"><td id="z7ykvhy_454"><p><span class="control" id="z7ykvhy_458">Subgraph Editing</span></p></td><td id="z7ykvhy_455"><p>❌</p></td><td id="z7ykvhy_456"><p>✅</p></td><td id="z7ykvhy_457"><p>📋 Planned</p></td></tr></tbody></table></div><p id="z7ykvhy_387"><span class="control" id="z7ykvhy_459">Current Strategy</span>: Use GraphView for stable editor experience while GraphToolkit UI matures.</p></section><section class="chapter"><h2 id="graphview-integration-details" data-toc="graphview-integration-details">GraphView Integration Details</h2><section class="chapter"><h3 id="node-view-creation" data-toc="node-view-creation">Node View Creation</h3><div class="code-block" data-lang="csharp">
+public class InteropNodeView : Node
+{
+    public GraphNode NodeModel { get; }
+
+    public InteropNodeView(GraphNode model)
+    {
+        NodeModel = model;
+
+        // Set title
+        title = model.GetType().GetCustomAttribute&lt;NodeInfoAttribute&gt;()?.DisplayName
+                ?? model.GetType().Name;
+
+        // Create ports
+        foreach (var port in model.GetInputPorts())
+        {
+            var portView = CreatePort(port);
+            inputContainer.Add(portView);
+        }
+
+        foreach (var port in model.GetOutputPorts())
+        {
+            var portView = CreatePort(port);
+            outputContainer.Add(portView);
+        }
+
+        // Create option fields
+        foreach (var option in model.nodeOptions)
+        {
+            var field = CreateOptionField(option);
+            extensionContainer.Add(field);
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="port-view-creation" data-toc="port-view-creation">Port View Creation</h3><div class="code-block" data-lang="csharp">
+public class InteropPort : Port
+{
+    public IPort PortModel { get; }
+
+    public InteropPort(IPort model, Direction direction, Capacity capacity)
+        : base(Orientation.Horizontal, direction, capacity, model.dataType)
+    {
+        PortModel = model;
+        portName = model.displayName;
+        portColor = GetPortColor(model.dataType);
+
+        // Embedded value field
+        if (direction == Direction.Input &amp;&amp; !model.isConnected)
+        {
+            ShowEmbeddedField();
+        }
+    }
+
+    private void ShowEmbeddedField()
+    {
+        var field = CreateFieldForType(PortModel.dataType);
+        field.value = PortModel.EmbeddedValue;
+        field.RegisterValueChangedCallback(e =&gt;
+        {
+            PortModel.EmbeddedValue = e.newValue;
+        });
+
+        Add(field);
+    }
+}
+</div></section><section class="chapter"><h3 id="edge-creation" data-toc="edge-creation">Edge Creation</h3><div class="code-block" data-lang="csharp">
+public void OnDrop(GraphView graphView, Edge edge)
+{
+    var outputPort = edge.output as InteropPort;
+    var inputPort = edge.input as InteropPort;
+
+    var outputNode = outputPort.node.userData as GraphNode;
+    var inputNode = inputPort.node.userData as GraphNode;
+
+    // Create connection in model
+    var connection = new Connection
+    {
+        SourceNodeId = outputNode.Id,
+        SourcePortName = outputPort.PortModel.name,
+        TargetNodeId = inputNode.Id,
+        TargetPortName = inputPort.PortModel.name
+    };
+
+    graphAsset.Connections.Add(connection);
+
+    // Create edge in view
+    var edgeView = new Edge
+    {
+        output = outputPort,
+        input = inputPort
+    };
+
+    graphView.AddElement(edgeView);
+}
+</div></section></section><section class="chapter"><h2 id="customization-examples" data-toc="customization-examples">Customization Examples</h2><section class="chapter"><h3 id="custom-node-view" data-toc="custom-node-view">Custom Node View</h3><div class="code-block" data-lang="csharp">
+public class MyCustomNodeView : InteropNodeView
+{
+    public MyCustomNodeView(GraphNode model) : base(model)
+    {
+        // Add custom UI
+        var button = new Button(() =&gt; Debug.Log(&quot;Clicked!&quot;))
+        {
+            text = &quot;Click Me&quot;
+        };
+        extensionContainer.Add(button);
+    }
+}
+
+// Register custom view
+[CustomNodeView(typeof(MyCustomNode))]
+public class MyCustomNodeViewFactory : INodeViewFactory
+{
+    public InteropNodeView CreateNodeView(GraphNode model)
+    {
+        return new MyCustomNodeView(model);
+    }
+}
+</div></section><section class="chapter"><h3 id="custom-port-colors" data-toc="custom-port-colors">Custom Port Colors</h3><div class="code-block" data-lang="csharp">
+// Global port color rules
+public static class PortColorRegistry
+{
+    private static Dictionary&lt;Type, Color&gt; _colors = new()
+    {
+        { typeof(float), new Color(0.5f, 0.8f, 1.0f) }, // Light blue
+        { typeof(int), new Color(0.5f, 1.0f, 0.5f) },   // Light green
+        { typeof(string), new Color(1.0f, 0.8f, 0.5f) }, // Light orange
+        { typeof(Transform), new Color(1.0f, 0.5f, 0.5f) } // Light red
+    };
+
+    public static Color GetColor(Type type)
+    {
+        if (_colors.TryGetValue(type, out var color))
+            return color;
+
+        // Default color
+        return new Color(0.8f, 0.8f, 0.8f);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="best-practices" data-toc="best-practices">Best Practices</h2><section class="chapter"><h3 id="1-organize-nodes-by-category" data-toc="1-organize-nodes-by-category">1. Organize Nodes by Category</h3><div class="code-block" data-lang="csharp">
+[NodeInfo(Category = &quot;Math/Basic&quot;)]
+public class AddNode : GraphNode { }
+
+[NodeInfo(Category = &quot;Math/Advanced&quot;)]
+public class SineNode : GraphNode { }
+
+[NodeInfo(Category = &quot;Transform&quot;)]
+public class GetPositionNode : GraphNode { }
+</div><p id="z7ykvhy_476">Creates organized search menu:</p><div class="code-block" data-lang="none">
+Math
+  ├─ Basic
+  │   └─ Add
+  └─ Advanced
+      └─ Sine
+Transform
+  └─ Get Position
+</div></section><section class="chapter"><h3 id="2-use-descriptive-display-names" data-toc="2-use-descriptive-display-names">2. Use Descriptive Display Names</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Clear purpose
+[NodeInfo(DisplayName = &quot;Get World Position&quot;)]
+
+// ❌ Bad: Unclear
+[NodeInfo(DisplayName = &quot;Getter&quot;)]
+</div></section><section class="chapter"><h3 id="3-provide-node-descriptions" data-toc="3-provide-node-descriptions">3. Provide Node Descriptions</h3><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Raycast&quot;,
+    Description = &quot;Casts a ray and returns hit information&quot;
+)]
+</div></section><section class="chapter"><h3 id="4-choose-appropriate-icons" data-toc="4-choose-appropriate-icons">4. Choose Appropriate Icons</h3><div class="code-block" data-lang="csharp">
+// Match icon to functionality
+[NodeInfo(Icon = &quot;d_Transform Icon&quot;)] // Transform operations
+[NodeInfo(Icon = &quot;d_Profiler.Physics&quot;)] // Physics operations
+[NodeInfo(Icon = &quot;d_Animation.Play&quot;)] // Animation operations
+</div></section><section class="chapter"><h3 id="5-use-color-coding" data-toc="5-use-color-coding">5. Use Color Coding</h3><div class="code-block" data-lang="csharp">
+// Green for getters
+[NodeInfo(Color = &quot;#4CAF50&quot;)]
+public class GetValueNode : GraphNode { }
+
+// Red for setters
+[NodeInfo(Color = &quot;#F44336&quot;)]
+public class SetValueNode : GraphNode { }
+
+// Blue for logic
+[NodeInfo(Color = &quot;#2196F3&quot;)]
+public class IfNode : GraphNode { }
+</div></section></section><section class="chapter"><h2 id="summary" data-toc="summary">Summary</h2><p id="z7ykvhy_482">GraphView provides GraphInterop with a robust, production-ready editor:</p><ul class="list _bullet" id="z7ykvhy_483"><li class="list__item" id="z7ykvhy_489"><p id="z7ykvhy_493">✅ Full-featured visual editing</p></li><li class="list__item" id="z7ykvhy_490"><p id="z7ykvhy_494">✅ Mature and stable</p></li><li class="list__item" id="z7ykvhy_491"><p id="z7ykvhy_495">✅ Extensive customization options</p></li><li class="list__item" id="z7ykvhy_492"><p id="z7ykvhy_496">✅ UI Toolkit integration</p></li></ul><p id="z7ykvhy_484"><span class="control" id="z7ykvhy_497">GraphInterop leverages GraphView for</span>:</p><ul class="list _bullet" id="z7ykvhy_485"><li class="list__item" id="z7ykvhy_498"><p id="z7ykvhy_502">Node visualization and layout</p></li><li class="list__item" id="z7ykvhy_499"><p id="z7ykvhy_503">Port connection UI</p></li><li class="list__item" id="z7ykvhy_500"><p id="z7ykvhy_504">Blackboard and inspector panels</p></li><li class="list__item" id="z7ykvhy_501"><p id="z7ykvhy_505">Search and navigation</p></li></ul><p id="z7ykvhy_486"><span class="control" id="z7ykvhy_506">While maintaining</span>:</p><ul class="list _bullet" id="z7ykvhy_487"><li class="list__item" id="z7ykvhy_507"><p id="z7ykvhy_510">GraphToolkit-compatible runtime API</p></li><li class="list__item" id="z7ykvhy_508"><p id="z7ykvhy_511">Backend abstraction for future flexibility</p></li><li class="list__item" id="z7ykvhy_509"><p id="z7ykvhy_512">Stable public API guarantee</p></li></ul><p id="z7ykvhy_488">See <a href="editor-api.html" id="z7ykvhy_513" data-tooltip="The Editor API provides visual graph editing capabilities through GraphView. This page covers the editor backend architecture and customization options.">Editor API</a> for implementation details.</p></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="graphtoolkit-features.html" class="navigation-links__prev">GraphToolkit Features in GraphInterop</a><a href="graphinterop-innovations.html" class="navigation-links__next">GraphInterop Innovations</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>

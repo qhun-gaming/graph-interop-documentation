@@ -1,0 +1,739 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:40.620469137"><title>Extensibility | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"extension-points-overview","level":0,"title":"Extension Points Overview","anchor":"#extension-points-overview"},{"id":"custom-nodes","level":0,"title":"Custom Nodes","anchor":"#custom-nodes"},{"id":"custom-graph-assets","level":0,"title":"Custom Graph Assets","anchor":"#custom-graph-assets"},{"id":"custom-type-converters","level":0,"title":"Custom Type Converters","anchor":"#custom-type-converters"},{"id":"custom-editor-backends","level":0,"title":"Custom Editor Backends","anchor":"#custom-editor-backends"},{"id":"custom-port-builders","level":0,"title":"Custom Port Builders","anchor":"#custom-port-builders"},{"id":"custom-context-data","level":0,"title":"Custom Context Data","anchor":"#custom-context-data"},{"id":"custom-node-views","level":0,"title":"Custom Node Views","anchor":"#custom-node-views"},{"id":"port-type-styling","level":0,"title":"Port Type Styling","anchor":"#port-type-styling"},{"id":"best-practices","level":0,"title":"Best Practices","anchor":"#best-practices"},{"id":"summary","level":0,"title":"Summary","anchor":"#summary"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Extensibility | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/extensibility.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Extensibility | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/extensibility.html#webpage",
+    "url": "writerside-documentation/extensibility.html",
+    "name": "Extensibility | GraphInterop",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "GraphInterop Help"
+}</script><!-- End Schema.org --></head><body data-id="extensibility" data-main-title="Extensibility" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="architecture.md|Architecture"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="extensibility" id="extensibility.md">Extensibility</h1><p id="mrio2c_3">GraphInterop is designed to be extended and customized. This page covers all extension points and how to use them.</p><section class="chapter"><h2 id="extension-points-overview" data-toc="extension-points-overview">Extension Points Overview</h2><p id="mrio2c_15">GraphInterop provides seven main extension points:</p><ol class="list _decimal" id="mrio2c_16" type="1"><li class="list__item" id="mrio2c_17"><p id="mrio2c_24"><span class="control" id="mrio2c_25">Custom Nodes</span> - Create new node types</p></li><li class="list__item" id="mrio2c_18"><p id="mrio2c_26"><span class="control" id="mrio2c_27">Custom Graph Assets</span> - Specialized graph containers</p></li><li class="list__item" id="mrio2c_19"><p id="mrio2c_28"><span class="control" id="mrio2c_29">Custom Type Converters</span> - Custom type compatibility rules</p></li><li class="list__item" id="mrio2c_20"><p id="mrio2c_30"><span class="control" id="mrio2c_31">Custom Editor Backends</span> - Alternative visual editors</p></li><li class="list__item" id="mrio2c_21"><p id="mrio2c_32"><span class="control" id="mrio2c_33">Custom Port Builders</span> - Extended port configuration</p></li><li class="list__item" id="mrio2c_22"><p id="mrio2c_34"><span class="control" id="mrio2c_35">Custom Context Data</span> - Additional execution context data</p></li><li class="list__item" id="mrio2c_23"><p id="mrio2c_36"><span class="control" id="mrio2c_37">Custom Node Views</span> - Custom visual representation</p></li></ol></section><section class="chapter"><h2 id="custom-nodes" data-toc="custom-nodes">Custom Nodes</h2><section class="chapter"><h3 id="basic-custom-node" data-toc="basic-custom-node">Basic Custom Node</h3><p id="mrio2c_44">Create a new node by subclassing <code class="code" id="mrio2c_48">GraphNode</code>:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+using UnityEngine;
+
+[NodeInfo(
+    DisplayName = &quot;Greet Player&quot;,
+    Category = &quot;Custom&quot;,
+    Description = &quot;Logs a greeting message&quot;,
+    Icon = &quot;d_console.infoicon&quot;,
+    Color = &quot;#4CAF50&quot;
+)]
+public class GreetNode : GraphNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;string&gt;(&quot;playerName&quot;)
+            .WithDisplayName(&quot;Player Name&quot;)
+            .WithDefaultValue(&quot;Player&quot;)
+            .Build();
+
+        context.AddOutputPort&lt;string&gt;(&quot;greeting&quot;)
+            .WithDisplayName(&quot;Greeting&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var playerName = this.GetInputValue&lt;string&gt;(&quot;playerName&quot;, context);
+        var greeting = $&quot;Hello, {playerName}!&quot;;
+
+        Debug.Log(greeting);
+
+        this.SetOutputValue(&quot;greeting&quot;, greeting, context);
+    }
+}
+</div><p id="mrio2c_46"><span class="control" id="mrio2c_49">Key Points:</span></p><ul class="list _bullet" id="mrio2c_47"><li class="list__item" id="mrio2c_50"><p id="mrio2c_55">Use <code class="code" id="mrio2c_56">[NodeInfo]</code> for metadata</p></li><li class="list__item" id="mrio2c_51"><p id="mrio2c_57">Override <code class="code" id="mrio2c_58">OnDefinePorts()</code> for ports</p></li><li class="list__item" id="mrio2c_52"><p id="mrio2c_59">Override <code class="code" id="mrio2c_60">Process()</code> for logic</p></li><li class="list__item" id="mrio2c_53"><p id="mrio2c_61">Access inputs via <code class="code" id="mrio2c_62">this.GetInputValue&lt;T&gt;()</code></p></li><li class="list__item" id="mrio2c_54"><p id="mrio2c_63">Set outputs via <code class="code" id="mrio2c_64">this.SetOutputValue()</code></p></li></ul></section><section class="chapter"><h3 id="node-with-options" data-toc="node-with-options">Node with Options</h3><p id="mrio2c_65">Options are configuration values that affect node structure:</p><div class="code-block" data-lang="csharp">
+[NodeInfo(DisplayName = &quot;Multi Output&quot;, Category = &quot;Custom&quot;)]
+public class MultiOutputNode : GraphNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;int&gt;(&quot;outputCount&quot;)
+            .WithDisplayName(&quot;Output Count&quot;)
+            .WithDefaultValue(3)
+            .Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;float&gt;(&quot;input&quot;)
+            .WithDisplayName(&quot;Input&quot;)
+            .Build();
+
+        // Dynamic ports based on option
+        int count = this.GetOptionValue&lt;int&gt;(&quot;outputCount&quot;);
+        for (int i = 0; i &lt; count; i++)
+        {
+            context.AddOutputPort&lt;float&gt;($&quot;output{i}&quot;)
+                .WithDisplayName($&quot;Output {i}&quot;)
+                .Build();
+        }
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var input = this.GetInputValue&lt;float&gt;(&quot;input&quot;, context);
+        int count = this.GetOptionValue&lt;int&gt;(&quot;outputCount&quot;);
+
+        for (int i = 0; i &lt; count; i++)
+        {
+            this.SetOutputValue($&quot;output{i}&quot;, input * (i + 1), context);
+        }
+    }
+}
+</div><p id="mrio2c_67"><span class="control" id="mrio2c_69">Options Use Cases:</span></p><ul class="list _bullet" id="mrio2c_68"><li class="list__item" id="mrio2c_70"><p id="mrio2c_73">Dynamic port count</p></li><li class="list__item" id="mrio2c_71"><p id="mrio2c_74">Enum selections (operation type, mode, etc.)</p></li><li class="list__item" id="mrio2c_72"><p id="mrio2c_75">Configuration that affects topology</p></li></ul></section><section class="chapter"><h3 id="async-node" data-toc="async-node">Async Node</h3><p id="mrio2c_76">For asynchronous operations (Addressables, web requests, etc.):</p><div class="code-block" data-lang="csharp">
+using System.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+
+[NodeInfo(DisplayName = &quot;Load Asset&quot;, Category = &quot;IO&quot;)]
+public class LoadAssetNode : GraphNode, IAsyncNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;string&gt;(&quot;address&quot;)
+            .WithDisplayName(&quot;Asset Address&quot;)
+            .Required()
+            .Build();
+
+        context.AddOutputPort&lt;GameObject&gt;(&quot;asset&quot;)
+            .WithDisplayName(&quot;Loaded Asset&quot;)
+            .Build();
+    }
+
+    public async Task ProcessAsync(GraphContext context)
+    {
+        var address = this.GetInputValue&lt;string&gt;(&quot;address&quot;, context);
+
+        var handle = Addressables.LoadAssetAsync&lt;GameObject&gt;(address);
+        await handle.Task;
+
+        if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+        {
+            this.SetOutputValue(&quot;asset&quot;, handle.Result, context);
+        }
+        else
+        {
+            Debug.LogError($&quot;Failed to load asset: {address}&quot;);
+        }
+    }
+
+    // Optional: Fallback sync version
+    public override void Process(GraphContext context)
+    {
+        // Not used if IAsyncNode.ProcessAsync is implemented
+        throw new System.NotImplementedException(&quot;Use ProcessAsync&quot;);
+    }
+}
+</div><p id="mrio2c_78"><span class="control" id="mrio2c_80">IAsyncNode Interface:</span></p><ul class="list _bullet" id="mrio2c_79"><li class="list__item" id="mrio2c_81"><p id="mrio2c_84">Implement <code class="code" id="mrio2c_85">Task ProcessAsync(GraphContext context)</code></p></li><li class="list__item" id="mrio2c_82"><p id="mrio2c_86">Can use <code class="code" id="mrio2c_87">async/await</code></p></li><li class="list__item" id="mrio2c_83"><p id="mrio2c_88">GraphExecutor handles awaiting automatically</p></li></ul></section><section class="chapter"><h3 id="burst-node" data-toc="burst-node">Burst Node</h3><p id="mrio2c_89">For high-performance SIMD operations:</p><div class="code-block" data-lang="csharp">
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;
+
+[NodeInfo(DisplayName = &quot;Burst Normalize Vector&quot;, Category = &quot;Math/Burst&quot;)]
+public class BurstNormalizeNode : GraphNode, IBurstNode
+{
+    private NativeArray&lt;Vector3&gt; _input, _output;
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;Vector3&gt;(&quot;vector&quot;)
+            .WithDisplayName(&quot;Vector&quot;)
+            .Build();
+
+        context.AddOutputPort&lt;Vector3&gt;(&quot;normalized&quot;)
+            .WithDisplayName(&quot;Normalized&quot;)
+            .Build();
+    }
+
+    public JobHandle ScheduleBurstJob(GraphContext context)
+    {
+        // Allocate native arrays
+        _input = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+        _output = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+
+        // Get input
+        _input[0] = this.GetInputValue&lt;Vector3&gt;(&quot;vector&quot;, context);
+
+        // Schedule job
+        var job = new NormalizeJob
+        {
+            Input = _input,
+            Output = _output
+        };
+
+        return job.Schedule();
+    }
+
+    public void CompleteBurstJob(GraphContext context)
+    {
+        // Set output
+        this.SetOutputValue(&quot;normalized&quot;, _output[0], context);
+
+        // Dispose
+        _input.Dispose();
+        _output.Dispose();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        // Not used if IBurstNode is implemented
+        throw new System.NotImplementedException(&quot;Use Burst job&quot;);
+    }
+
+    [BurstCompile]
+    private struct NormalizeJob : IJob
+    {
+        [ReadOnly] public NativeArray&lt;Vector3&gt; Input;
+        public NativeArray&lt;Vector3&gt; Output;
+
+        public void Execute()
+        {
+            Output[0] = Input[0].normalized;
+        }
+    }
+}
+</div><p id="mrio2c_91"><span class="control" id="mrio2c_93">IBurstNode Interface:</span></p><ul class="list _bullet" id="mrio2c_92"><li class="list__item" id="mrio2c_94"><p id="mrio2c_98">Implement <code class="code" id="mrio2c_99">JobHandle ScheduleBurstJob(GraphContext context)</code></p></li><li class="list__item" id="mrio2c_95"><p id="mrio2c_100">Implement <code class="code" id="mrio2c_101">void CompleteBurstJob(GraphContext context)</code></p></li><li class="list__item" id="mrio2c_96"><p id="mrio2c_102">Schedule jobs in <code class="code" id="mrio2c_103">ScheduleBurstJob()</code></p></li><li class="list__item" id="mrio2c_97"><p id="mrio2c_104">Complete and dispose in <code class="code" id="mrio2c_105">CompleteBurstJob()</code></p></li></ul></section><section class="chapter"><h3 id="compact-node" data-toc="compact-node">Compact Node</h3><p id="mrio2c_106">For minimal UI (utility nodes):</p><div class="code-block" data-lang="csharp">
+[NodeInfo(DisplayName = &quot;Constant&quot;, Category = &quot;Values&quot;)]
+public class ConstantNode : CompactNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;float&gt;(&quot;value&quot;)
+            .WithDisplayName(&quot;Value&quot;)
+            .WithDefaultValue(1.0f)
+            .Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddOutputPort&lt;float&gt;(&quot;value&quot;)
+            .WithDisplayName(&quot;Value&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var value = this.GetOptionValue&lt;float&gt;(&quot;value&quot;);
+        this.SetOutputValue(&quot;value&quot;, value, context);
+    }
+}
+</div><p id="mrio2c_108"><span class="control" id="mrio2c_110">CompactNode:</span></p><ul class="list _bullet" id="mrio2c_109"><li class="list__item" id="mrio2c_111"><p id="mrio2c_114">No title bar</p></li><li class="list__item" id="mrio2c_112"><p id="mrio2c_115">Minimal visual footprint</p></li><li class="list__item" id="mrio2c_113"><p id="mrio2c_116">Use for: constants, getters, portals</p></li></ul></section><section class="chapter"><h3 id="node-validation" data-toc="node-validation">Node Validation</h3><p id="mrio2c_117">Add custom validation logic:</p><div class="code-block" data-lang="csharp">
+public class FileLoaderNode : GraphNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;string&gt;(&quot;filePath&quot;)
+            .WithDisplayName(&quot;File Path&quot;)
+            .WithDefaultValue(&quot;&quot;)
+            .Build();
+    }
+
+    public override void Validate(List&lt;string&gt; errors)
+    {
+        base.Validate(errors); // Call base for standard validation
+
+        var filePath = this.GetOptionValue&lt;string&gt;(&quot;filePath&quot;);
+
+        if (string.IsNullOrEmpty(filePath))
+        {
+            errors.Add($&quot;Node '{this.Id}': File path is required&quot;);
+        }
+        else if (!System.IO.File.Exists(filePath))
+        {
+            errors.Add($&quot;Node '{this.Id}': File '{filePath}' does not exist&quot;);
+        }
+    }
+
+    // ... ports and Process() ...
+}
+</div><p id="mrio2c_119"><span class="control" id="mrio2c_121">Validation Features:</span></p><ul class="list _bullet" id="mrio2c_120"><li class="list__item" id="mrio2c_122"><p id="mrio2c_125">Called by <code class="code" id="mrio2c_126">GraphAsset.Validate()</code></p></li><li class="list__item" id="mrio2c_123"><p id="mrio2c_127">Add error messages to <code class="code" id="mrio2c_128">errors</code> list</p></li><li class="list__item" id="mrio2c_124"><p id="mrio2c_129">Always call <code class="code" id="mrio2c_130">base.Validate(errors)</code> first</p></li></ul></section></section><section class="chapter"><h2 id="custom-graph-assets" data-toc="custom-graph-assets">Custom Graph Assets</h2><p id="mrio2c_131">Create specialized graph types with custom context variables:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+using UnityEngine;
+using System.Collections.Generic;
+
+[CreateAssetMenu(menuName = &quot;My Game/Gameplay Graph&quot;)]
+public class GameplayGraph : GraphAsset
+{
+    [SerializeField] private bool requiresPhysics;
+
+    public override IEnumerable&lt;ContextVariableDefinition&gt; GetContextVariables()
+    {
+        // Always required
+        yield return new ContextVariableDefinition(
+            name: &quot;transform&quot;,
+            type: typeof(Transform),
+            displayName: &quot;Transform&quot;,
+            isRequired: true
+        );
+
+        yield return new ContextVariableDefinition(
+            name: &quot;deltaTime&quot;,
+            type: typeof(float),
+            displayName: &quot;Delta Time&quot;,
+            isRequired: true
+        );
+
+        // Conditionally required
+        if (requiresPhysics)
+        {
+            yield return new ContextVariableDefinition(
+                name: &quot;rigidbody&quot;,
+                type: typeof(Rigidbody),
+                displayName: &quot;Rigidbody&quot;,
+                isRequired: true
+            );
+        }
+
+        // Optional
+        yield return new ContextVariableDefinition(
+            name: &quot;targetEnemy&quot;,
+            type: typeof(Transform),
+            displayName: &quot;Target Enemy&quot;,
+            isRequired: false
+        );
+    }
+
+    public override Type GetParameterNodeType(GraphParameter parameter)
+    {
+        // Use custom parameter node
+        return typeof(MyCustomParameterNode);
+    }
+}
+</div><p id="mrio2c_133"><span class="control" id="mrio2c_136">Custom Graph Asset Features:</span></p><ul class="list _bullet" id="mrio2c_134"><li class="list__item" id="mrio2c_137"><p id="mrio2c_141">Define context variables</p></li><li class="list__item" id="mrio2c_138"><p id="mrio2c_142">Add custom serialized fields</p></li><li class="list__item" id="mrio2c_139"><p id="mrio2c_143">Override parameter node type</p></li><li class="list__item" id="mrio2c_140"><p id="mrio2c_144">Add validation logic</p></li></ul><section class="chapter"><h3 id="using-custom-graph-assets" data-toc="using-custom-graph-assets">Using Custom Graph Assets</h3><div class="code-block" data-lang="csharp">
+public class GameplayController : MonoBehaviour
+{
+    public GameplayGraph graph;
+    private GraphExecutor executor;
+
+    private void Start()
+    {
+        executor = new GraphExecutor(graph);
+    }
+
+    private void Update()
+    {
+        var context = new GraphContext();
+        context.SetContextVariable(&quot;transform&quot;, transform);
+        context.SetContextVariable(&quot;deltaTime&quot;, Time.deltaTime);
+
+        // Optional
+        if (TryGetComponent&lt;Rigidbody&gt;(out var rb))
+        {
+            context.SetContextVariable(&quot;rigidbody&quot;, rb);
+        }
+
+        // Execute
+        executor.ExecuteAsync(context).ContinueWith(task =&gt;
+        {
+            if (task.IsFaulted)
+                Debug.LogError(task.Exception);
+        });
+    }
+}
+</div></section></section><section class="chapter"><h2 id="custom-type-converters" data-toc="custom-type-converters">Custom Type Converters</h2><p id="mrio2c_146">Register custom type conversion rules:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+using UnityEngine;
+
+public static class MyTypeConverters
+{
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void RegisterConverters()
+    {
+        // Vector3 → float (magnitude)
+        TypeCompatibility.RegisterConverter&lt;Vector3, float&gt;(
+            v =&gt; v.magnitude
+        );
+
+        // Transform → GameObject
+        TypeCompatibility.RegisterConverter&lt;Transform, GameObject&gt;(
+            t =&gt; t != null ? t.gameObject : null
+        );
+
+        // GameObject → Transform
+        TypeCompatibility.RegisterConverter&lt;GameObject, Transform&gt;(
+            g =&gt; g != null ? g.transform : null
+        );
+
+        // string → int (parse)
+        TypeCompatibility.RegisterConverter&lt;string, int&gt;(
+            s =&gt; int.TryParse(s, out var result) ? result : 0
+        );
+
+        // Color → Vector3 (RGB)
+        TypeCompatibility.RegisterConverter&lt;Color, Vector3&gt;(
+            c =&gt; new Vector3(c.r, c.g, c.b)
+        );
+
+        // Vector3 → Color
+        TypeCompatibility.RegisterConverter&lt;Vector3, Color&gt;(
+            v =&gt; new Color(v.x, v.y, v.z)
+        );
+    }
+}
+</div><p id="mrio2c_148"><span class="control" id="mrio2c_152">Type Converter Features:</span></p><ul class="list _bullet" id="mrio2c_149"><li class="list__item" id="mrio2c_153"><p id="mrio2c_156">Enable connections between incompatible types</p></li><li class="list__item" id="mrio2c_154"><p id="mrio2c_157">Automatic conversion at runtime</p></li><li class="list__item" id="mrio2c_155"><p id="mrio2c_158">Called during value resolution</p></li></ul><p id="mrio2c_150"><span class="control" id="mrio2c_159">Limitations:</span></p><ul class="list _bullet" id="mrio2c_151"><li class="list__item" id="mrio2c_160"><p id="mrio2c_163">One-way conversion only (register both directions if needed)</p></li><li class="list__item" id="mrio2c_161"><p id="mrio2c_164">No validation (ensure conversion always succeeds)</p></li><li class="list__item" id="mrio2c_162"><p id="mrio2c_165">Lower priority than exact/inheritance matches</p></li></ul></section><section class="chapter"><h2 id="custom-editor-backends" data-toc="custom-editor-backends">Custom Editor Backends</h2><p id="mrio2c_166">Create alternative visual editors:</p><div class="code-block" data-lang="csharp">
+#if UNITY_EDITOR
+using QhunGaming.GraphInterop.Editor;
+using UnityEditor;
+using UnityEngine.UIElements;
+
+public class MyCustomBackend : IGraphEditorBackend
+{
+    private GraphAsset _currentGraph;
+
+    public GraphAsset CurrentGraph =&gt; _currentGraph;
+
+    public void Initialize(EditorWindow window, VisualElement root)
+    {
+        // Create your custom UI
+        var label = new Label(&quot;My Custom Backend&quot;);
+        label.style.fontSize = 20;
+        label.style.unityTextAlign = TextAnchor.MiddleCenter;
+        root.Add(label);
+
+        var nodeList = new ListView();
+        nodeList.style.flexGrow = 1;
+        root.Add(nodeList);
+
+        var toolbar = new Toolbar();
+        toolbar.Add(new ToolbarButton(() =&gt; Save()) { text = &quot;Save&quot; });
+        root.Add(toolbar);
+    }
+
+    public void LoadGraph(GraphAsset graph)
+    {
+        _currentGraph = graph;
+
+        // Update UI with graph data
+        // ...
+    }
+
+    public void OnDisable()
+    {
+        // Cleanup
+        _currentGraph = null;
+    }
+
+    private void Save()
+    {
+        if (_currentGraph != null)
+        {
+            EditorUtility.SetDirty(_currentGraph);
+            AssetDatabase.SaveAssets();
+        }
+    }
+}
+
+// Register backend
+[InitializeOnLoadMethod]
+private static void RegisterCustomBackend()
+{
+    GraphInteropEditorWindow.RegisterBackend(() =&gt; new MyCustomBackend());
+}
+#endif
+</div><p id="mrio2c_168"><span class="control" id="mrio2c_172">Backend Registration:</span></p><ul class="list _bullet" id="mrio2c_169"><li class="list__item" id="mrio2c_173"><p id="mrio2c_176">Use <code class="code" id="mrio2c_177">[InitializeOnLoadMethod]</code> to register early</p></li><li class="list__item" id="mrio2c_174"><p id="mrio2c_178">First registered backend is default</p></li><li class="list__item" id="mrio2c_175"><p id="mrio2c_179">Window tries backends in registration order</p></li></ul><p id="mrio2c_170"><span class="control" id="mrio2c_180">Custom Backend Use Cases:</span></p><ul class="list _bullet" id="mrio2c_171"><li class="list__item" id="mrio2c_181"><p id="mrio2c_185">Debug view (simple list)</p></li><li class="list__item" id="mrio2c_182"><p id="mrio2c_186">Text-based editor</p></li><li class="list__item" id="mrio2c_183"><p id="mrio2c_187">Alternative layout</p></li><li class="list__item" id="mrio2c_184"><p id="mrio2c_188">Specialized domain tools</p></li></ul></section><section class="chapter"><h2 id="custom-port-builders" data-toc="custom-port-builders">Custom Port Builders</h2><p id="mrio2c_189">Extend port builder interfaces for additional configuration:</p><div class="code-block" data-lang="csharp">
+public static class PortBuilderExtensions
+{
+    public static IInputPortBuilder&lt;T&gt; WithTooltip&lt;T&gt;(
+        this IInputPortBuilder&lt;T&gt; builder,
+        string tooltip)
+    {
+        // Store tooltip metadata
+        // (requires extending IPort interface)
+        return builder;
+    }
+
+    public static IInputPortBuilder&lt;T&gt; WithValidation&lt;T&gt;(
+        this IInputPortBuilder&lt;T&gt; builder,
+        System.Func&lt;T, bool&gt; validator)
+    {
+        // Store validator
+        // (requires custom port implementation)
+        return builder;
+    }
+
+    public static IOutputPortBuilder&lt;T&gt; Cached&lt;T&gt;(
+        this IOutputPortBuilder&lt;T&gt; builder)
+    {
+        // Mark output for aggressive caching
+        return builder;
+    }
+}
+
+// Usage
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    context.AddInputPort&lt;float&gt;(&quot;value&quot;)
+        .WithDisplayName(&quot;Value&quot;)
+        .WithTooltip(&quot;The input value to process&quot;)
+        .WithValidation(v =&gt; v &gt;= 0) // Only positive values
+        .Build();
+
+    context.AddOutputPort&lt;float&gt;(&quot;result&quot;)
+        .Cached() // Cache result aggressively
+        .Build();
+}
+</div><p id="mrio2c_191"><span class="control" id="mrio2c_195">Extension Method Pattern:</span></p><ul class="list _bullet" id="mrio2c_192"><li class="list__item" id="mrio2c_196"><p id="mrio2c_199">Returns same builder interface</p></li><li class="list__item" id="mrio2c_197"><p id="mrio2c_200">Allows method chaining</p></li><li class="list__item" id="mrio2c_198"><p id="mrio2c_201">Can store additional metadata</p></li></ul><p id="mrio2c_193"><span class="control" id="mrio2c_202">Limitations:</span></p><ul class="list _bullet" id="mrio2c_194"><li class="list__item" id="mrio2c_203"><p id="mrio2c_206">Core port implementation may need changes</p></li><li class="list__item" id="mrio2c_204"><p id="mrio2c_207">Metadata must be stored somewhere</p></li><li class="list__item" id="mrio2c_205"><p id="mrio2c_208">Not all features may work across backends</p></li></ul></section><section class="chapter"><h2 id="custom-context-data" data-toc="custom-context-data">Custom Context Data</h2><p id="mrio2c_209">Add custom data to execution context:</p><div class="code-block" data-lang="csharp">
+public class PhysicsContext : GraphContext
+{
+    public PhysicsScene PhysicsScene { get; set; }
+    public float FixedDeltaTime { get; set; }
+
+    public PhysicsContext(PhysicsScene scene, float fixedDeltaTime)
+    {
+        PhysicsScene = scene;
+        FixedDeltaTime = fixedDeltaTime;
+    }
+}
+
+// Node accessing custom context
+public class PhysicsRaycastNode : GraphNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;Vector3&gt;(&quot;origin&quot;).Build();
+        context.AddInputPort&lt;Vector3&gt;(&quot;direction&quot;).Build();
+        context.AddOutputPort&lt;RaycastHit&gt;(&quot;hit&quot;).Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var physicsContext = context as PhysicsContext;
+        if (physicsContext == null)
+        {
+            Debug.LogError(&quot;PhysicsContext required&quot;);
+            return;
+        }
+
+        var origin = this.GetInputValue&lt;Vector3&gt;(&quot;origin&quot;, context);
+        var direction = this.GetInputValue&lt;Vector3&gt;(&quot;direction&quot;, context);
+
+        if (physicsContext.PhysicsScene.Raycast(
+            origin,
+            direction,
+            out var hit))
+        {
+            this.SetOutputValue(&quot;hit&quot;, hit, context);
+        }
+    }
+}
+
+// Usage
+var physicsContext = new PhysicsContext(
+    Physics.defaultPhysicsScene,
+    Time.fixedDeltaTime
+);
+physicsContext.SetContextVariable(&quot;transform&quot;, transform);
+
+await executor.ExecuteAsync(physicsContext);
+</div><p id="mrio2c_211"><span class="control" id="mrio2c_213">Custom Context Use Cases:</span></p><ul class="list _bullet" id="mrio2c_212"><li class="list__item" id="mrio2c_214"><p id="mrio2c_218">Physics context (scene, settings)</p></li><li class="list__item" id="mrio2c_215"><p id="mrio2c_219">AI context (pathfinding data)</p></li><li class="list__item" id="mrio2c_216"><p id="mrio2c_220">Game state context (player, enemies)</p></li><li class="list__item" id="mrio2c_217"><p id="mrio2c_221">Performance context (profiling data)</p></li></ul></section><section class="chapter"><h2 id="custom-node-views" data-toc="custom-node-views">Custom Node Views</h2><p id="mrio2c_222">Create custom visual representation for nodes:</p><div class="code-block" data-lang="csharp">
+#if UNITY_EDITOR
+using QhunGaming.GraphInterop.Editor;
+using UnityEngine.UIElements;
+
+public class MyCustomNodeView : InteropNodeView
+{
+    public MyCustomNodeView(GraphNode model) : base(model)
+    {
+        // Add custom UI elements
+        var button = new Button(() =&gt; OnButtonClicked())
+        {
+            text = &quot;Execute Node&quot;
+        };
+
+        button.style.marginTop = 5;
+        button.style.marginBottom = 5;
+
+        extensionContainer.Add(button);
+
+        // Add custom styling
+        style.backgroundColor = new Color(0.2f, 0.3f, 0.4f);
+    }
+
+    private void OnButtonClicked()
+    {
+        Debug.Log($&quot;Button clicked on node {NodeModel.Id}&quot;);
+        // Custom action
+    }
+}
+
+// Register custom view (requires extending GraphInterop)
+// Or check node type in GraphViewEditorBackend:
+
+public class CustomGraphViewBackend : GraphViewEditorBackend
+{
+    protected override InteropNodeView CreateNodeView(GraphNode node)
+    {
+        if (node is MySpecialNode)
+            return new MyCustomNodeView(node);
+
+        return base.CreateNodeView(node);
+    }
+}
+#endif
+</div><p id="mrio2c_224"><span class="control" id="mrio2c_226">Custom View Features:</span></p><ul class="list _bullet" id="mrio2c_225"><li class="list__item" id="mrio2c_227"><p id="mrio2c_231">Additional UI elements</p></li><li class="list__item" id="mrio2c_228"><p id="mrio2c_232">Custom styling</p></li><li class="list__item" id="mrio2c_229"><p id="mrio2c_233">Interactive controls</p></li><li class="list__item" id="mrio2c_230"><p id="mrio2c_234">Visual feedback</p></li></ul></section><section class="chapter"><h2 id="port-type-styling" data-toc="port-type-styling">Port Type Styling</h2><p id="mrio2c_235">Customize port appearance by type:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+using UnityEngine;
+
+[PortInfo(
+    Color = &quot;#FF6B35&quot;,
+    DisplayName = &quot;Position Data&quot;,
+    Icon = &quot;d_Transform Icon&quot;
+)]
+public struct PositionData
+{
+    public Vector3 position;
+    public Quaternion rotation;
+}
+
+// Usage in node
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    context.AddInputPort&lt;PositionData&gt;(&quot;target&quot;)
+        .WithDisplayName(&quot;Target&quot;)
+        .Build();
+}
+</div><p id="mrio2c_237"><span class="control" id="mrio2c_241">PortInfo Options:</span></p><ul class="list _bullet" id="mrio2c_238"><li class="list__item" id="mrio2c_242"><p id="mrio2c_245"><code class="code" id="mrio2c_246">Color</code>: Hex color (<code class="code" id="mrio2c_247">#RRGGBB</code>) or named color (<code class="code" id="mrio2c_248">red</code>, <code class="code" id="mrio2c_249">blue</code>, etc.)</p></li><li class="list__item" id="mrio2c_243"><p id="mrio2c_250"><code class="code" id="mrio2c_251">DisplayName</code>: Type label in UI</p></li><li class="list__item" id="mrio2c_244"><p id="mrio2c_252"><code class="code" id="mrio2c_253">Icon</code>: Unity builtin icon name</p></li></ul><p id="mrio2c_239"><span class="control" id="mrio2c_254">Common Icons:</span></p><ul class="list _bullet" id="mrio2c_240"><li class="list__item" id="mrio2c_255"><p id="mrio2c_259"><code class="code" id="mrio2c_260">d_Transform Icon</code> - Transform</p></li><li class="list__item" id="mrio2c_256"><p id="mrio2c_261"><code class="code" id="mrio2c_262">d_GameObject Icon</code> - GameObject</p></li><li class="list__item" id="mrio2c_257"><p id="mrio2c_263"><code class="code" id="mrio2c_264">d_Profiler.Physics</code> - Physics</p></li><li class="list__item" id="mrio2c_258"><p id="mrio2c_265"><code class="code" id="mrio2c_266">d_Animation.Play</code> - Animation</p></li></ul></section><section class="chapter"><h2 id="best-practices" data-toc="best-practices">Best Practices</h2><section class="chapter"><h3 id="1-use-descriptive-names" data-toc="1-use-descriptive-names">1. Use Descriptive Names</h3><div class="code-block" data-lang="csharp">
+// ✅ Good
+[NodeInfo(
+    DisplayName = &quot;Calculate Damage with Armor Mitigation&quot;,
+    Category = &quot;Combat/Damage&quot;
+)]
+
+// ❌ Bad
+[NodeInfo(DisplayName = &quot;Calc&quot;, Category = &quot;Misc&quot;)]
+</div></section><section class="chapter"><h3 id="2-provide-default-values" data-toc="2-provide-default-values">2. Provide Default Values</h3><div class="code-block" data-lang="csharp">
+// ✅ Good
+context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;)
+    .WithDefaultValue(1.0f) // Sensible default
+    .Build();
+
+// ❌ Risky
+context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;).Build(); // No default
+</div></section><section class="chapter"><h3 id="3-mark-required-inputs" data-toc="3-mark-required-inputs">3. Mark Required Inputs</h3><div class="code-block" data-lang="csharp">
+// ✅ Good
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;)
+    .Required() // Validation enforced
+    .Build();
+
+// ❌ Missing
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;).Build();
+</div></section><section class="chapter"><h3 id="4-use-options-for-topology" data-toc="4-use-options-for-topology">4. Use Options for Topology</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Option affects structure
+context.AddOption&lt;int&gt;(&quot;outputCount&quot;).Build();
+
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    int count = this.GetOptionValue&lt;int&gt;(&quot;outputCount&quot;);
+    for (int i = 0; i &lt; count; i++)
+        context.AddOutputPort&lt;float&gt;($&quot;out{i}&quot;).Build();
+}
+
+// ❌ Bad: Should be input port
+context.AddOption&lt;float&gt;(&quot;speed&quot;).Build(); // Runtime data!
+</div></section><section class="chapter"><h3 id="5-validate-inputs" data-toc="5-validate-inputs">5. Validate Inputs</h3><div class="code-block" data-lang="csharp">
+public override void Validate(List&lt;string&gt; errors)
+{
+    base.Validate(errors);
+
+    // Check options
+    var count = this.GetOptionValue&lt;int&gt;(&quot;count&quot;);
+    if (count &lt;= 0 || count &gt; 10)
+        errors.Add(&quot;Count must be between 1 and 10&quot;);
+
+    // Check file paths
+    var path = this.GetOptionValue&lt;string&gt;(&quot;path&quot;);
+    if (!string.IsNullOrEmpty(path) &amp;&amp; !System.IO.File.Exists(path))
+        errors.Add($&quot;File not found: {path}&quot;);
+}
+</div></section><section class="chapter"><h3 id="6-clean-up-resources" data-toc="6-clean-up-resources">6. Clean Up Resources</h3><div class="code-block" data-lang="csharp">
+public class ResourceNode : GraphNode
+{
+    private Texture2D _texture;
+
+    public override void OnEnable()
+    {
+        _texture = new Texture2D(256, 256);
+    }
+
+    public override void OnDisable()
+    {
+        if (_texture != null)
+        {
+            Object.DestroyImmediate(_texture);
+            _texture = null;
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="7-handle-null-values" data-toc="7-handle-null-values">7. Handle Null Values</h3><div class="code-block" data-lang="csharp">
+public override void Process(GraphContext context)
+{
+    var transform = this.GetInputValue&lt;Transform&gt;(&quot;target&quot;, context);
+
+    if (transform == null)
+    {
+        Debug.LogWarning(&quot;Target transform is null&quot;);
+        return; // Graceful failure
+    }
+
+    // Process...
+}
+</div></section><section class="chapter"><h3 id="8-use-async-for-i-o" data-toc="8-use-async-for-i-o">8. Use Async for I/O</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Async for file I/O
+public class LoadFileNode : GraphNode, IAsyncNode
+{
+    public async Task ProcessAsync(GraphContext context)
+    {
+        var path = this.GetInputValue&lt;string&gt;(&quot;path&quot;, context);
+        var text = await System.IO.File.ReadAllTextAsync(path);
+        this.SetOutputValue(&quot;content&quot;, text, context);
+    }
+}
+
+// ❌ Bad: Blocks execution
+public class LoadFileNode : GraphNode
+{
+    public override void Process(GraphContext context)
+    {
+        var text = System.IO.File.ReadAllText(path); // Blocking!
+        this.SetOutputValue(&quot;content&quot;, text, context);
+    }
+}
+</div></section><section class="chapter"><h3 id="9-use-burst-for-performance" data-toc="9-use-burst-for-performance">9. Use Burst for Performance</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Burst for heavy math
+public class BurstCalculateNode : GraphNode, IBurstNode
+{
+    public JobHandle ScheduleBurstJob(GraphContext context) { ... }
+    public void CompleteBurstJob(GraphContext context) { ... }
+}
+
+// ⚠️ Okay: Simple calculations can be sync
+public class SimpleAddNode : GraphNode
+{
+    public override void Process(GraphContext context)
+    {
+        var result = a + b; // Simple, fast
+    }
+}
+</div></section><section class="chapter"><h3 id="10-document-complex-nodes" data-toc="10-document-complex-nodes">10. Document Complex Nodes</h3><div class="code-block" data-lang="csharp">
+/// &lt;summary&gt;
+/// Calculates projectile trajectory using physics equations.
+/// Uses initial velocity, gravity, and target position to determine
+/// arc trajectory points.
+/// &lt;/summary&gt;
+[NodeInfo(
+    DisplayName = &quot;Calculate Projectile Trajectory&quot;,
+    Category = &quot;Physics&quot;,
+    Description = &quot;Calculates ballistic trajectory for projectiles&quot;
+)]
+public class ProjectileTrajectoryNode : GraphNode
+{
+    // ... implementation ...
+}
+</div></section></section><section class="chapter"><h2 id="summary" data-toc="summary">Summary</h2><p id="mrio2c_287">GraphInterop provides extensive extensibility:</p><div class="table-wrapper"><table class="wide" id="mrio2c_288"><thead><tr class="ijRowHead" id="mrio2c_292"><th id="mrio2c_300"><p>Extension Point</p></th><th id="mrio2c_301"><p>Use Case</p></th></tr></thead><tbody><tr id="mrio2c_293"><td id="mrio2c_302"><p><span class="control" id="mrio2c_304">Custom Nodes</span></p></td><td id="mrio2c_303"><p>New functionality</p></td></tr><tr id="mrio2c_294"><td id="mrio2c_305"><p><span class="control" id="mrio2c_307">Custom Graph Assets</span></p></td><td id="mrio2c_306"><p>Domain-specific graphs</p></td></tr><tr id="mrio2c_295"><td id="mrio2c_308"><p><span class="control" id="mrio2c_310">Custom Type Converters</span></p></td><td id="mrio2c_309"><p>Type compatibility rules</p></td></tr><tr id="mrio2c_296"><td id="mrio2c_311"><p><span class="control" id="mrio2c_313">Custom Backends</span></p></td><td id="mrio2c_312"><p>Alternative editors</p></td></tr><tr id="mrio2c_297"><td id="mrio2c_314"><p><span class="control" id="mrio2c_316">Custom Port Builders</span></p></td><td id="mrio2c_315"><p>Extended port configuration</p></td></tr><tr id="mrio2c_298"><td id="mrio2c_317"><p><span class="control" id="mrio2c_319">Custom Context Data</span></p></td><td id="mrio2c_318"><p>Specialized execution context</p></td></tr><tr id="mrio2c_299"><td id="mrio2c_320"><p><span class="control" id="mrio2c_322">Custom Node Views</span></p></td><td id="mrio2c_321"><p>Visual customization</p></td></tr></tbody></table></div><p id="mrio2c_289"><span class="control" id="mrio2c_323">Key Principles:</span></p><ol class="list _decimal" id="mrio2c_290" type="1"><li class="list__item" id="mrio2c_324"><p id="mrio2c_332">Follow GraphToolkit API patterns</p></li><li class="list__item" id="mrio2c_325"><p id="mrio2c_333">Provide sensible defaults</p></li><li class="list__item" id="mrio2c_326"><p id="mrio2c_334">Validate inputs</p></li><li class="list__item" id="mrio2c_327"><p id="mrio2c_335">Handle errors gracefully</p></li><li class="list__item" id="mrio2c_328"><p id="mrio2c_336">Clean up resources</p></li><li class="list__item" id="mrio2c_329"><p id="mrio2c_337">Document complex nodes</p></li><li class="list__item" id="mrio2c_330"><p id="mrio2c_338">Use async for I/O</p></li><li class="list__item" id="mrio2c_331"><p id="mrio2c_339">Use Burst for performance</p></li></ol><p id="mrio2c_291">See <a href="creating-nodes.html" id="mrio2c_340" data-tooltip="This guide explains how to create custom nodes for use in GraphInterop graphs.">Creating Nodes</a> and <a href="examples.html" id="mrio2c_341" data-tooltip="This section provides complete examples of using GraphInterop for common scenarios.">Examples</a> for more details.</p></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="architecture.html" class="navigation-links__prev">Architecture</a><a href="runtime-api.html" class="navigation-links__next">Runtime API</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>

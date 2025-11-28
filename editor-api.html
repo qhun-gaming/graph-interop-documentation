@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-11-28T18:45:04.608308641"><title>Editor API | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"assembly","level":0,"title":"Assembly","anchor":"#assembly"},{"id":"architecture","level":0,"title":"Architecture","anchor":"#architecture"},{"id":"backend-selection","level":0,"title":"Backend Selection","anchor":"#backend-selection"},{"id":"common-features","level":0,"title":"Common Features","anchor":"#common-features"},{"id":"key-differences","level":0,"title":"Key Differences","anchor":"#key-differences"},{"id":"creating-an-editor-window","level":0,"title":"Creating an Editor Window","anchor":"#creating-an-editor-window"},{"id":"port-styling","level":0,"title":"Port Styling","anchor":"#port-styling"},{"id":"node-search-window","level":0,"title":"Node Search Window","anchor":"#node-search-window"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Editor API | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/editor-api.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Editor API | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:40.20801792"><title>Editor API | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"overview","level":0,"title":"Overview","anchor":"#overview"},{"id":"assembly","level":0,"title":"Assembly","anchor":"#assembly"},{"id":"backend-architecture","level":0,"title":"Backend Architecture","anchor":"#backend-architecture"},{"id":"main-editor-window","level":0,"title":"Main Editor Window","anchor":"#main-editor-window"},{"id":"editor-components","level":0,"title":"Editor Components","anchor":"#editor-components"},{"id":"toolbar","level":0,"title":"Toolbar","anchor":"#toolbar"},{"id":"visual-customization","level":0,"title":"Visual Customization","anchor":"#visual-customization"},{"id":"uss-styling","level":0,"title":"USS Styling","anchor":"#uss-styling"},{"id":"backend-registration","level":0,"title":"Backend Registration","anchor":"#backend-registration"},{"id":"common-workflows","level":0,"title":"Common Workflows","anchor":"#common-workflows"},{"id":"integration-with-unity","level":0,"title":"Integration with Unity","anchor":"#integration-with-unity"},{"id":"undo-redo-support","level":0,"title":"Undo/Redo Support","anchor":"#undo-redo-support"},{"id":"copy-paste-support","level":0,"title":"Copy/Paste Support","anchor":"#copy-paste-support"},{"id":"keyboard-shortcuts","level":0,"title":"Keyboard Shortcuts","anchor":"#keyboard-shortcuts"},{"id":"best-practices","level":0,"title":"Best Practices","anchor":"#best-practices"},{"id":"debugging-tools","level":0,"title":"Debugging Tools","anchor":"#debugging-tools"},{"id":"future-features","level":0,"title":"Future Features","anchor":"#future-features"},{"id":"summary","level":0,"title":"Summary","anchor":"#summary"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Editor API | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/editor-api.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Editor API | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": "writerside-documentation/editor-api.html#webpage",
@@ -13,50 +13,285 @@
     "@id": "writerside-documentation/#website",
     "url": "writerside-documentation/",
     "name": "GraphInterop Help"
-}</script><!-- End Schema.org --></head><body data-id="editor-api" data-main-title="Editor API" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="editor-api" id="editor-api.md">Editor API</h1><p id="-v4tk9p_3">The editor layer provides visual graph editing capabilities through two backend adapters: GraphView (Unity 2019+) and GraphToolkit (Unity 6.2+).</p><section class="chapter"><h2 id="assembly" data-toc="assembly">Assembly</h2><p id="-v4tk9p_12"><span class="control" id="-v4tk9p_13">Name</span>: <code class="code" id="-v4tk9p_14">QhunGaming.GraphInterop.Editor</code> <span class="control" id="-v4tk9p_15">Namespace</span>: <code class="code" id="-v4tk9p_16">QhunGaming.GraphInterop.Editor</code></p></section><section class="chapter"><h2 id="architecture" data-toc="architecture">Architecture</h2><svg aria-roledescription="flowchart-v2" role="graphics-document document" viewBox="0 0 2535.609375 274"  class="flowchart" xmlns="http://www.w3.org/2000/svg" width="2535.609375" id="mermaid"><g><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="5" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="4.5" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g data-look="classic" id="subGraph2" class="cluster"><rect height="104" width="1018.203125" y="162" x="8" style=""></rect><g transform="translate(443.9296875, 162)" class="cluster-label"><foreignObject height="24" width="146.34375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Editor - GraphToolkit</p></span></div></foreignObject></g></g><g data-look="classic" id="subGraph1" class="cluster"><rect height="104" width="1481.40625" y="162" x="1046.203125" style=""></rect><g transform="translate(1719.25, 162)" class="cluster-label"><foreignObject height="24" width="135.3125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Editor - GraphView</p></span></div></foreignObject></g></g><g data-look="classic" id="Runtime" class="cluster"><rect height="104" width="1406.45703125" y="8" x="68.45703125" style=""></rect><g transform="translate(741.810546875, 8)" class="cluster-label"><foreignObject height="24" width="59.75"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Runtime</p></span></div></foreignObject></g></g></g><g class="edgePaths"><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_GA_IGV_0" d="M731.305,67.282L805.376,74.735C879.448,82.188,1027.591,97.094,1101.663,108.714C1175.734,120.333,1175.734,128.667,1175.734,137C1175.734,145.333,1175.734,153.667,1175.734,159.917C1175.734,166.167,1175.734,170.333,1175.734,173.833C1175.734,177.333,1175.734,180.167,1175.734,181.583L1175.734,183"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_GA_IGM_1" d="M586.57,67.282L512.499,74.735C438.427,82.188,290.284,97.094,216.212,108.714C142.141,120.333,142.141,128.667,142.141,137C142.141,145.333,142.141,153.667,142.141,159.917C142.141,166.167,142.141,170.333,142.141,173.833C142.141,177.333,142.141,180.167,142.141,181.583L142.141,183"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_GN_INV_2" d="M970.957,67.256L1044.411,74.713C1117.865,82.171,1264.772,97.085,1338.226,108.709C1411.68,120.333,1411.68,128.667,1411.68,137C1411.68,145.333,1411.68,153.667,1411.68,159.917C1411.68,166.167,1411.68,170.333,1411.68,173.833C1411.68,177.333,1411.68,180.167,1411.68,181.583L1411.68,183"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_GN_INM_3" d="M828.02,67.256L754.566,74.713C681.112,82.171,534.204,97.085,460.751,108.709C387.297,120.333,387.297,128.667,387.297,137C387.297,145.333,387.297,153.667,387.297,159.917C387.297,166.167,387.297,170.333,387.297,173.833C387.297,177.333,387.297,180.167,387.297,181.583L387.297,183"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(658.9375, 60)" id="flowchart-GA-61" class="node default"><rect height="54" width="144.734375" y="-27" x="-72.3671875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-42.3671875, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="84.734375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>GraphAsset</p></span></div></foreignObject></g></g><g transform="translate(899.48828125, 60)" id="flowchart-GN-62" class="node default"><rect height="54" width="142.9375" y="-27" x="-71.46875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-41.46875, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="82.9375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>GraphNode</p></span></div></foreignObject></g></g><g transform="translate(1175.734375, 214)" id="flowchart-IGV-63" class="node default"><rect height="54" width="189.0625" y="-27" x="-94.53125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-64.53125, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="129.0625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropGraphView</p></span></div></foreignObject></g></g><g transform="translate(1411.6796875, 214)" id="flowchart-INV-64" class="node default"><rect height="54" width="182.828125" y="-27" x="-91.4140625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-61.4140625, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="122.828125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropNodeView</p></span></div></foreignObject></g></g><g transform="translate(1622.8046875, 214)" id="flowchart-IP-65" class="node default"><rect height="54" width="139.421875" y="-27" x="-69.7109375" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-39.7109375, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="79.421875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropPort</p></span></div></foreignObject></g></g><g transform="translate(1837.65625, 214)" id="flowchart-IB-66" class="node default"><rect height="54" width="190.28125" y="-27" x="-95.140625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-65.140625, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="130.28125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropBlackboard</p></span></div></foreignObject></g></g><g transform="translate(2085.921875, 214)" id="flowchart-NSW-67" class="node default"><rect height="54" width="206.25" y="-27" x="-103.125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-73.125, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="146.25"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>NodeSearchWindow</p></span></div></foreignObject></g></g><g transform="translate(2365.828125, 214)" id="flowchart-GEW-68" class="node default"><rect height="54" width="253.5625" y="-27" x="-126.78125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-96.78125, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="193.5625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>GraphInteropEditorWindow</p></span></div></foreignObject></g></g><g transform="translate(142.140625, 214)" id="flowchart-IGM-69" class="node default"><rect height="54" width="198.28125" y="-27" x="-99.140625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-69.140625, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="138.28125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropGraphModel</p></span></div></foreignObject></g></g><g transform="translate(387.296875, 214)" id="flowchart-INM-70" class="node default"><rect height="54" width="192.03125" y="-27" x="-96.015625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-66.015625, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="132.03125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropNodeModel</p></span></div></foreignObject></g></g><g transform="translate(624.875, 214)" id="flowchart-IPM-71" class="node default"><rect height="54" width="183.125" y="-27" x="-91.5625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-61.5625, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="123.125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropPortModel</p></span></div></foreignObject></g></g><g transform="translate(878.8203125, 214)" id="flowchart-IBV-72" class="node default"><rect height="54" width="224.765625" y="-27" x="-112.3828125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-82.3828125, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="164.765625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>InteropBlackboardView</p></span></div></foreignObject></g></g></g></g></g></svg></section><section class="chapter"><h2 id="backend-selection" data-toc="backend-selection">Backend Selection</h2><section class="chapter"><h3 id="graphview-default" data-toc="graphview-default">GraphView (Default)</h3><p id="-v4tk9p_20">Available in all Unity versions with UIElements support.</p><p id="-v4tk9p_21"><span class="control" id="-v4tk9p_22">Compilation</span>: Always compiled when <code class="code" id="-v4tk9p_23">UNITY_EDITOR</code> is defined.</p></section><section class="chapter"><h3 id="graphtoolkit" data-toc="graphtoolkit">GraphToolkit</h3><p id="-v4tk9p_24">Experimental API available in Unity 6.2+.</p><p id="-v4tk9p_25"><span class="control" id="-v4tk9p_26">Compilation</span>: Only when both <code class="code" id="-v4tk9p_27">USING_GTK</code> and <code class="code" id="-v4tk9p_28">UNITY_6000_2_OR_NEWER</code> are defined.</p></section></section><section class="chapter"><h2 id="common-features" data-toc="common-features">Common Features</h2><p id="-v4tk9p_29">Both backends provide:</p><ul class="list _bullet" id="-v4tk9p_30"><li class="list__item" id="-v4tk9p_31"><p id="-v4tk9p_39">Visual node editing with drag &amp; drop</p></li><li class="list__item" id="-v4tk9p_32"><p id="-v4tk9p_40">Port connection with type compatibility checking</p></li><li class="list__item" id="-v4tk9p_33"><p id="-v4tk9p_41">Node search/creation window</p></li><li class="list__item" id="-v4tk9p_34"><p id="-v4tk9p_42">Blackboard for shared variables</p></li><li class="list__item" id="-v4tk9p_35"><p id="-v4tk9p_43">Zoom and pan navigation</p></li><li class="list__item" id="-v4tk9p_36"><p id="-v4tk9p_44">Selection and multi-select</p></li><li class="list__item" id="-v4tk9p_37"><p id="-v4tk9p_45">Undo/redo support</p></li><li class="list__item" id="-v4tk9p_38"><p id="-v4tk9p_46">Copy/paste (planned)</p></li></ul></section><section class="chapter"><h2 id="key-differences" data-toc="key-differences">Key Differences</h2><div class="table-wrapper"><table class="wide" id="-v4tk9p_47"><thead><tr class="ijRowHead" id="-v4tk9p_48"><th id="-v4tk9p_53"><p>Feature</p></th><th id="-v4tk9p_54"><p>GraphView</p></th><th id="-v4tk9p_55"><p>GraphToolkit</p></th></tr></thead><tbody><tr id="-v4tk9p_49"><td id="-v4tk9p_56"><p>Model-View</p></td><td id="-v4tk9p_57"><p>Combined</p></td><td id="-v4tk9p_58"><p>Separated</p></td></tr><tr id="-v4tk9p_50"><td id="-v4tk9p_59"><p>Commands</p></td><td id="-v4tk9p_60"><p>Manual undo</p></td><td id="-v4tk9p_61"><p>Built-in</p></td></tr><tr id="-v4tk9p_51"><td id="-v4tk9p_62"><p>Styling</p></td><td id="-v4tk9p_63"><p>.uss files</p></td><td id="-v4tk9p_64"><p>.uss files (different classes)</p></td></tr><tr id="-v4tk9p_52"><td id="-v4tk9p_65"><p>Serialization</p></td><td id="-v4tk9p_66"><p>Custom</p></td><td id="-v4tk9p_67"><p>Built-in</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="creating-an-editor-window" data-toc="creating-an-editor-window">Creating an Editor Window</h2><section class="chapter"><h3 id="subclass-graphinteropeditorwindow" data-toc="subclass-graphinteropeditorwindow">Subclass GraphInteropEditorWindow</h3><div class="code-block" data-lang="none">
-public class MyPipelineEditor : GraphInteropEditorWindow
+}</script><!-- End Schema.org --></head><body data-id="editor-api" data-main-title="Editor API" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="editor-api" id="editor-api.md">Editor API</h1><p id="yotcqb_3">The Editor API provides visual graph editing capabilities through GraphView. This page covers the editor backend architecture and customization options.</p><section class="chapter"><h2 id="overview" data-toc="overview">Overview</h2><p id="yotcqb_22">GraphInterop's editor layer is built on Unity's <span class="control" id="yotcqb_23">GraphView</span> framework (part of UI Toolkit), providing a mature, feature-rich visual editing experience while keeping the runtime API separate.</p></section><section class="chapter"><h2 id="assembly" data-toc="assembly">Assembly</h2><p id="yotcqb_24"><span class="control" id="yotcqb_25">Name</span>: <code class="code" id="yotcqb_26">QhunGaming.GraphInterop.Editor</code> <span class="control" id="yotcqb_27">Namespace</span>: <code class="code" id="yotcqb_28">QhunGaming.GraphInterop.Editor</code> <span class="control" id="yotcqb_29">Platform</span>: Editor only <span class="control" id="yotcqb_30">Compilation</span>: <code class="code" id="yotcqb_31">#if UNITY_EDITOR</code></p></section><section class="chapter"><h2 id="backend-architecture" data-toc="backend-architecture">Backend Architecture</h2><p id="yotcqb_32">GraphInterop uses a <span class="control" id="yotcqb_36">backend abstraction</span> to support multiple visual editors:</p><div class="code-block" data-lang="csharp">
+public interface IGraphEditorBackend
 {
-    [MenuItem(&quot;Window/My Pipeline Editor&quot;)]
+    GraphAsset CurrentGraph { get; }
+    void Initialize(EditorWindow window, VisualElement root);
+    void LoadGraph(GraphAsset graph);
+    void OnDisable();
+}
+</div><p id="yotcqb_34"><span class="control" id="yotcqb_37">Current Backend</span>: <code class="code" id="yotcqb_38">GraphViewEditorBackend</code> (GraphView-based) <span class="control" id="yotcqb_39">Future Backend</span>: GraphToolkit UI (when mature)</p><p id="yotcqb_35">See <a href="graphview-features.html" id="yotcqb_40" data-tooltip="This page explains how GraphInterop uses Unity's GraphView for visual graph editing and what features are supported.">GraphView Features</a> for detailed GraphView integration.</p></section><section class="chapter"><h2 id="main-editor-window" data-toc="main-editor-window">Main Editor Window</h2><section class="chapter"><h3 id="graphinteropeditorwindow" data-toc="graphinteropeditorwindow">GraphInteropEditorWindow</h3><p id="yotcqb_43">The base class for graph editors:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop.Editor;
+using UnityEditor;
+
+public class MyGraphEditor : GraphInteropEditorWindow
+{
+    [MenuItem(&quot;Window/My Graph Editor&quot;)]
     public static void Open()
     {
-        GetWindow&lt;MyPipelineEditor&gt;(&quot;My Pipeline&quot;);
-    }
-
-    // Optionally filter which node types appear
-    protected override bool CanCreateNodeType(Type nodeType)
-    {
-        return nodeType.Namespace?.Contains(&quot;MyNamespace&quot;) ?? false;
+        var window = GetWindow&lt;MyGraphEditor&gt;();
+        window.titleContent = new GUIContent(&quot;My Graph&quot;);
+        window.Show();
     }
 }
-</div></section><section class="chapter"><h3 id="custom-asset-handling" data-toc="custom-asset-handling">Custom Asset Handling</h3><div class="code-block" data-lang="none">
-public class MyPipelineEditor : GraphInteropEditorWindow
+</div><p id="yotcqb_45"><span class="control" id="yotcqb_47">Features:</span></p><ul class="list _bullet" id="yotcqb_46"><li class="list__item" id="yotcqb_48"><p id="yotcqb_52">Automatic backend selection</p></li><li class="list__item" id="yotcqb_49"><p id="yotcqb_53">Asset loading/saving</p></li><li class="list__item" id="yotcqb_50"><p id="yotcqb_54">Toolbar (Save, Validate, Execute)</p></li><li class="list__item" id="yotcqb_51"><p id="yotcqb_55">Integration with Unity's asset database</p></li></ul></section><section class="chapter"><h3 id="custom-editor-windows" data-toc="custom-editor-windows">Custom Editor Windows</h3><p id="yotcqb_56">Customize the editor for specific graph types:</p><div class="code-block" data-lang="csharp">
+public class GameplayGraphEditor : GraphInteropEditorWindow
 {
+    [MenuItem(&quot;Window/Gameplay Graph Editor&quot;)]
+    public static void Open()
+    {
+        GetWindow&lt;GameplayGraphEditor&gt;(&quot;Gameplay&quot;);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        // Auto-load last graph
+        var lastPath = EditorPrefs.GetString(&quot;LastGameplayGraph&quot;, &quot;&quot;);
+        if (!string.IsNullOrEmpty(lastPath))
+        {
+            var asset = AssetDatabase.LoadAssetAtPath&lt;GraphAsset&gt;(lastPath);
+            if (asset != null)
+                LoadGraph(asset);
+        }
+    }
+
     protected override void OnGraphLoaded(GraphAsset asset)
     {
         base.OnGraphLoaded(asset);
-        titleContent.text = asset.name;
+
+        // Save path
+        EditorPrefs.SetString(&quot;LastGameplayGraph&quot;, AssetDatabase.GetAssetPath(asset));
+
+        // Update window title
+        titleContent.text = $&quot;Gameplay - {asset.name}&quot;;
     }
 
-    protected override void OnGraphChanged(GraphAsset asset)
+    // Filter which nodes appear in search window
+    protected override bool CanCreateNodeType(Type nodeType)
     {
-        base.OnGraphChanged(asset);
-        // Custom change handling
+        return nodeType.Namespace?.Contains(&quot;MyGame.Gameplay&quot;) ?? false;
     }
 }
-</div></section></section><section class="chapter"><h2 id="port-styling" data-toc="port-styling">Port Styling</h2><p id="-v4tk9p_72">Ports can be styled based on type in USS:</p><div class="code-block" data-lang="css">
-/* By type attribute */
+</div></section></section><section class="chapter"><h2 id="editor-components" data-toc="editor-components">Editor Components</h2><p id="yotcqb_58">The GraphView backend consists of several key components:</p><section class="chapter"><h3 id="interopgraphview" data-toc="interopgraphview">InteropGraphView</h3><p id="yotcqb_65">Main canvas for visual editing:</p><div class="code-block" data-lang="none">
+InteropGraphView
+├─ Nodes (InteropNodeView)
+├─ Edges (connections)
+├─ Grid background
+├─ Minimap
+└─ Selection rectangle
+</div><p id="yotcqb_67"><span class="control" id="yotcqb_69">Features:</span></p><ul class="list _bullet" id="yotcqb_68"><li class="list__item" id="yotcqb_70"><p id="yotcqb_75">Pan and zoom</p></li><li class="list__item" id="yotcqb_71"><p id="yotcqb_76">Node selection (single and multi)</p></li><li class="list__item" id="yotcqb_72"><p id="yotcqb_77">Edge creation with type checking</p></li><li class="list__item" id="yotcqb_73"><p id="yotcqb_78">Context menu (right-click)</p></li><li class="list__item" id="yotcqb_74"><p id="yotcqb_79">Search window (Space key)</p></li></ul></section><section class="chapter"><h3 id="interopnodeview" data-toc="interopnodeview">InteropNodeView</h3><p id="yotcqb_80">Visual representation of nodes:</p><div class="code-block" data-lang="none">
+┌─────────────────────────┐
+│ 🔧 Node Title          │ ← Title bar (standard nodes)
+├─────────────────────────┤
+│ Category: Math          │ ← Description
+├─────────────────────────┤
+│ [Option Fields]         │ ← Node options
+├─────────────────────────┤
+│ ● Input A        Result ○ │ ← Ports
+└─────────────────────────┘
+</div><p id="yotcqb_82"><span class="control" id="yotcqb_84">Two Variants:</span></p><ol class="list _decimal" id="yotcqb_83" type="1"><li class="list__item" id="yotcqb_85"><p id="yotcqb_87"><span class="control" id="yotcqb_88">Standard Nodes</span>: Full UI with title, description, options</p></li><li class="list__item" id="yotcqb_86"><p id="yotcqb_89"><span class="control" id="yotcqb_90">Compact Nodes</span>: Minimal UI (used for constants, getters, portals)</p></li></ol></section><section class="chapter"><h3 id="interopport" data-toc="interopport">InteropPort</h3><p id="yotcqb_91">Port visualization with embedded field editors:</p><div class="code-block" data-lang="csharp">
+// When unconnected, shows embedded value field
+● Value: [5.0]
+
+// When connected, hides field
+● Value ────&gt; Output ○
+</div><p id="yotcqb_93"><span class="control" id="yotcqb_95">Features:</span></p><ul class="list _bullet" id="yotcqb_94"><li class="list__item" id="yotcqb_96"><p id="yotcqb_100">Type-based coloring</p></li><li class="list__item" id="yotcqb_97"><p id="yotcqb_101">Embedded value editing</p></li><li class="list__item" id="yotcqb_98"><p id="yotcqb_102">Connection validation</p></li><li class="list__item" id="yotcqb_99"><p id="yotcqb_103">Visual feedback</p></li></ul></section><section class="chapter"><h3 id="interopblackboard" data-toc="interopblackboard">InteropBlackboard</h3><p id="yotcqb_104">Parameter management panel:</p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ Blackboard          │
+├─────────────────────┤
+│ 📁 Movement         │
+│   • Speed (float)   │
+│   • JumpForce       │
+├─────────────────────┤
+│ 📁 Context          │
+│   🔒 Transform      │
+│   🔒 DeltaTime      │
+└─────────────────────┘
+</div><p id="yotcqb_106"><span class="control" id="yotcqb_108">Features:</span></p><ul class="list _bullet" id="yotcqb_107"><li class="list__item" id="yotcqb_109"><p id="yotcqb_113">Categorized parameters</p></li><li class="list__item" id="yotcqb_110"><p id="yotcqb_114">Drag to graph (creates GetParameterNode)</p></li><li class="list__item" id="yotcqb_111"><p id="yotcqb_115">Add/remove/rename parameters</p></li><li class="list__item" id="yotcqb_112"><p id="yotcqb_116">Shows context variables (read-only)</p></li></ul></section><section class="chapter"><h3 id="interopinspector" data-toc="interopinspector">InteropInspector</h3><p id="yotcqb_117">Selection details panel:</p><div class="code-block" data-lang="none">
+┌─────────────────────┐
+│ Inspector           │
+├─────────────────────┤
+│ Node: Add           │
+│                     │
+│ Options             │
+│ (none)              │
+│                     │
+│ Ports               │
+│ • a: float          │
+│ • b: float          │
+│ • result: float     │
+└─────────────────────┘
+</div><p id="yotcqb_119"><span class="control" id="yotcqb_121">Displays:</span></p><ul class="list _bullet" id="yotcqb_120"><li class="list__item" id="yotcqb_122"><p id="yotcqb_125">Selected node/parameter details</p></li><li class="list__item" id="yotcqb_123"><p id="yotcqb_126">Editable options</p></li><li class="list__item" id="yotcqb_124"><p id="yotcqb_127">Port types and values</p></li></ul></section><section class="chapter"><h3 id="nodesearchwindow" data-toc="nodesearchwindow">NodeSearchWindow</h3><p id="yotcqb_128">Searchable node creation:</p><div class="code-block" data-lang="none">
+Space → Search Window
+Type to filter
+Enter to create
+
+┌─────────────────────────┐
+│ Search: [add]           │
+├─────────────────────────┤
+│ Math                    │
+│   └─ Add                │
+│   └─ Add Vectors        │
+│ Transform               │
+│   └─ Address Transform  │
+└─────────────────────────┘
+</div><p id="yotcqb_130"><span class="control" id="yotcqb_132">Features:</span></p><ul class="list _bullet" id="yotcqb_131"><li class="list__item" id="yotcqb_133"><p id="yotcqb_137">Hierarchical categories</p></li><li class="list__item" id="yotcqb_134"><p id="yotcqb_138">Type filtering</p></li><li class="list__item" id="yotcqb_135"><p id="yotcqb_139">Icon support</p></li><li class="list__item" id="yotcqb_136"><p id="yotcqb_140">Recent nodes (planned)</p></li></ul></section></section><section class="chapter"><h2 id="toolbar" data-toc="toolbar">Toolbar</h2><div class="code-block" data-lang="none">
+[Asset: MyGraph ▼] [Save] [Validate] [Execute]
+</div><div class="table-wrapper"><table class="wide" id="yotcqb_142"><thead><tr class="ijRowHead" id="yotcqb_143"><th id="yotcqb_148"><p>Button</p></th><th id="yotcqb_149"><p>Action</p></th></tr></thead><tbody><tr id="yotcqb_144"><td id="yotcqb_150"><p><span class="control" id="yotcqb_152">Asset Dropdown</span></p></td><td id="yotcqb_151"><p>Load/create graph assets</p></td></tr><tr id="yotcqb_145"><td id="yotcqb_153"><p><span class="control" id="yotcqb_155">Save</span></p></td><td id="yotcqb_154"><p>Persist changes to disk</p></td></tr><tr id="yotcqb_146"><td id="yotcqb_156"><p><span class="control" id="yotcqb_158">Validate</span></p></td><td id="yotcqb_157"><p>Run <code class="code" id="yotcqb_159">graph.Validate()</code> and show errors</p></td></tr><tr id="yotcqb_147"><td id="yotcqb_160"><p><span class="control" id="yotcqb_162">Execute</span></p></td><td id="yotcqb_161"><p>Test run with empty context</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="visual-customization" data-toc="visual-customization">Visual Customization</h2><section class="chapter"><h3 id="node-styling" data-toc="node-styling">Node Styling</h3><p id="yotcqb_165">Use <code class="code" id="yotcqb_168">NodeInfoAttribute</code> for visual customization:</p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Damage Calculator&quot;,
+    Category = &quot;Combat&quot;,
+    Description = &quot;Calculates damage with armor mitigation&quot;,
+    Icon = &quot;d_Profiler.Physics&quot;,
+    Color = &quot;#FF5733&quot;  // Red-orange title bar
+)]
+public class DamageNode : GraphNode { }
+</div><p id="yotcqb_167">See <a href="graphview-features.html#node-styling" id="yotcqb_169" data-tooltip="GraphInterop uses NodeInfoAttribute for visual customization:">GraphView Features</a> for icon reference.</p></section><section class="chapter"><h3 id="port-styling" data-toc="port-styling">Port Styling</h3><p id="yotcqb_170">Use <code class="code" id="yotcqb_174">PortInfoAttribute</code> for type-specific styling:</p><div class="code-block" data-lang="csharp">
+[PortInfo(
+    Color = &quot;#4CAF50&quot;,  // Green ports
+    DisplayName = &quot;Position Data&quot;,
+    Icon = &quot;d_Transform Icon&quot;
+)]
+public struct PositionData
+{
+    public Vector3 position;
+    public Quaternion rotation;
+}
+</div><p id="yotcqb_172"><span class="control" id="yotcqb_175">Color Options:</span></p><ul class="list _bullet" id="yotcqb_173"><li class="list__item" id="yotcqb_176"><p id="yotcqb_178">Hex: <code class="code" id="yotcqb_179">&quot;#RRGGBB&quot;</code></p></li><li class="list__item" id="yotcqb_177"><p id="yotcqb_180">Named: <code class="code" id="yotcqb_181">&quot;red&quot;</code>, <code class="code" id="yotcqb_182">&quot;blue&quot;</code>, <code class="code" id="yotcqb_183">&quot;green&quot;</code>, <code class="code" id="yotcqb_184">&quot;orange&quot;</code>, <code class="code" id="yotcqb_185">&quot;yellow&quot;</code>, <code class="code" id="yotcqb_186">&quot;purple&quot;</code>, <code class="code" id="yotcqb_187">&quot;pink&quot;</code></p></li></ul></section></section><section class="chapter"><h2 id="uss-styling" data-toc="uss-styling">USS Styling</h2><p id="yotcqb_188">Customize the editor appearance with USS (Unity Style Sheets):</p><div class="code-block" data-lang="css">
+/* Custom node background */
+.node {
+    background-color: rgba(40, 40, 40, 0.8);
+    border-radius: 6px;
+}
+
+/* Port colors by type */
 .port[data-type=&quot;System.Single&quot;] .connector {
-    background-color: #7fc97f;
+    background-color: #7fc97f; /* Green for float */
 }
 
 .port[data-type=&quot;UnityEngine.Vector3&quot;] .connector {
-    background-color: #fdc086;
+    background-color: #fdc086; /* Orange for Vector3 */
 }
-</div></section><section class="chapter"><h2 id="node-search-window" data-toc="node-search-window">Node Search Window</h2><p id="-v4tk9p_74">The search window automatically discovers nodes marked with <code class="code" id="-v4tk9p_78">[NodeInfo]</code>:</p><div class="code-block" data-lang="none">
-[NodeInfo(Category = &quot;Math/Basic&quot;, Title = &quot;Add&quot;)]
+
+/* Selected node highlight */
+.node.selected {
+    border-color: #FF9800;
+    border-width: 2px;
+}
+</div><p id="yotcqb_190"><span class="control" id="yotcqb_192">USS File Location</span>: Place in <code class="code" id="yotcqb_193">Editor/Styles/MyGraphEditor.uss</code> and load in window:</p><div class="code-block" data-lang="csharp">
+protected override void OnEnable()
+{
+    base.OnEnable();
+
+    var styleSheet = AssetDatabase.LoadAssetAtPath&lt;StyleSheet&gt;(
+        &quot;Assets/Editor/Styles/MyGraphEditor.uss&quot;
+    );
+    rootVisualElement.styleSheets.Add(styleSheet);
+}
+</div></section><section class="chapter"><h2 id="backend-registration" data-toc="backend-registration">Backend Registration</h2><p id="yotcqb_194">Register custom backends:</p><div class="code-block" data-lang="csharp">
+#if UNITY_EDITOR
+using QhunGaming.GraphInterop.Editor;
+using UnityEditor;
+using UnityEngine.UIElements;
+
+public class MyCustomBackend : IGraphEditorBackend
+{
+    public GraphAsset CurrentGraph { get; private set; }
+
+    public void Initialize(EditorWindow window, VisualElement root)
+    {
+        // Create custom UI
+        var label = new Label(&quot;My Custom Backend&quot;);
+        root.Add(label);
+    }
+
+    public void LoadGraph(GraphAsset graph)
+    {
+        CurrentGraph = graph;
+        // Update UI
+    }
+
+    public void OnDisable()
+    {
+        // Cleanup
+    }
+}
+
+// Register backend
+[InitializeOnLoadMethod]
+private static void RegisterBackend()
+{
+    GraphInteropEditorWindow.RegisterBackend(() =&gt; new MyCustomBackend());
+}
+#endif
+</div><p id="yotcqb_196"><span class="control" id="yotcqb_197">Backend Priority</span>: First registered = default backend</p></section><section class="chapter"><h2 id="common-workflows" data-toc="common-workflows">Common Workflows</h2><section class="chapter"><h3 id="creating-a-new-graph" data-toc="creating-a-new-graph">Creating a New Graph</h3><section class="procedure-steps"><h3 id="create-graph" data-toc="create-graph">Create New Graph</h3><ol class="list _decimal"><li class="list__item" id="yotcqb_203"><p>Right-click in Project window</p></li><li class="list__item" id="yotcqb_204"><p>Select Create &gt; GraphInterop &gt; Graph Asset</p></li><li class="list__item" id="yotcqb_205"><p>Name the asset</p></li><li class="list__item" id="yotcqb_206"><p>Double-click to open in editor</p></li></ol></section></section><section class="chapter"><h3 id="adding-nodes" data-toc="adding-nodes">Adding Nodes</h3><section class="procedure-steps"><h3 id="add-nodes" data-toc="add-nodes">Add Nodes to Graph</h3><ol class="list _decimal"><li class="list__item" id="yotcqb_208"><p>Press <b id="yotcqb_212">Space</b> or <b id="yotcqb_213">Right-click</b> in graph</p></li><li class="list__item" id="yotcqb_209"><p>Type to search for node</p></li><li class="list__item" id="yotcqb_210"><p>Press <b id="yotcqb_214">Enter</b> or click to create</p></li><li class="list__item" id="yotcqb_211"><p>Drag to position</p></li></ol></section></section><section class="chapter"><h3 id="connecting-nodes" data-toc="connecting-nodes">Connecting Nodes</h3><section class="procedure-steps"><h3 id="connect-ports" data-toc="connect-ports">Connect Ports</h3><ol class="list _decimal"><li class="list__item" id="yotcqb_216"><p>Drag from output port (right side)</p></li><li class="list__item" id="yotcqb_217"><p>Drop on input port (left side)</p></li><li class="list__item" id="yotcqb_218"><p>Compatible ports highlight in green</p></li><li class="list__item" id="yotcqb_219"><p>Incompatible ports show red outline</p></li></ol></section></section><section class="chapter"><h3 id="testing-execution" data-toc="testing-execution">Testing Execution</h3><section class="procedure-steps"><h3 id="test-execution" data-toc="test-execution">Test Graph Execution</h3><ol class="list _decimal"><li class="list__item" id="yotcqb_221"><p>Click <b id="yotcqb_225">Validate</b> button to check for errors</p></li><li class="list__item" id="yotcqb_222"><p>Fix any validation errors shown in console</p></li><li class="list__item" id="yotcqb_223"><p>Click <b id="yotcqb_226">Execute</b> button to run with empty context</p></li><li class="list__item" id="yotcqb_224"><p>Check console for Debug.Log output from nodes</p></li></ol></section></section></section><section class="chapter"><h2 id="integration-with-unity" data-toc="integration-with-unity">Integration with Unity</h2><section class="chapter"><h3 id="asset-database-integration" data-toc="asset-database-integration">Asset Database Integration</h3><p id="yotcqb_230">GraphAsset is a ScriptableObject, fully integrated with Unity's asset database:</p><div class="code-block" data-lang="csharp">
+// Create asset programmatically
+var graph = ScriptableObject.CreateInstance&lt;GraphAsset&gt;();
+AssetDatabase.CreateAsset(graph, &quot;Assets/MyGraph.asset&quot;);
+
+// Add node as sub-asset
+var node = ScriptableObject.CreateInstance&lt;MyNode&gt;();
+AssetDatabase.AddObjectToAsset(node, graph);
+graph.Nodes.Add(node);
+
+// Save
+EditorUtility.SetDirty(graph);
+AssetDatabase.SaveAssets();
+</div></section><section class="chapter"><h3 id="double-click-to-open" data-toc="double-click-to-open">Double-Click to Open</h3><p id="yotcqb_232">GraphAssets open in the editor automatically when double-clicked (via <code class="code" id="yotcqb_233">[CustomEditor]</code> and <code class="code" id="yotcqb_234">OnOpenAsset</code>).</p></section><section class="chapter"><h3 id="inspector-integration" data-toc="inspector-integration">Inspector Integration</h3><p id="yotcqb_235">Select a GraphAsset in the Project window to see:</p><ul class="list _bullet" id="yotcqb_236"><li class="list__item" id="yotcqb_237"><p id="yotcqb_240">Blackboard parameters</p></li><li class="list__item" id="yotcqb_238"><p id="yotcqb_241">Context variable definitions</p></li><li class="list__item" id="yotcqb_239"><p id="yotcqb_242">Graph validation status</p></li></ul></section></section><section class="chapter"><h2 id="undo-redo-support" data-toc="undo-redo-support">Undo/Redo Support</h2><p id="yotcqb_243"><span class="control" id="yotcqb_246">Status</span>: 📋 Planned for v1.1</p><p id="yotcqb_244">When implemented, will use Unity's <code class="code" id="yotcqb_247">Undo</code> system:</p><div class="code-block" data-lang="csharp">
+// Record changes
+Undo.RecordObject(graphAsset, &quot;Add Node&quot;);
+graphAsset.AddNode&lt;MyNode&gt;();
+EditorUtility.SetDirty(graphAsset);
+</div></section><section class="chapter"><h2 id="copy-paste-support" data-toc="copy-paste-support">Copy/Paste Support</h2><p id="yotcqb_248"><span class="control" id="yotcqb_251">Status</span>: 📋 Planned for v1.1</p><p id="yotcqb_249">Will support:</p><ul class="list _bullet" id="yotcqb_250"><li class="list__item" id="yotcqb_252"><p id="yotcqb_256">Copy selected nodes (Ctrl+C)</p></li><li class="list__item" id="yotcqb_253"><p id="yotcqb_257">Paste with new IDs (Ctrl+V)</p></li><li class="list__item" id="yotcqb_254"><p id="yotcqb_258">Preserve connections between pasted nodes</p></li><li class="list__item" id="yotcqb_255"><p id="yotcqb_259">Cross-graph paste (if type-compatible)</p></li></ul></section><section class="chapter"><h2 id="keyboard-shortcuts" data-toc="keyboard-shortcuts">Keyboard Shortcuts</h2><div class="table-wrapper"><table class="wide" id="yotcqb_260"><thead><tr class="ijRowHead" id="yotcqb_261"><th id="yotcqb_270"><p>Shortcut</p></th><th id="yotcqb_271"><p>Action</p></th></tr></thead><tbody><tr id="yotcqb_262"><td id="yotcqb_272"><p><span class="control" id="yotcqb_274">Space</span></p></td><td id="yotcqb_273"><p>Open node search</p></td></tr><tr id="yotcqb_263"><td id="yotcqb_275"><p><span class="control" id="yotcqb_277">Delete</span></p></td><td id="yotcqb_276"><p>Delete selected nodes/edges</p></td></tr><tr id="yotcqb_264"><td id="yotcqb_278"><p><span class="control" id="yotcqb_280">F</span></p></td><td id="yotcqb_279"><p>Frame all nodes (planned)</p></td></tr><tr id="yotcqb_265"><td id="yotcqb_281"><p><span class="control" id="yotcqb_283">Ctrl+S</span></p></td><td id="yotcqb_282"><p>Save (planned)</p></td></tr><tr id="yotcqb_266"><td id="yotcqb_284"><p><span class="control" id="yotcqb_286">Ctrl+Z</span></p></td><td id="yotcqb_285"><p>Undo (planned)</p></td></tr><tr id="yotcqb_267"><td id="yotcqb_287"><p><span class="control" id="yotcqb_289">Ctrl+Y</span></p></td><td id="yotcqb_288"><p>Redo (planned)</p></td></tr><tr id="yotcqb_268"><td id="yotcqb_290"><p><span class="control" id="yotcqb_292">Ctrl+C</span></p></td><td id="yotcqb_291"><p>Copy (planned)</p></td></tr><tr id="yotcqb_269"><td id="yotcqb_293"><p><span class="control" id="yotcqb_295">Ctrl+V</span></p></td><td id="yotcqb_294"><p>Paste (planned)</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="best-practices" data-toc="best-practices">Best Practices</h2><section class="chapter"><h3 id="1-organize-nodes-by-category" data-toc="1-organize-nodes-by-category">1. Organize Nodes by Category</h3><div class="code-block" data-lang="csharp">
+[NodeInfo(Category = &quot;Math/Basic&quot;)]
 public class AddNode : GraphNode { }
-</div><p id="-v4tk9p_76">Creates the hierarchy:</p><div class="code-block" data-lang="none">
+
+[NodeInfo(Category = &quot;Math/Advanced&quot;)]
+public class SineNode : GraphNode { }
+</div><p id="yotcqb_302">Creates organized search menu:</p><div class="code-block" data-lang="none">
 Math
-└── Basic
-    └── Add
-</div></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="type-compatibility.html" class="navigation-links__prev">TypeCompatibility</a><a href="graphview-adapter.html" class="navigation-links__next">GraphView Adapter</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>
+  ├─ Basic
+  │   └─ Add
+  └─ Advanced
+      └─ Sine
+</div></section><section class="chapter"><h3 id="2-use-descriptive-names" data-toc="2-use-descriptive-names">2. Use Descriptive Names</h3><div class="code-block" data-lang="csharp">
+// ✅ Good
+[NodeInfo(DisplayName = &quot;Get World Position&quot;)]
+
+// ❌ Bad
+[NodeInfo(DisplayName = &quot;Getter&quot;)]
+</div></section><section class="chapter"><h3 id="3-provide-descriptions" data-toc="3-provide-descriptions">3. Provide Descriptions</h3><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Raycast&quot;,
+    Description = &quot;Casts a ray and returns hit information&quot;
+)]
+</div><p id="yotcqb_306">Tooltips appear on hover in search window.</p></section><section class="chapter"><h3 id="4-choose-appropriate-icons" data-toc="4-choose-appropriate-icons">4. Choose Appropriate Icons</h3><div class="code-block" data-lang="csharp">
+[NodeInfo(Icon = &quot;d_Transform Icon&quot;)] // Transform operations
+[NodeInfo(Icon = &quot;d_Profiler.Physics&quot;)] // Physics operations
+</div></section><section class="chapter"><h3 id="5-use-color-coding" data-toc="5-use-color-coding">5. Use Color Coding</h3><div class="code-block" data-lang="csharp">
+// Green for getters
+[NodeInfo(Color = &quot;#4CAF50&quot;)]
+public class GetValueNode : GraphNode { }
+
+// Red for setters
+[NodeInfo(Color = &quot;#F44336&quot;)]
+public class SetValueNode : GraphNode { }
+</div></section></section><section class="chapter"><h2 id="debugging-tools" data-toc="debugging-tools">Debugging Tools</h2><section class="chapter"><h3 id="validation" data-toc="validation">Validation</h3><div class="code-block" data-lang="csharp">
+var errors = graph.Validate();
+foreach (var error in errors)
+    Debug.LogError(error);
+</div><p id="yotcqb_312"><span class="control" id="yotcqb_314">Checks:</span></p><ul class="list _bullet" id="yotcqb_313"><li class="list__item" id="yotcqb_315"><p id="yotcqb_318">Required inputs are connected or have values</p></li><li class="list__item" id="yotcqb_316"><p id="yotcqb_319">No cycles in graph</p></li><li class="list__item" id="yotcqb_317"><p id="yotcqb_320">Context variables provided</p></li></ul></section><section class="chapter"><h3 id="execute-button" data-toc="execute-button">Execute Button</h3><p id="yotcqb_321">Tests graph with empty context:</p><div class="code-block" data-lang="csharp">
+// Equivalent to:
+var context = new GraphContext();
+var executor = new GraphExecutor(graph);
+await executor.ExecuteAsync(context);
+</div><p id="yotcqb_323"><span class="control" id="yotcqb_325">Use Cases:</span></p><ul class="list _bullet" id="yotcqb_324"><li class="list__item" id="yotcqb_326"><p id="yotcqb_329">Quick testing</p></li><li class="list__item" id="yotcqb_327"><p id="yotcqb_330">Validation of node logic</p></li><li class="list__item" id="yotcqb_328"><p id="yotcqb_331">Debug.Log output inspection</p></li></ul></section></section><section class="chapter"><h2 id="future-features" data-toc="future-features">Future Features</h2><section class="chapter"><h3 id="visual-debugging-v1-2" data-toc="visual-debugging-v1-2">Visual Debugging (v1.2)</h3><p id="yotcqb_335">Planned features:</p><ul class="list _bullet" id="yotcqb_336"><li class="list__item" id="yotcqb_337"><p id="yotcqb_341">Show live values on edges during execution</p></li><li class="list__item" id="yotcqb_338"><p id="yotcqb_342">Node execution state indicators</p></li><li class="list__item" id="yotcqb_339"><p id="yotcqb_343">Breakpoints</p></li><li class="list__item" id="yotcqb_340"><p id="yotcqb_344">Step-through execution</p></li></ul></section><section class="chapter"><h3 id="performance-profiling-v1-2" data-toc="performance-profiling-v1-2">Performance Profiling (v1.2)</h3><p id="yotcqb_345">Planned features:</p><ul class="list _bullet" id="yotcqb_346"><li class="list__item" id="yotcqb_347"><p id="yotcqb_350">Per-node execution time</p></li><li class="list__item" id="yotcqb_348"><p id="yotcqb_351">Bottleneck highlighting</p></li><li class="list__item" id="yotcqb_349"><p id="yotcqb_352">Performance report export</p></li></ul></section><section class="chapter"><h3 id="graphlogger-integration-v1-2" data-toc="graphlogger-integration-v1-2">GraphLogger Integration (v1.2)</h3><p id="yotcqb_353">Visual error markers on nodes:</p><div class="code-block" data-lang="csharp">
+public override void Validate(List&lt;string&gt; errors)
+{
+    errors.Add(&quot;Error message&quot;);
+    // → Shows red badge on node in editor
+}
+</div></section></section><section class="chapter"><h2 id="summary" data-toc="summary">Summary</h2><p id="yotcqb_355">The Editor API provides:</p><ul class="list _bullet" id="yotcqb_356"><li class="list__item" id="yotcqb_360"><p id="yotcqb_366">✅ GraphView-based visual editor</p></li><li class="list__item" id="yotcqb_361"><p id="yotcqb_367">✅ Backend abstraction for future flexibility</p></li><li class="list__item" id="yotcqb_362"><p id="yotcqb_368">✅ Full-featured editing (nodes, edges, blackboard)</p></li><li class="list__item" id="yotcqb_363"><p id="yotcqb_369">✅ Visual customization (colors, icons)</p></li><li class="list__item" id="yotcqb_364"><p id="yotcqb_370">✅ Unity integration (asset database, inspector)</p></li><li class="list__item" id="yotcqb_365"><p id="yotcqb_371">✅ Extensible window system</p></li></ul><p id="yotcqb_357"><span class="control" id="yotcqb_372">Key Components:</span></p><ul class="list _bullet" id="yotcqb_358"><li class="list__item" id="yotcqb_373"><p id="yotcqb_379"><code class="code" id="yotcqb_380">GraphInteropEditorWindow</code> - Base editor window</p></li><li class="list__item" id="yotcqb_374"><p id="yotcqb_381"><code class="code" id="yotcqb_382">IGraphEditorBackend</code> - Backend abstraction</p></li><li class="list__item" id="yotcqb_375"><p id="yotcqb_383"><code class="code" id="yotcqb_384">InteropGraphView</code> - Main canvas</p></li><li class="list__item" id="yotcqb_376"><p id="yotcqb_385"><code class="code" id="yotcqb_386">InteropNodeView</code> - Node visualization</p></li><li class="list__item" id="yotcqb_377"><p id="yotcqb_387"><code class="code" id="yotcqb_388">InteropBlackboard</code> - Parameter panel</p></li><li class="list__item" id="yotcqb_378"><p id="yotcqb_389"><code class="code" id="yotcqb_390">InteropInspector</code> - Selection details</p></li></ul><p id="yotcqb_359">See <a href="graphview-features.html" id="yotcqb_391" data-tooltip="This page explains how GraphInterop uses Unity's GraphView for visual graph editing and what features are supported.">GraphView Features</a> for detailed GraphView integration.</p></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="type-compatibility.html" class="navigation-links__prev">TypeCompatibility</a><a href="creating-nodes.html" class="navigation-links__next">Creating Custom Nodes</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-11-28T18:45:04.956509464"><title>Runtime API | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"assembly","level":0,"title":"Assembly","anchor":"#assembly"},{"id":"core-classes","level":0,"title":"Core Classes","anchor":"#core-classes"},{"id":"attributes","level":0,"title":"Attributes","anchor":"#attributes"},{"id":"data-flow","level":0,"title":"Data Flow","anchor":"#data-flow"},{"id":"usage-pattern","level":0,"title":"Usage Pattern","anchor":"#usage-pattern"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Runtime API | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/runtime-api.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Runtime API | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:40.739224059"><title>Runtime API | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"overview","level":0,"title":"Overview","anchor":"#overview"},{"id":"assembly","level":0,"title":"Assembly","anchor":"#assembly"},{"id":"core-classes","level":0,"title":"Core Classes","anchor":"#core-classes"},{"id":"node-definition-pattern","level":0,"title":"Node Definition Pattern","anchor":"#node-definition-pattern"},{"id":"builder-interfaces","level":0,"title":"Builder Interfaces","anchor":"#builder-interfaces"},{"id":"node-options","level":0,"title":"Node Options","anchor":"#node-options"},{"id":"graph-execution","level":0,"title":"Graph Execution","anchor":"#graph-execution"},{"id":"data-flow","level":0,"title":"Data Flow","anchor":"#data-flow"},{"id":"async-and-burst-support","level":0,"title":"Async and Burst Support","anchor":"#async-and-burst-support"},{"id":"validation","level":0,"title":"Validation","anchor":"#validation"},{"id":"attributes","level":0,"title":"Attributes","anchor":"#attributes"},{"id":"extension-points","level":0,"title":"Extension Points","anchor":"#extension-points"},{"id":"api-comparison","level":0,"title":"API Comparison","anchor":"#api-comparison"},{"id":"best-practices","level":0,"title":"Best Practices","anchor":"#best-practices"},{"id":"next-steps","level":0,"title":"Next Steps","anchor":"#next-steps"},{"id":"summary","level":0,"title":"Summary","anchor":"#summary"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Runtime API | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/runtime-api.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Runtime API | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": "writerside-documentation/runtime-api.html#webpage",
@@ -13,14 +13,351 @@
     "@id": "writerside-documentation/#website",
     "url": "writerside-documentation/",
     "name": "GraphInterop Help"
-}</script><!-- End Schema.org --></head><body data-id="runtime-api" data-main-title="Runtime API" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="runtime-api" id="runtime-api.md">Runtime API</h1><p id="z98i208_3">The runtime API provides all classes needed to define, serialize, and execute node graphs without any editor dependencies.</p><section class="chapter"><h2 id="assembly" data-toc="assembly">Assembly</h2><p id="z98i208_9"><span class="control" id="z98i208_10">Name</span>: <code class="code" id="z98i208_11">QhunGaming.GraphInterop</code> <span class="control" id="z98i208_12">Namespace</span>: <code class="code" id="z98i208_13">QhunGaming.GraphInterop</code></p></section><section class="chapter"><h2 id="core-classes" data-toc="core-classes">Core Classes</h2><div class="table-wrapper"><table class="wide" id="z98i208_14"><thead><tr class="ijRowHead" id="z98i208_15"><th id="z98i208_24"><p>Class</p></th><th id="z98i208_25"><p>Purpose</p></th></tr></thead><tbody><tr id="z98i208_16"><td id="z98i208_26"><p><code class="code" id="z98i208_28">GraphNode</code></p></td><td id="z98i208_27"><p>Base class for all custom nodes</p></td></tr><tr id="z98i208_17"><td id="z98i208_29"><p><code class="code" id="z98i208_31">GraphAsset</code></p></td><td id="z98i208_30"><p>ScriptableObject containing the graph</p></td></tr><tr id="z98i208_18"><td id="z98i208_32"><p><code class="code" id="z98i208_34">GraphExecutor</code></p></td><td id="z98i208_33"><p>Executes graphs in topological order</p></td></tr><tr id="z98i208_19"><td id="z98i208_35"><p><code class="code" id="z98i208_37">GraphContext</code></p></td><td id="z98i208_36"><p>Shared execution context</p></td></tr><tr id="z98i208_20"><td id="z98i208_38"><p><code class="code" id="z98i208_40">Connection</code></p></td><td id="z98i208_39"><p>Data class for port connections</p></td></tr><tr id="z98i208_21"><td id="z98i208_41"><p><code class="code" id="z98i208_43">PortDefinition</code></p></td><td id="z98i208_42"><p>Metadata about a port</p></td></tr><tr id="z98i208_22"><td id="z98i208_44"><p><code class="code" id="z98i208_46">TypeCompatibility</code></p></td><td id="z98i208_45"><p>Port type compatibility checking</p></td></tr><tr id="z98i208_23"><td id="z98i208_47"><p><code class="code" id="z98i208_49">Blackboard</code></p></td><td id="z98i208_48"><p>Container for shared variables</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="attributes" data-toc="attributes">Attributes</h2><div class="table-wrapper"><table class="wide" id="z98i208_50"><thead><tr class="ijRowHead" id="z98i208_51"><th id="z98i208_55"><p>Attribute</p></th><th id="z98i208_56"><p>Target</p></th><th id="z98i208_57"><p>Purpose</p></th></tr></thead><tbody><tr id="z98i208_52"><td id="z98i208_58"><p><code class="code" id="z98i208_61">[Input]</code></p></td><td id="z98i208_59"><p>Field</p></td><td id="z98i208_60"><p>Marks field as input port</p></td></tr><tr id="z98i208_53"><td id="z98i208_62"><p><code class="code" id="z98i208_65">[Output]</code></p></td><td id="z98i208_63"><p>Field</p></td><td id="z98i208_64"><p>Marks field as output port</p></td></tr><tr id="z98i208_54"><td id="z98i208_66"><p><code class="code" id="z98i208_69">[NodeInfo]</code></p></td><td id="z98i208_67"><p>Class</p></td><td id="z98i208_68"><p>Provides node metadata (title, category)</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="data-flow" data-toc="data-flow">Data Flow</h2><svg aria-roledescription="flowchart-v2" role="graphics-document document" viewBox="0 0 1183.71875 70"  class="flowchart" xmlns="http://www.w3.org/2000/svg" width="1183.71875" id="mermaid"><g><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="5" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="4.5" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart-v2" id="mermaid_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M150.094,35L161.026,35C171.958,35,193.823,35,210.221,35C226.62,35,237.552,35,247.818,35C258.083,35,267.682,35,272.482,35L277.281,35"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_C_1" d="M410.906,35L420.402,35C429.898,35,448.891,35,463.135,35C477.379,35,486.875,35,495.704,35C504.534,35,512.697,35,516.778,35L520.859,35"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_D_2" d="M662.484,35L671.482,35C680.479,35,698.474,35,711.97,35C725.466,35,734.464,35,742.794,35C751.125,35,758.789,35,762.621,35L766.453,35"></path><path marker-end="url(#mermaid_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_E_3" d="M917.906,35L927.549,35C937.193,35,956.479,35,970.944,35C985.409,35,995.052,35,1004.029,35C1013.005,35,1021.315,35,1025.47,35L1029.625,35"></path></g><g class="edgeLabels"><g transform="translate(215.6875, 35)" class="edgeLabel"><g transform="translate(-40.59375, -12)" class="label"><foreignObject height="24" width="81.1875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>Connection</p></span></div></foreignObject></g></g><g transform="translate(467.8828125, 35)" class="edgeLabel"><g transform="translate(-31.9765625, -12)" class="label"><foreignObject height="24" width="63.953125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>SetValue</p></span></div></foreignObject></g></g><g transform="translate(716.46875, 35)" class="edgeLabel"><g transform="translate(-28.984375, -12)" class="label"><foreignObject height="24" width="57.96875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>Process</p></span></div></foreignObject></g></g><g transform="translate(975.765625, 35)" class="edgeLabel"><g transform="translate(-32.859375, -12)" class="label"><foreignObject height="24" width="65.71875"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"><p>GetValue</p></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(79.046875, 35)" id="flowchart-A-81" class="node default"><rect height="54" width="142.09375" y="-27" x="-71.046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-41.046875, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="82.09375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Output Port</p></span></div></foreignObject></g></g><g transform="translate(346.09375, 35)" id="flowchart-B-82" class="node default"><rect height="54" width="129.625" y="-27" x="-64.8125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-34.8125, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="69.625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Input Port</p></span></div></foreignObject></g></g><g transform="translate(593.671875, 35)" id="flowchart-C-84" class="node default"><rect height="54" width="137.625" y="-27" x="-68.8125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-38.8125, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="77.625"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Node Field</p></span></div></foreignObject></g></g><g transform="translate(844.1796875, 35)" id="flowchart-D-86" class="node default"><rect height="54" width="147.453125" y="-27" x="-73.7265625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-43.7265625, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="87.453125"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Output Field</p></span></div></foreignObject></g></g><g transform="translate(1104.671875, 35)" id="flowchart-E-88" class="node default"><rect height="54" width="142.09375" y="-27" x="-71.046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-41.046875, -12)" style="" class="label"><rect></rect><foreignObject height="24" width="82.09375"><div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Output Port</p></span></div></foreignObject></g></g></g></g></g></svg></section><section class="chapter"><h2 id="usage-pattern" data-toc="usage-pattern">Usage Pattern</h2><div class="code-block" data-lang="none">
-// 1. Define nodes
-public class MyNode : GraphNode { ... }
+}</script><!-- End Schema.org --></head><body data-id="runtime-api" data-main-title="Runtime API" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="runtime-api" id="runtime-api.md">Runtime API</h1><p id="-a514a0_3">The runtime API provides all classes needed to define, serialize, and execute node graphs without any editor dependencies.</p><section class="chapter"><h2 id="overview" data-toc="overview">Overview</h2><p id="-a514a0_20">The runtime API follows Unity's GraphToolkit design patterns, providing a stable foundation for graph-based systems that works in both editor and builds.</p></section><section class="chapter"><h2 id="assembly" data-toc="assembly">Assembly</h2><p id="-a514a0_21"><span class="control" id="-a514a0_22">Name</span>: <code class="code" id="-a514a0_23">QhunGaming.GraphInterop</code> <span class="control" id="-a514a0_24">Namespace</span>: <code class="code" id="-a514a0_25">QhunGaming.GraphInterop</code> <span class="control" id="-a514a0_26">Platform</span>: All (Editor + Runtime)</p></section><section class="chapter"><h2 id="core-classes" data-toc="core-classes">Core Classes</h2><div class="table-wrapper"><table class="wide" id="-a514a0_27"><thead><tr class="ijRowHead" id="-a514a0_28"><th id="-a514a0_38"><p>Class</p></th><th id="-a514a0_39"><p>Purpose</p></th><th id="-a514a0_40"><p>Documentation</p></th></tr></thead><tbody><tr id="-a514a0_29"><td id="-a514a0_41"><p><code class="code" id="-a514a0_44">GraphAsset</code></p></td><td id="-a514a0_42"><p>ScriptableObject container for graph structure</p></td><td id="-a514a0_43"><p><a href="graph-asset.html" id="-a514a0_45" data-tooltip="Abstract ScriptableObject that contains all graph data: nodes, connections, and blackboard variables.">Graph Asset</a></p></td></tr><tr id="-a514a0_30"><td id="-a514a0_46"><p><code class="code" id="-a514a0_49">GraphNode</code></p></td><td id="-a514a0_47"><p>Base class for all custom nodes</p></td><td id="-a514a0_48"><p><a href="graph-node.html" id="-a514a0_50" data-tooltip="Abstract base class for all graph nodes. Nodes define their inputs and outputs using field attributes and implement processing logic.">Graph Node</a></p></td></tr><tr id="-a514a0_31"><td id="-a514a0_51"><p><code class="code" id="-a514a0_54">GraphExecutor</code></p></td><td id="-a514a0_52"><p>Executes graphs in topological order</p></td><td id="-a514a0_53"><p><a href="graph-executor.html" id="-a514a0_55" data-tooltip="Executes a graph by processing nodes in topological order, resolving connections automatically.">Graph Executor</a></p></td></tr><tr id="-a514a0_32"><td id="-a514a0_56"><p><code class="code" id="-a514a0_59">GraphContext</code></p></td><td id="-a514a0_57"><p>Execution context carrying data between nodes</p></td><td id="-a514a0_58"><p><a href="architecture.html" id="-a514a0_60" data-tooltip="GraphInterop follows a layered architecture that separates runtime logic from editor visualization, enabling flexibility and maintainability.">Architecture</a></p></td></tr><tr id="-a514a0_33"><td id="-a514a0_61"><p><code class="code" id="-a514a0_64">IPort</code></p></td><td id="-a514a0_62"><p>Port interface for inputs/outputs</p></td><td id="-a514a0_63"><p><a href="port-definition.html" id="-a514a0_65" data-tooltip="Represents metadata about a port on a node, including its name, type, direction, and configuration.">Port Definition</a></p></td></tr><tr id="-a514a0_34"><td id="-a514a0_66"><p><code class="code" id="-a514a0_69">INodeOption</code></p></td><td id="-a514a0_67"><p>Node option interface</p></td><td id="-a514a0_68"><p>See below</p></td></tr><tr id="-a514a0_35"><td id="-a514a0_70"><p><code class="code" id="-a514a0_73">Connection</code></p></td><td id="-a514a0_71"><p>Data structure for port connections</p></td><td id="-a514a0_72"><p><a href="architecture.html" id="-a514a0_74" data-tooltip="GraphInterop follows a layered architecture that separates runtime logic from editor visualization, enabling flexibility and maintainability.">Architecture</a></p></td></tr><tr id="-a514a0_36"><td id="-a514a0_75"><p><code class="code" id="-a514a0_78">TypeCompatibility</code></p></td><td id="-a514a0_76"><p>Type compatibility checking and conversion</p></td><td id="-a514a0_77"><p><a href="type-compatibility.html" id="-a514a0_79" data-tooltip="Static utility class for checking and scoring type compatibility between ports.">Type Compatibility</a></p></td></tr><tr id="-a514a0_37"><td id="-a514a0_80"><p><code class="code" id="-a514a0_83">Blackboard</code></p></td><td id="-a514a0_81"><p>Container for graph parameters</p></td><td id="-a514a0_82"><p><a href="graph-asset.html" id="-a514a0_84" data-tooltip="Abstract ScriptableObject that contains all graph data: nodes, connections, and blackboard variables.">Graph Asset</a></p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="node-definition-pattern" data-toc="node-definition-pattern">Node Definition Pattern</h2><p id="-a514a0_85">GraphInterop uses the <span class="control" id="-a514a0_89">Builder Pattern</span> (GraphToolkit-compatible) for defining nodes:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+using UnityEngine;
 
-// 2. Create asset type
-public class MyGraph : GraphAsset { }
+[NodeInfo(
+    DisplayName = &quot;Add Numbers&quot;,
+    Category = &quot;Math&quot;,
+    Description = &quot;Adds two numbers together&quot;
+)]
+public class AddNode : GraphNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;float&gt;(&quot;a&quot;)
+            .WithDisplayName(&quot;A&quot;)
+            .WithDefaultValue(0f)
+            .Build();
 
-// 3. Execute at runtime
-var executor = new GraphExecutor();
-executor.Execute(myGraph, new GraphContext());
-</div></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="architecture.html" class="navigation-links__prev">Architecture</a><a href="graph-node.html" class="navigation-links__next">GraphNode</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>
+        context.AddInputPort&lt;float&gt;(&quot;b&quot;)
+            .WithDisplayName(&quot;B&quot;)
+            .WithDefaultValue(0f)
+            .Build();
+
+        context.AddOutputPort&lt;float&gt;(&quot;result&quot;)
+            .WithDisplayName(&quot;Result&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var a = this.GetInputValue&lt;float&gt;(&quot;a&quot;, context);
+        var b = this.GetInputValue&lt;float&gt;(&quot;b&quot;, context);
+
+        this.SetOutputValue(&quot;result&quot;, a + b, context);
+    }
+}
+</div><p id="-a514a0_87"><span class="control" id="-a514a0_90">Key Features:</span></p><ul class="list _bullet" id="-a514a0_88"><li class="list__item" id="-a514a0_91"><p id="-a514a0_95">Fluent port configuration via builders</p></li><li class="list__item" id="-a514a0_92"><p id="-a514a0_96">Type-safe generic methods</p></li><li class="list__item" id="-a514a0_93"><p id="-a514a0_97">Default values and display names</p></li><li class="list__item" id="-a514a0_94"><p id="-a514a0_98">Lazy port initialization</p></li></ul></section><section class="chapter"><h2 id="builder-interfaces" data-toc="builder-interfaces">Builder Interfaces</h2><section class="chapter"><h3 id="port-definition-context" data-toc="port-definition-context">Port Definition Context</h3><div class="code-block" data-lang="csharp">
+public interface IPortDefinitionContext
+{
+    // Generic (type-safe)
+    IInputPortBuilder&lt;T&gt; AddInputPort&lt;T&gt;(string name);
+    IOutputPortBuilder&lt;T&gt; AddOutputPort&lt;T&gt;(string name);
+
+    // Non-generic (runtime type)
+    IInputPortBuilder AddInputPort(string name);
+    IOutputPortBuilder AddOutputPort(string name);
+}
+</div></section><section class="chapter"><h3 id="input-port-builder" data-toc="input-port-builder">Input Port Builder</h3><div class="code-block" data-lang="csharp">
+public interface IInputPortBuilder&lt;T&gt;
+{
+    IInputPortBuilder&lt;T&gt; WithDisplayName(string displayName);
+    IInputPortBuilder&lt;T&gt; WithDefaultValue(T defaultValue);
+    IInputPortBuilder&lt;T&gt; Required();
+    void Build();
+}
+</div></section><section class="chapter"><h3 id="output-port-builder" data-toc="output-port-builder">Output Port Builder</h3><div class="code-block" data-lang="csharp">
+public interface IOutputPortBuilder&lt;T&gt;
+{
+    IOutputPortBuilder&lt;T&gt; WithDisplayName(string displayName);
+    void Build();
+}
+</div></section><section class="chapter"><h3 id="option-builder" data-toc="option-builder">Option Builder</h3><div class="code-block" data-lang="csharp">
+public interface IOptionBuilder&lt;T&gt;
+{
+    IOptionBuilder&lt;T&gt; WithDisplayName(string displayName);
+    IOptionBuilder&lt;T&gt; WithDefaultValue(T defaultValue);
+    IOptionBuilder&lt;T&gt; WithTooltip(string tooltip);
+    void Build();
+}
+</div></section></section><section class="chapter"><h2 id="node-options" data-toc="node-options">Node Options</h2><p id="-a514a0_107">Options are configuration values that affect node topology:</p><div class="code-block" data-lang="csharp">
+[NodeInfo(DisplayName = &quot;Multi Output&quot;, Category = &quot;Utility&quot;)]
+public class MultiOutputNode : GraphNode
+{
+    protected override void OnDefineOptions(IOptionDefinitionContext context)
+    {
+        context.AddOption&lt;int&gt;(&quot;outputCount&quot;)
+            .WithDisplayName(&quot;Output Count&quot;)
+            .WithDefaultValue(3)
+            .Build();
+    }
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;float&gt;(&quot;input&quot;)
+            .WithDisplayName(&quot;Input&quot;)
+            .Build();
+
+        // Dynamic ports based on option
+        int count = this.GetOptionValue&lt;int&gt;(&quot;outputCount&quot;);
+        for (int i = 0; i &lt; count; i++)
+        {
+            context.AddOutputPort&lt;float&gt;($&quot;output{i}&quot;)
+                .WithDisplayName($&quot;Output {i}&quot;)
+                .Build();
+        }
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var input = this.GetInputValue&lt;float&gt;(&quot;input&quot;, context);
+        int count = this.GetOptionValue&lt;int&gt;(&quot;outputCount&quot;);
+
+        for (int i = 0; i &lt; count; i++)
+        {
+            this.SetOutputValue($&quot;output{i}&quot;, input * (i + 1), context);
+        }
+    }
+}
+</div><p id="-a514a0_109"><span class="control" id="-a514a0_111">Option Use Cases:</span></p><ul class="list _bullet" id="-a514a0_110"><li class="list__item" id="-a514a0_112"><p id="-a514a0_115">Dynamic port count</p></li><li class="list__item" id="-a514a0_113"><p id="-a514a0_116">Operation mode selection (enum)</p></li><li class="list__item" id="-a514a0_114"><p id="-a514a0_117">Configuration affecting structure</p></li></ul></section><section class="chapter"><h2 id="graph-execution" data-toc="graph-execution">Graph Execution</h2><section class="chapter"><h3 id="basic-execution" data-toc="basic-execution">Basic Execution</h3><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+using UnityEngine;
+
+public class GraphRunner : MonoBehaviour
+{
+    public GraphAsset graphAsset;
+
+    private async void Start()
+    {
+        // Create context
+        var context = new GraphContext();
+
+        // Execute graph
+        var executor = new GraphExecutor(graphAsset);
+        await executor.ExecuteAsync(context);
+    }
+}
+</div></section><section class="chapter"><h3 id="with-context-variables" data-toc="with-context-variables">With Context Variables</h3><div class="code-block" data-lang="csharp">
+public class GameplayGraphRunner : MonoBehaviour
+{
+    public GraphAsset graphAsset;
+
+    private async void Update()
+    {
+        var context = new GraphContext();
+
+        // Provide runtime context variables
+        context.SetContextVariable(&quot;transform&quot;, transform);
+        context.SetContextVariable(&quot;deltaTime&quot;, Time.deltaTime);
+
+        var executor = new GraphExecutor(graphAsset);
+        await executor.ExecuteAsync(context);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="data-flow" data-toc="data-flow">Data Flow</h2><section class="chapter"><h3 id="value-resolution-priority" data-toc="value-resolution-priority">Value Resolution Priority</h3><p id="-a514a0_124">When GraphExecutor resolves input values, it uses this priority:</p><ol class="list _decimal" id="-a514a0_125" type="1"><li class="list__item" id="-a514a0_127"><p id="-a514a0_130"><span class="control" id="-a514a0_131">Connected Value</span> (from source node's output)</p></li><li class="list__item" id="-a514a0_128"><p id="-a514a0_132"><span class="control" id="-a514a0_133">Embedded Value</span> (user-set in editor)</p></li><li class="list__item" id="-a514a0_129"><p id="-a514a0_134"><span class="control" id="-a514a0_135">Default Value</span> (defined in builder)</p></li></ol><div class="code-block" data-lang="csharp">
+// Example input resolution
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;)
+        .WithDisplayName(&quot;Multiplier&quot;)
+        .WithDefaultValue(1.0f) // ← Fallback (priority 3)
+        .Build();
+}
+
+// In editor, user can set embedded value (priority 2)
+// Or connect another node's output (priority 1)
+</div></section><section class="chapter"><h3 id="setting-and-getting-values" data-toc="setting-and-getting-values">Setting and Getting Values</h3><div class="code-block" data-lang="csharp">
+public override void Process(GraphContext context)
+{
+    // Get input values
+    var input = this.GetInputValue&lt;float&gt;(&quot;input&quot;, context);
+    var multiplier = this.GetInputValue&lt;float&gt;(&quot;multiplier&quot;, context);
+
+    // Compute
+    var result = input * multiplier;
+
+    // Set output values
+    this.SetOutputValue(&quot;result&quot;, result, context);
+}
+</div></section></section><section class="chapter"><h2 id="async-and-burst-support" data-toc="async-and-burst-support">Async and Burst Support</h2><section class="chapter"><h3 id="async-nodes" data-toc="async-nodes">Async Nodes</h3><p id="-a514a0_139">For I/O operations, web requests, Addressables:</p><div class="code-block" data-lang="csharp">
+using System.Threading.Tasks;
+
+public class LoadAssetNode : GraphNode, IAsyncNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;string&gt;(&quot;address&quot;)
+            .WithDisplayName(&quot;Address&quot;)
+            .Required()
+            .Build();
+
+        context.AddOutputPort&lt;GameObject&gt;(&quot;asset&quot;)
+            .WithDisplayName(&quot;Asset&quot;)
+            .Build();
+    }
+
+    public async Task ProcessAsync(GraphContext context)
+    {
+        var address = this.GetInputValue&lt;string&gt;(&quot;address&quot;, context);
+
+        var handle = Addressables.LoadAssetAsync&lt;GameObject&gt;(address);
+        await handle.Task;
+
+        this.SetOutputValue(&quot;asset&quot;, handle.Result, context);
+    }
+
+    public override void Process(GraphContext context)
+    {
+        throw new System.NotImplementedException(&quot;Use ProcessAsync&quot;);
+    }
+}
+</div></section><section class="chapter"><h3 id="burst-nodes" data-toc="burst-nodes">Burst Nodes</h3><p id="-a514a0_141">For high-performance SIMD operations:</p><div class="code-block" data-lang="csharp">
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+
+public class BurstNormalizeNode : GraphNode, IBurstNode
+{
+    private NativeArray&lt;Vector3&gt; _input, _output;
+
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;Vector3&gt;(&quot;vector&quot;).Build();
+        context.AddOutputPort&lt;Vector3&gt;(&quot;normalized&quot;).Build();
+    }
+
+    public JobHandle ScheduleBurstJob(GraphContext context)
+    {
+        _input = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+        _output = new NativeArray&lt;Vector3&gt;(1, Allocator.TempJob);
+
+        _input[0] = this.GetInputValue&lt;Vector3&gt;(&quot;vector&quot;, context);
+
+        var job = new NormalizeJob { Input = _input, Output = _output };
+        return job.Schedule();
+    }
+
+    public void CompleteBurstJob(GraphContext context)
+    {
+        this.SetOutputValue(&quot;normalized&quot;, _output[0], context);
+
+        _input.Dispose();
+        _output.Dispose();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        throw new System.NotImplementedException(&quot;Use Burst job&quot;);
+    }
+
+    [BurstCompile]
+    private struct NormalizeJob : IJob
+    {
+        [ReadOnly] public NativeArray&lt;Vector3&gt; Input;
+        public NativeArray&lt;Vector3&gt; Output;
+
+        public void Execute()
+        {
+            Output[0] = Input[0].normalized;
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="validation" data-toc="validation">Validation</h2><section class="chapter"><h3 id="graph-validation" data-toc="graph-validation">Graph Validation</h3><div class="code-block" data-lang="csharp">
+var errors = graphAsset.Validate();
+if (errors.Count &gt; 0)
+{
+    foreach (var error in errors)
+        Debug.LogError(error);
+    return; // Don't execute invalid graph
+}
+
+// Execute
+await executor.ExecuteAsync(context);
+</div></section><section class="chapter"><h3 id="custom-node-validation" data-toc="custom-node-validation">Custom Node Validation</h3><div class="code-block" data-lang="csharp">
+public override void Validate(List&lt;string&gt; errors)
+{
+    base.Validate(errors); // Always call base first
+
+    var path = this.GetOptionValue&lt;string&gt;(&quot;filePath&quot;);
+    if (string.IsNullOrEmpty(path))
+    {
+        errors.Add($&quot;Node '{this.Id}': File path is required&quot;);
+    }
+    else if (!System.IO.File.Exists(path))
+    {
+        errors.Add($&quot;Node '{this.Id}': File not found: {path}&quot;);
+    }
+}
+</div></section></section><section class="chapter"><h2 id="attributes" data-toc="attributes">Attributes</h2><section class="chapter"><h3 id="nodeinfo-attribute" data-toc="nodeinfo-attribute">NodeInfo Attribute</h3><p id="-a514a0_149">Provides metadata for editor and node search:</p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Calculate Damage&quot;,
+    Category = &quot;Combat/Damage&quot;,
+    Description = &quot;Calculates damage with armor mitigation&quot;,
+    Icon = &quot;d_Profiler.Physics&quot;,
+    Color = &quot;#FF5733&quot;
+)]
+public class DamageNode : GraphNode { }
+</div><p id="-a514a0_151"><span class="control" id="-a514a0_153">Properties:</span></p><ul class="list _bullet" id="-a514a0_152"><li class="list__item" id="-a514a0_154"><p id="-a514a0_159"><code class="code" id="-a514a0_160">DisplayName</code>: Node title in editor</p></li><li class="list__item" id="-a514a0_155"><p id="-a514a0_161"><code class="code" id="-a514a0_162">Category</code>: Hierarchical category for search window</p></li><li class="list__item" id="-a514a0_156"><p id="-a514a0_163"><code class="code" id="-a514a0_164">Description</code>: Tooltip/subtitle</p></li><li class="list__item" id="-a514a0_157"><p id="-a514a0_165"><code class="code" id="-a514a0_166">Icon</code>: Unity builtin icon name</p></li><li class="list__item" id="-a514a0_158"><p id="-a514a0_167"><code class="code" id="-a514a0_168">Color</code>: Hex color for title bar</p></li></ul></section><section class="chapter"><h3 id="portinfo-attribute" data-toc="portinfo-attribute">PortInfo Attribute</h3><p id="-a514a0_169">Customizes port appearance by type:</p><div class="code-block" data-lang="csharp">
+[PortInfo(
+    Color = &quot;#4CAF50&quot;,
+    DisplayName = &quot;World Transform&quot;,
+    Icon = &quot;d_Transform Icon&quot;
+)]
+public struct TransformData
+{
+    public Vector3 position;
+    public Quaternion rotation;
+}
+</div></section></section><section class="chapter"><h2 id="extension-points" data-toc="extension-points">Extension Points</h2><p id="-a514a0_171">The runtime API is designed for extensibility:</p><ul class="list _bullet" id="-a514a0_172"><li class="list__item" id="-a514a0_174"><p id="-a514a0_178"><span class="control" id="-a514a0_179">Custom Nodes</span>: Subclass <code class="code" id="-a514a0_180">GraphNode</code></p></li><li class="list__item" id="-a514a0_175"><p id="-a514a0_181"><span class="control" id="-a514a0_182">Custom Graph Assets</span>: Subclass <code class="code" id="-a514a0_183">GraphAsset</code></p></li><li class="list__item" id="-a514a0_176"><p id="-a514a0_184"><span class="control" id="-a514a0_185">Custom Type Converters</span>: <code class="code" id="-a514a0_186">TypeCompatibility.RegisterConverter&lt;TFrom, TTo&gt;()</code></p></li><li class="list__item" id="-a514a0_177"><p id="-a514a0_187"><span class="control" id="-a514a0_188">Custom Context Data</span>: Extend <code class="code" id="-a514a0_189">GraphContext</code></p></li></ul><p id="-a514a0_173">See <a href="extensibility.html" id="-a514a0_190" data-tooltip="GraphInterop is designed to be extended and customized. This page covers all extension points and how to use them.">Extensibility</a> for details.</p></section><section class="chapter"><h2 id="api-comparison" data-toc="api-comparison">API Comparison</h2><section class="chapter"><h3 id="graphinterop-vs-graphtoolkit" data-toc="graphinterop-vs-graphtoolkit">GraphInterop vs GraphToolkit</h3><div class="table-wrapper"><table class="wide" id="-a514a0_192"><thead><tr class="ijRowHead" id="-a514a0_194"><th id="-a514a0_202"><p>Feature</p></th><th id="-a514a0_203"><p>GraphToolkit</p></th><th id="-a514a0_204"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-a514a0_195"><td id="-a514a0_205"><p>Graph container</p></td><td id="-a514a0_206"><p><code class="code" id="-a514a0_208">Graph</code> (abstract)</p></td><td id="-a514a0_207"><p><code class="code" id="-a514a0_209">GraphAsset</code> (ScriptableObject)</p></td></tr><tr id="-a514a0_196"><td id="-a514a0_210"><p>Port definition</p></td><td id="-a514a0_211"><p><code class="code" id="-a514a0_213">OnDefinePorts()</code></p></td><td id="-a514a0_212"><p><code class="code" id="-a514a0_214">OnDefinePorts()</code> ✅ Same</p></td></tr><tr id="-a514a0_197"><td id="-a514a0_215"><p>Port builders</p></td><td id="-a514a0_216"><p><code class="code" id="-a514a0_218">IPortBuilder&lt;T&gt;</code></p></td><td id="-a514a0_217"><p><code class="code" id="-a514a0_219">IPortBuilder&lt;T&gt;</code> ✅ Same</p></td></tr><tr id="-a514a0_198"><td id="-a514a0_220"><p>Options</p></td><td id="-a514a0_221"><p><code class="code" id="-a514a0_223">INodeOption</code></p></td><td id="-a514a0_222"><p><code class="code" id="-a514a0_224">INodeOption</code> ✅ Same</p></td></tr><tr id="-a514a0_199"><td id="-a514a0_225"><p>Execution</p></td><td id="-a514a0_226"><p>❌ No runtime</p></td><td id="-a514a0_227"><p>✅ <code class="code" id="-a514a0_228">GraphExecutor</code></p></td></tr><tr id="-a514a0_200"><td id="-a514a0_229"><p>Async nodes</p></td><td id="-a514a0_230"><p>❌</p></td><td id="-a514a0_231"><p>✅ <code class="code" id="-a514a0_232">IAsyncNode</code></p></td></tr><tr id="-a514a0_201"><td id="-a514a0_233"><p>Burst nodes</p></td><td id="-a514a0_234"><p>❌</p></td><td id="-a514a0_235"><p>✅ <code class="code" id="-a514a0_236">IBurstNode</code></p></td></tr></tbody></table></div><p id="-a514a0_193">See <a href="graphtoolkit-features.html" id="-a514a0_237" data-tooltip="This page explains how GraphInterop adapts Unity's GraphToolkit API and which features are supported.">GraphToolkit Features</a> for detailed comparison.</p></section></section><section class="chapter"><h2 id="best-practices" data-toc="best-practices">Best Practices</h2><section class="chapter"><h3 id="1-use-generic-builders" data-toc="1-use-generic-builders">1. Use Generic Builders</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Type-safe
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;).Build();
+
+// ❌ Avoid: Requires runtime type
+context.AddInputPort(&quot;target&quot;)
+    .WithDataType(typeof(Transform))
+    .Build();
+</div></section><section class="chapter"><h3 id="2-provide-default-values" data-toc="2-provide-default-values">2. Provide Default Values</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Sensible fallback
+context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;)
+    .WithDefaultValue(1.0f)
+    .Build();
+
+// ❌ Risky: May be null/default
+context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;).Build();
+</div></section><section class="chapter"><h3 id="3-mark-required-inputs" data-toc="3-mark-required-inputs">3. Mark Required Inputs</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Validates before execution
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;)
+    .Required()
+    .Build();
+</div></section><section class="chapter"><h3 id="4-use-options-for-topology" data-toc="4-use-options-for-topology">4. Use Options for Topology</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Affects structure
+context.AddOption&lt;int&gt;(&quot;portCount&quot;).Build();
+
+// ❌ Bad: Should be input port
+context.AddOption&lt;float&gt;(&quot;speed&quot;).Build(); // Runtime data!
+</div></section><section class="chapter"><h3 id="5-handle-null-values" data-toc="5-handle-null-values">5. Handle Null Values</h3><div class="code-block" data-lang="csharp">
+public override void Process(GraphContext context)
+{
+    var target = this.GetInputValue&lt;Transform&gt;(&quot;target&quot;, context);
+
+    if (target == null)
+    {
+        Debug.LogWarning(&quot;Target is null&quot;);
+        return; // Graceful failure
+    }
+
+    // Process...
+}
+</div></section></section><section class="chapter"><h2 id="next-steps" data-toc="next-steps">Next Steps</h2><section class="procedure-steps"><h3 id="learn-runtime" data-toc="learn-runtime">Learn the Runtime API</h3><ol class="list _decimal"><li class="list__item" id="-a514a0_249"><p><b id="-a514a0_256">Graph Asset</b>: Read <a href="graph-asset.html" id="-a514a0_257" data-tooltip="Abstract ScriptableObject that contains all graph data: nodes, connections, and blackboard variables.">Graph Asset</a> to understand graph structure</p></li><li class="list__item" id="-a514a0_250"><p><b id="-a514a0_258">Graph Node</b>: Read <a href="graph-node.html" id="-a514a0_259" data-tooltip="Abstract base class for all graph nodes. Nodes define their inputs and outputs using field attributes and implement processing logic.">Graph Node</a> for node lifecycle</p></li><li class="list__item" id="-a514a0_251"><p><b id="-a514a0_260">Graph Executor</b>: Read <a href="graph-executor.html" id="-a514a0_261" data-tooltip="Executes a graph by processing nodes in topological order, resolving connections automatically.">Graph Executor</a> for execution details</p></li><li class="list__item" id="-a514a0_252"><p><b id="-a514a0_262">Port Definition</b>: Read <a href="port-definition.html" id="-a514a0_263" data-tooltip="Represents metadata about a port on a node, including its name, type, direction, and configuration.">Port Definition</a> for port details</p></li><li class="list__item" id="-a514a0_253"><p><b id="-a514a0_264">Type System</b>: Read <a href="type-compatibility.html" id="-a514a0_265" data-tooltip="Static utility class for checking and scoring type compatibility between ports.">Type Compatibility</a> for type rules</p></li><li class="list__item" id="-a514a0_254"><p><b id="-a514a0_266">Create Nodes</b>: Read <a href="creating-nodes.html" id="-a514a0_267" data-tooltip="This guide explains how to create custom nodes for use in GraphInterop graphs.">Creating Nodes</a> for practical guide</p></li><li class="list__item" id="-a514a0_255"><p><b id="-a514a0_268">Examples</b>: Study <a href="examples.html" id="-a514a0_269" data-tooltip="This section provides complete examples of using GraphInterop for common scenarios.">Examples</a> for real implementations</p></li></ol></section></section><section class="chapter"><h2 id="summary" data-toc="summary">Summary</h2><p id="-a514a0_270">The runtime API provides:</p><ul class="list _bullet" id="-a514a0_271"><li class="list__item" id="-a514a0_274"><p id="-a514a0_281">✅ GraphToolkit-compatible builder patterns</p></li><li class="list__item" id="-a514a0_275"><p id="-a514a0_282">✅ Type-safe port definitions</p></li><li class="list__item" id="-a514a0_276"><p id="-a514a0_283">✅ Graph execution (sync/async/Burst)</p></li><li class="list__item" id="-a514a0_277"><p id="-a514a0_284">✅ Validation system</p></li><li class="list__item" id="-a514a0_278"><p id="-a514a0_285">✅ Context variables</p></li><li class="list__item" id="-a514a0_279"><p id="-a514a0_286">✅ Type compatibility with auto-conversion</p></li><li class="list__item" id="-a514a0_280"><p id="-a514a0_287">✅ Zero editor dependencies</p></li></ul><p id="-a514a0_272"><span class="control" id="-a514a0_288">Key Pattern:</span></p><div class="code-block" data-lang="csharp">
+// 1. Define ports
+protected override void OnDefinePorts(IPortDefinitionContext context) { }
+
+// 2. Execute logic
+public override void Process(GraphContext context) { }
+
+// 3. Use in graph
+var executor = new GraphExecutor(graphAsset);
+await executor.ExecuteAsync(context);
+</div></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="extensibility.html" class="navigation-links__prev">Extensibility</a><a href="graph-asset.html" class="navigation-links__next">GraphAsset</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>

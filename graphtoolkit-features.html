@@ -1,0 +1,367 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#647A89"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-11-28T20:38:39.607629476"><title>GraphToolkit Features in GraphInterop | GraphInterop</title><script type="application/json" id="virtual-toc-data">[{"id":"overview","level":0,"title":"Overview","anchor":"#overview"},{"id":"runtime-core","level":0,"title":"Runtime Core Features","anchor":"#runtime-core"},{"id":"execution","level":0,"title":"Execution Features","anchor":"#execution"},{"id":"gaps","level":0,"title":"Feature Gaps","anchor":"#gaps"},{"id":"api-compatibility-table","level":0,"title":"API Compatibility Table","anchor":"#api-compatibility-table"},{"id":"migration-from-graphtoolkit","level":0,"title":"Migration from GraphToolkit","anchor":"#migration-from-graphtoolkit"},{"id":"best-practices","level":0,"title":"Best Practices","anchor":"#best-practices"},{"id":"summary","level":0,"title":"Summary","anchor":"#summary"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="GraphToolkit Features in GraphInterop | GraphInterop"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="GraphInterop Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/graphtoolkit-features.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="GraphToolkit Features in GraphInterop | GraphInterop"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/graphtoolkit-features.html#webpage",
+    "url": "writerside-documentation/graphtoolkit-features.html",
+    "name": "GraphToolkit Features in GraphInterop | GraphInterop",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "GraphInterop Help"
+}</script><!-- End Schema.org --></head><body data-id="graphtoolkit-features" data-main-title="GraphToolkit Features in GraphInterop" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="feature-comparison-overview.md|Feature Comparison Overview"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>GraphInterop  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="graphtoolkit-features" id="graphtoolkit-features.md">GraphToolkit Features in GraphInterop</h1><p id="-l4ri59_3">This page explains how GraphInterop adapts Unity's GraphToolkit API and which features are supported.</p><section class="chapter"><h2 id="overview" data-toc="overview">Overview</h2><p id="-l4ri59_12"><span class="control" id="-l4ri59_15">GraphToolkit (GTK)</span> is Unity's experimental next-generation graph framework. GraphInterop adopts its runtime API design to provide a stable, well-designed foundation for node-based tools.</p><section class="chapter"><h3 id="why-adapt-graphtoolkit" data-toc="why-adapt-graphtoolkit">Why Adapt GraphToolkit?</h3><ol class="list _decimal" id="-l4ri59_16" type="1"><li class="list__item" id="-l4ri59_17"><p id="-l4ri59_21"><span class="control" id="-l4ri59_22">Official Unity Direction</span>: GTK represents Unity's intended future for graph tools</p></li><li class="list__item" id="-l4ri59_18"><p id="-l4ri59_23"><span class="control" id="-l4ri59_24">Well-Designed API</span>: Builder patterns, clear separation of concerns</p></li><li class="list__item" id="-l4ri59_19"><p id="-l4ri59_25"><span class="control" id="-l4ri59_26">Runtime + Editor</span>: Designed for both execution and visual editing</p></li><li class="list__item" id="-l4ri59_20"><p id="-l4ri59_27"><span class="control" id="-l4ri59_28">Type Safety</span>: Strong typing throughout the API</p></li></ol></section><section class="chapter"><h3 id="what-graphinterop-changes" data-toc="what-graphinterop-changes">What GraphInterop Changes</h3><p id="-l4ri59_29">GraphInterop <span class="control" id="-l4ri59_31">adapts</span> (not wraps) the GTK API:</p><ul class="list _bullet" id="-l4ri59_30"><li class="list__item" id="-l4ri59_32"><p id="-l4ri59_36">Same API patterns and conventions</p></li><li class="list__item" id="-l4ri59_33"><p id="-l4ri59_37">Stable implementation (GTK is still experimental)</p></li><li class="list__item" id="-l4ri59_34"><p id="-l4ri59_38">Additional features where GTK is incomplete</p></li><li class="list__item" id="-l4ri59_35"><p id="-l4ri59_39">Semantic versioning guarantee</p></li></ul></section></section><section class="chapter"><h2 id="runtime-core" data-toc="runtime-core">Runtime Core Features</h2><section class="chapter"><h3 id="graph-asset-model" data-toc="graph-asset-model">Graph Asset Model</h3><p id="-l4ri59_47"><span class="control" id="-l4ri59_55">GraphToolkit Original:</span></p><div class="code-block" data-lang="csharp">
+// GTK's abstract Graph class
+[Graph(&quot;.mygraph&quot;)]
+public class MyGraph : Graph
+{
+    public override void OnGraphChanged(GraphLogger logger)
+    {
+        // Validation logic
+    }
+}
+</div><p id="-l4ri59_49"><span class="control" id="-l4ri59_56">GraphInterop Adaptation:</span></p><div class="code-block" data-lang="csharp">
+// GraphInterop's GraphAsset (concrete, not abstract)
+[CreateAssetMenu(menuName = &quot;My Game/My Graph&quot;)]
+public class MyGraph : GraphAsset
+{
+    public override IEnumerable&lt;ContextVariableDefinition&gt; GetContextVariables()
+    {
+        yield return new ContextVariableDefinition(
+            &quot;player&quot;,
+            typeof(Transform),
+            &quot;Player Transform&quot;,
+            isRequired: true
+        );
+    }
+}
+</div><p id="-l4ri59_51"><span class="control" id="-l4ri59_57">Key Differences:</span></p><ul class="list _bullet" id="-l4ri59_52"><li class="list__item" id="-l4ri59_58"><p id="-l4ri59_62">GraphInterop uses <code class="code" id="-l4ri59_63">GraphAsset</code> instead of <code class="code" id="-l4ri59_64">Graph</code></p></li><li class="list__item" id="-l4ri59_59"><p id="-l4ri59_65">Concrete class, not abstract (can be used directly)</p></li><li class="list__item" id="-l4ri59_60"><p id="-l4ri59_66">ScriptableObject-based for Unity serialization</p></li><li class="list__item" id="-l4ri59_61"><p id="-l4ri59_67">Context variables instead of GTK's validation-only approach</p></li></ul><p id="-l4ri59_53"><span class="control" id="-l4ri59_68">Feature Parity:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_54"><thead><tr class="ijRowHead" id="-l4ri59_69"><th id="-l4ri59_75"><p>Feature</p></th><th id="-l4ri59_76"><p>GTK</p></th><th id="-l4ri59_77"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_70"><td id="-l4ri59_78"><p>Node storage</p></td><td id="-l4ri59_79"><p>✅</p></td><td id="-l4ri59_80"><p>✅</p></td></tr><tr id="-l4ri59_71"><td id="-l4ri59_81"><p>Variable storage</p></td><td id="-l4ri59_82"><p>✅</p></td><td id="-l4ri59_83"><p>✅ (called Blackboard)</p></td></tr><tr id="-l4ri59_72"><td id="-l4ri59_84"><p>Serialization</p></td><td id="-l4ri59_85"><p>✅</p></td><td id="-l4ri59_86"><p>✅ (ScriptableObject)</p></td></tr><tr id="-l4ri59_73"><td id="-l4ri59_87"><p>Validation</p></td><td id="-l4ri59_88"><p>✅ <code class="code" id="-l4ri59_90">OnGraphChanged()</code></p></td><td id="-l4ri59_89"><p>✅ <code class="code" id="-l4ri59_91">Validate()</code></p></td></tr><tr id="-l4ri59_74"><td id="-l4ri59_92"><p>Context variables</p></td><td id="-l4ri59_93"><p>❌</p></td><td id="-l4ri59_94"><p>✅ (GraphInterop extension)</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="node-definition-system" data-toc="node-definition-system">Node Definition System</h3><p id="-l4ri59_95"><span class="control" id="-l4ri59_101">GraphToolkit Pattern:</span></p><div class="code-block" data-lang="csharp">
+public abstract class Node
+{
+    protected virtual void OnDefinePorts() { }
+    protected virtual void OnDefineOptions() { }
+}
+</div><p id="-l4ri59_97"><span class="control" id="-l4ri59_102">GraphInterop Implementation:</span></p><div class="code-block" data-lang="csharp">
+[NodeInfo(
+    DisplayName = &quot;Transform Position&quot;,
+    Category = &quot;Transform&quot;,
+    Description = &quot;Gets the world position of a Transform&quot;,
+    Icon = &quot;d_Transform Icon&quot;,
+    Color = &quot;#4CAF50&quot;
+)]
+public class GetPositionNode : GraphNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;Transform&gt;(&quot;transform&quot;)
+            .WithDisplayName(&quot;Transform&quot;)
+            .Required()
+            .Build();
+
+        context.AddOutputPort&lt;Vector3&gt;(&quot;position&quot;)
+            .WithDisplayName(&quot;World Position&quot;)
+            .Build();
+    }
+
+    public override void Process(GraphContext context)
+    {
+        var transform = this.GetInputValue&lt;Transform&gt;(&quot;transform&quot;, context);
+        this.SetOutputValue(&quot;position&quot;, transform.position, context);
+    }
+}
+</div><p id="-l4ri59_99"><span class="control" id="-l4ri59_103">Feature Parity:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_100"><thead><tr class="ijRowHead" id="-l4ri59_104"><th id="-l4ri59_111"><p>Feature</p></th><th id="-l4ri59_112"><p>GTK</p></th><th id="-l4ri59_113"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_105"><td id="-l4ri59_114"><p><code class="code" id="-l4ri59_117">OnDefinePorts()</code></p></td><td id="-l4ri59_115"><p>✅</p></td><td id="-l4ri59_116"><p>✅</p></td></tr><tr id="-l4ri59_106"><td id="-l4ri59_118"><p><code class="code" id="-l4ri59_121">OnDefineOptions()</code></p></td><td id="-l4ri59_119"><p>✅</p></td><td id="-l4ri59_120"><p>✅</p></td></tr><tr id="-l4ri59_107"><td id="-l4ri59_122"><p>Port builders</p></td><td id="-l4ri59_123"><p>✅</p></td><td id="-l4ri59_124"><p>✅</p></td></tr><tr id="-l4ri59_108"><td id="-l4ri59_125"><p>Option builders</p></td><td id="-l4ri59_126"><p>✅</p></td><td id="-l4ri59_127"><p>✅</p></td></tr><tr id="-l4ri59_109"><td id="-l4ri59_128"><p>Execution (<code class="code" id="-l4ri59_131">Process()</code>)</p></td><td id="-l4ri59_129"><p>❌ (no runtime)</p></td><td id="-l4ri59_130"><p>✅</p></td></tr><tr id="-l4ri59_110"><td id="-l4ri59_132"><p>Node attributes</p></td><td id="-l4ri59_133"><p>✅</p></td><td id="-l4ri59_134"><p>✅ (enhanced)</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="port-builder-pattern" data-toc="port-builder-pattern">Port Builder Pattern</h3><p id="-l4ri59_135"><span class="control" id="-l4ri59_143">GraphToolkit API:</span></p><div class="code-block" data-lang="csharp">
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    context.AddInputPort&lt;float&gt;(&quot;input&quot;)
+        .WithDisplayName(&quot;Input Value&quot;)
+        .WithDefaultValue(1.0f)
+        .Build();
+
+    context.AddOutputPort(&quot;output&quot;)
+        .WithDataType&lt;float&gt;()
+        .Build();
+}
+</div><p id="-l4ri59_137"><span class="control" id="-l4ri59_144">GraphInterop (Identical API):</span></p><div class="code-block" data-lang="csharp">
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    // Input port with type parameter
+    context.AddInputPort&lt;float&gt;(&quot;speed&quot;)
+        .WithDisplayName(&quot;Movement Speed&quot;)
+        .WithDefaultValue(5.0f)
+        .Required() // GraphInterop extension
+        .Build();
+
+    // Output port with type parameter
+    context.AddOutputPort&lt;Vector3&gt;(&quot;velocity&quot;)
+        .WithDisplayName(&quot;Velocity Vector&quot;)
+        .Build();
+
+    // Generic port (type determined at runtime)
+    context.AddInputPort(&quot;value&quot;)
+        .WithDataType(typeof(float))
+        .WithDefaultValue(0f)
+        .Build();
+}
+</div><p id="-l4ri59_139"><span class="control" id="-l4ri59_145">Builder Methods:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_140"><thead><tr class="ijRowHead" id="-l4ri59_146"><th id="-l4ri59_153"><p>Method</p></th><th id="-l4ri59_154"><p>GTK</p></th><th id="-l4ri59_155"><p>GraphInterop</p></th><th id="-l4ri59_156"><p>Notes</p></th></tr></thead><tbody><tr id="-l4ri59_147"><td id="-l4ri59_157"><p><code class="code" id="-l4ri59_161">WithDisplayName(string)</code></p></td><td id="-l4ri59_158"><p>✅</p></td><td id="-l4ri59_159"><p>✅</p></td><td id="-l4ri59_160"><p>UI label</p></td></tr><tr id="-l4ri59_148"><td id="-l4ri59_162"><p><code class="code" id="-l4ri59_166">WithDefaultValue(T)</code></p></td><td id="-l4ri59_163"><p>✅</p></td><td id="-l4ri59_164"><p>✅</p></td><td id="-l4ri59_165"><p>Fallback value</p></td></tr><tr id="-l4ri59_149"><td id="-l4ri59_167"><p><code class="code" id="-l4ri59_171">WithDataType&lt;T&gt;()</code></p></td><td id="-l4ri59_168"><p>✅</p></td><td id="-l4ri59_169"><p>✅</p></td><td id="-l4ri59_170"><p>Set port type</p></td></tr><tr id="-l4ri59_150"><td id="-l4ri59_172"><p><code class="code" id="-l4ri59_176">Delayed()</code></p></td><td id="-l4ri59_173"><p>✅</p></td><td id="-l4ri59_174"><p>📋</p></td><td id="-l4ri59_175"><p>Planned</p></td></tr><tr id="-l4ri59_151"><td id="-l4ri59_177"><p><code class="code" id="-l4ri59_181">Build()</code></p></td><td id="-l4ri59_178"><p>✅</p></td><td id="-l4ri59_179"><p>✅</p></td><td id="-l4ri59_180"><p>Finalize port</p></td></tr><tr id="-l4ri59_152"><td id="-l4ri59_182"><p><code class="code" id="-l4ri59_186">Required()</code></p></td><td id="-l4ri59_183"><p>❌</p></td><td id="-l4ri59_184"><p>✅</p></td><td id="-l4ri59_185"><p>GraphInterop extension</p></td></tr></tbody></table></div><p id="-l4ri59_141"><span class="control" id="-l4ri59_187">Advanced Port Configuration:</span></p><div class="code-block" data-lang="csharp">
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    // Multiple outputs
+    context.AddOutputPort&lt;GameObject&gt;(&quot;primary&quot;).Build();
+    context.AddOutputPort&lt;GameObject&gt;(&quot;secondary&quot;).Build();
+
+    // Optional inputs with defaults
+    context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;)
+        .WithDisplayName(&quot;Multiplier&quot;)
+        .WithDefaultValue(1.0f)
+        .Build();
+
+    // Required inputs (validation enforced)
+    context.AddInputPort&lt;Transform&gt;(&quot;target&quot;)
+        .WithDisplayName(&quot;Target&quot;)
+        .Required()
+        .Build();
+}
+</div></section><section class="chapter"><h3 id="node-options-system" data-toc="node-options-system">Node Options System</h3><p id="-l4ri59_188"><span class="control" id="-l4ri59_197">GraphToolkit Pattern:</span></p><div class="code-block" data-lang="csharp">
+protected override void OnDefineOptions(IOptionDefinitionContext context)
+{
+    context.AddOption&lt;int&gt;(&quot;count&quot;)
+        .WithDisplayName(&quot;Count&quot;)
+        .WithDefaultValue(10)
+        .Build();
+}
+</div><p id="-l4ri59_190"><span class="control" id="-l4ri59_198">GraphInterop (Identical):</span></p><div class="code-block" data-lang="csharp">
+protected override void OnDefineOptions(IOptionDefinitionContext context)
+{
+    context.AddOption&lt;OperationType&gt;(&quot;operation&quot;)
+        .WithDisplayName(&quot;Operation&quot;)
+        .WithDefaultValue(OperationType.Add)
+        .Build();
+
+    context.AddOption&lt;float&gt;(&quot;threshold&quot;)
+        .WithDisplayName(&quot;Threshold&quot;)
+        .WithDefaultValue(0.5f)
+        .Build();
+}
+
+public override void Process(GraphContext context)
+{
+    var operation = this.GetOptionValue&lt;OperationType&gt;(&quot;operation&quot;);
+    var threshold = this.GetOptionValue&lt;float&gt;(&quot;threshold&quot;);
+
+    // Use options in logic...
+}
+</div><p id="-l4ri59_192"><span class="control" id="-l4ri59_199">Option Builder Methods:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_193"><thead><tr class="ijRowHead" id="-l4ri59_200"><th id="-l4ri59_207"><p>Method</p></th><th id="-l4ri59_208"><p>GTK</p></th><th id="-l4ri59_209"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_201"><td id="-l4ri59_210"><p><code class="code" id="-l4ri59_213">WithDisplayName(string)</code></p></td><td id="-l4ri59_211"><p>✅</p></td><td id="-l4ri59_212"><p>✅</p></td></tr><tr id="-l4ri59_202"><td id="-l4ri59_214"><p><code class="code" id="-l4ri59_217">WithDefaultValue(T)</code></p></td><td id="-l4ri59_215"><p>✅</p></td><td id="-l4ri59_216"><p>✅</p></td></tr><tr id="-l4ri59_203"><td id="-l4ri59_218"><p><code class="code" id="-l4ri59_221">WithTooltip(string)</code></p></td><td id="-l4ri59_219"><p>✅</p></td><td id="-l4ri59_220"><p>✅</p></td></tr><tr id="-l4ri59_204"><td id="-l4ri59_222"><p><code class="code" id="-l4ri59_225">Delayed()</code></p></td><td id="-l4ri59_223"><p>✅</p></td><td id="-l4ri59_224"><p>📋</p></td></tr><tr id="-l4ri59_205"><td id="-l4ri59_226"><p><code class="code" id="-l4ri59_229">ShowInInspectorOnly()</code></p></td><td id="-l4ri59_227"><p>✅</p></td><td id="-l4ri59_228"><p>📋</p></td></tr><tr id="-l4ri59_206"><td id="-l4ri59_230"><p><code class="code" id="-l4ri59_233">Build()</code></p></td><td id="-l4ri59_231"><p>✅</p></td><td id="-l4ri59_232"><p>✅</p></td></tr></tbody></table></div><p id="-l4ri59_194"><span class="control" id="-l4ri59_234">When to Use Options:</span></p><p id="-l4ri59_195">Options are for <span class="control" id="-l4ri59_235">topology-affecting</span> configuration:</p><div class="code-block" data-lang="csharp">
+// ✅ Good: Affects node structure
+context.AddOption&lt;int&gt;(&quot;outputCount&quot;)
+    .WithDefaultValue(3)
+    .Build();
+
+protected override void OnDefinePorts(IPortDefinitionContext context)
+{
+    int count = this.GetOptionValue&lt;int&gt;(&quot;outputCount&quot;);
+    for (int i = 0; i &lt; count; i++)
+    {
+        context.AddOutputPort&lt;float&gt;($&quot;output{i}&quot;).Build();
+    }
+}
+
+// ❌ Bad: Should be an input port instead
+context.AddOption&lt;float&gt;(&quot;speed&quot;); // Runtime data, not configuration!
+</div></section><section class="chapter"><h3 id="variable-blackboard-system" data-toc="variable-blackboard-system">Variable/Blackboard System</h3><p id="-l4ri59_236"><span class="control" id="-l4ri59_242">GraphToolkit API:</span></p><div class="code-block" data-lang="csharp">
+// GTK's IVariable interface
+public interface IVariable
+{
+    string name { get; }
+    Type dataType { get; }
+    VariableKind variableKind { get; } // Local, Input, Output
+    bool TryGetDefaultValue&lt;T&gt;(out T value);
+}
+</div><p id="-l4ri59_238"><span class="control" id="-l4ri59_243">GraphInterop Implementation:</span></p><div class="code-block" data-lang="csharp">
+// Create parameter
+var parameter = graphAsset.Blackboard.AddParameter&lt;float&gt;(&quot;Speed&quot;);
+parameter.Category = &quot;Movement&quot;;
+parameter.SortOrder = 1;
+parameter.SetValue(5.0f);
+
+// In graph execution
+var speedParam = graph.Blackboard.GetParameter(&quot;Speed&quot;);
+float speed = speedParam.GetValue&lt;float&gt;();
+
+// Context variables (runtime-provided)
+public override IEnumerable&lt;ContextVariableDefinition&gt; GetContextVariables()
+{
+    yield return new ContextVariableDefinition(
+        &quot;deltaTime&quot;,
+        typeof(float),
+        &quot;Delta Time&quot;,
+        isRequired: true
+    );
+}
+</div><p id="-l4ri59_240"><span class="control" id="-l4ri59_244">Feature Comparison:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_241"><thead><tr class="ijRowHead" id="-l4ri59_245"><th id="-l4ri59_253"><p>Feature</p></th><th id="-l4ri59_254"><p>GTK</p></th><th id="-l4ri59_255"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_246"><td id="-l4ri59_256"><p>Variables/Parameters</p></td><td id="-l4ri59_257"><p>✅ <code class="code" id="-l4ri59_259">IVariable</code></p></td><td id="-l4ri59_258"><p>✅ <code class="code" id="-l4ri59_260">GraphParameter</code></p></td></tr><tr id="-l4ri59_247"><td id="-l4ri59_261"><p>Default values</p></td><td id="-l4ri59_262"><p>✅</p></td><td id="-l4ri59_263"><p>✅</p></td></tr><tr id="-l4ri59_248"><td id="-l4ri59_264"><p>Scoping (Local/Input/Output)</p></td><td id="-l4ri59_265"><p>✅ <code class="code" id="-l4ri59_267">VariableKind</code></p></td><td id="-l4ri59_266"><p>📋 Planned for subgraphs</p></td></tr><tr id="-l4ri59_249"><td id="-l4ri59_268"><p>Categories</p></td><td id="-l4ri59_269"><p>❌</p></td><td id="-l4ri59_270"><p>✅</p></td></tr><tr id="-l4ri59_250"><td id="-l4ri59_271"><p>Sort order</p></td><td id="-l4ri59_272"><p>❌</p></td><td id="-l4ri59_273"><p>✅</p></td></tr><tr id="-l4ri59_251"><td id="-l4ri59_274"><p>Context variables</p></td><td id="-l4ri59_275"><p>❌</p></td><td id="-l4ri59_276"><p>✅</p></td></tr><tr id="-l4ri59_252"><td id="-l4ri59_277"><p>Parameter nodes</p></td><td id="-l4ri59_278"><p>✅ <code class="code" id="-l4ri59_280">IVariableNode</code></p></td><td id="-l4ri59_279"><p>✅ <code class="code" id="-l4ri59_281">GetParameterNode</code></p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="type-system" data-toc="type-system">Type System</h3><p id="-l4ri59_282"><span class="control" id="-l4ri59_289">GraphToolkit Support:</span></p><ul class="list _bullet" id="-l4ri59_283"><li class="list__item" id="-l4ri59_290"><p id="-l4ri59_293">Exact type matching</p></li><li class="list__item" id="-l4ri59_291"><p id="-l4ri59_294">Derived &rarr; Base type connections</p></li><li class="list__item" id="-l4ri59_292"><p id="-l4ri59_295">Interface support</p></li></ul><p id="-l4ri59_284"><span class="control" id="-l4ri59_296">GraphInterop Extensions:</span></p><div class="code-block" data-lang="csharp">
+// Automatic numeric conversions
+context.AddInputPort&lt;float&gt;(&quot;value&quot;).Build();
+context.AddOutputPort&lt;int&gt;(&quot;count&quot;).Build();
+// ✅ Can connect int → float
+
+// Custom type converters
+TypeCompatibility.RegisterConverter&lt;Vector3, float&gt;(
+    v =&gt; v.magnitude
+);
+
+// Type compatibility scoring
+int score = TypeCompatibility.GetCompatibilityScore(
+    typeof(Transform),
+    typeof(GameObject)
+);
+// Higher score = better match
+</div><p id="-l4ri59_286"><span class="control" id="-l4ri59_297">Type Compatibility Matrix:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_287"><thead><tr class="ijRowHead" id="-l4ri59_298"><th id="-l4ri59_305"><p>Source Type</p></th><th id="-l4ri59_306"><p>Target Type</p></th><th id="-l4ri59_307"><p>GTK</p></th><th id="-l4ri59_308"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_299"><td id="-l4ri59_309"><p>Same type</p></td><td id="-l4ri59_310"><p>Same type</p></td><td id="-l4ri59_311"><p>✅</p></td><td id="-l4ri59_312"><p>✅</p></td></tr><tr id="-l4ri59_300"><td id="-l4ri59_313"><p>Derived</p></td><td id="-l4ri59_314"><p>Base</p></td><td id="-l4ri59_315"><p>✅</p></td><td id="-l4ri59_316"><p>✅</p></td></tr><tr id="-l4ri59_301"><td id="-l4ri59_317"><p>Interface impl</p></td><td id="-l4ri59_318"><p>Interface</p></td><td id="-l4ri59_319"><p>✅</p></td><td id="-l4ri59_320"><p>✅</p></td></tr><tr id="-l4ri59_302"><td id="-l4ri59_321"><p>int</p></td><td id="-l4ri59_322"><p>float</p></td><td id="-l4ri59_323"><p>❌</p></td><td id="-l4ri59_324"><p>✅ (auto-convert)</p></td></tr><tr id="-l4ri59_303"><td id="-l4ri59_325"><p>float</p></td><td id="-l4ri59_326"><p>double</p></td><td id="-l4ri59_327"><p>❌</p></td><td id="-l4ri59_328"><p>✅ (auto-convert)</p></td></tr><tr id="-l4ri59_304"><td id="-l4ri59_329"><p>Vector3</p></td><td id="-l4ri59_330"><p>float</p></td><td id="-l4ri59_331"><p>❌</p></td><td id="-l4ri59_332"><p>✅ (custom converter)</p></td></tr></tbody></table></div><p id="-l4ri59_288">See <a href="type-compatibility.html" id="-l4ri59_333" data-tooltip="Static utility class for checking and scoring type compatibility between ports.">Type Compatibility</a> for details.</p></section><section class="chapter"><h3 id="graph-validation" data-toc="graph-validation">Graph Validation</h3><p id="-l4ri59_334"><span class="control" id="-l4ri59_340">GraphToolkit Approach:</span></p><div class="code-block" data-lang="csharp">
+public override void OnGraphChanged(GraphLogger logger)
+{
+    logger.LogError(&quot;Something is wrong&quot;);
+    logger.LogWarning(&quot;Potential issue&quot;);
+}
+</div><p id="-l4ri59_336"><span class="control" id="-l4ri59_341">GraphInterop Approach:</span></p><div class="code-block" data-lang="csharp">
+// Validate entire graph
+List&lt;string&gt; errors = graphAsset.Validate();
+if (errors.Count &gt; 0)
+{
+    Debug.LogError($&quot;Graph has {errors.Count} errors&quot;);
+}
+
+// Validate context requirements
+errors = graphAsset.ValidateContext(runtimeContext);
+
+// Custom node validation
+public override void Validate(List&lt;string&gt; errors)
+{
+    if (string.IsNullOrEmpty(GetOptionValue&lt;string&gt;(&quot;path&quot;)))
+    {
+        errors.Add(&quot;Path option is required&quot;);
+    }
+}
+</div><p id="-l4ri59_338"><span class="control" id="-l4ri59_342">Validation Features:</span></p><div class="table-wrapper"><table class="wide" id="-l4ri59_339"><thead><tr class="ijRowHead" id="-l4ri59_343"><th id="-l4ri59_350"><p>Feature</p></th><th id="-l4ri59_351"><p>GTK</p></th><th id="-l4ri59_352"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_344"><td id="-l4ri59_353"><p>Graph-level validation</p></td><td id="-l4ri59_354"><p>✅ <code class="code" id="-l4ri59_356">OnGraphChanged()</code></p></td><td id="-l4ri59_355"><p>✅ <code class="code" id="-l4ri59_357">Validate()</code></p></td></tr><tr id="-l4ri59_345"><td id="-l4ri59_358"><p>Node-level validation</p></td><td id="-l4ri59_359"><p>❌</p></td><td id="-l4ri59_360"><p>✅ <code class="code" id="-l4ri59_361">Node.Validate()</code></p></td></tr><tr id="-l4ri59_346"><td id="-l4ri59_362"><p>Required port checking</p></td><td id="-l4ri59_363"><p>✅</p></td><td id="-l4ri59_364"><p>✅</p></td></tr><tr id="-l4ri59_347"><td id="-l4ri59_365"><p>Cycle detection</p></td><td id="-l4ri59_366"><p>✅</p></td><td id="-l4ri59_367"><p>✅</p></td></tr><tr id="-l4ri59_348"><td id="-l4ri59_368"><p>Context validation</p></td><td id="-l4ri59_369"><p>❌</p></td><td id="-l4ri59_370"><p>✅</p></td></tr><tr id="-l4ri59_349"><td id="-l4ri59_371"><p>Error collection</p></td><td id="-l4ri59_372"><p>✅ <code class="code" id="-l4ri59_374">GraphLogger</code></p></td><td id="-l4ri59_373"><p>✅ <code class="code" id="-l4ri59_375">List&lt;string&gt;</code></p></td></tr></tbody></table></div></section></section><section class="chapter"><h2 id="execution" data-toc="execution">Execution Features</h2><section class="chapter"><h3 id="graph-execution-graphinterop-extension" data-toc="graph-execution-graphinterop-extension">Graph Execution (GraphInterop Extension)</h3><p id="-l4ri59_378"><span class="control" id="-l4ri59_384">GraphToolkit</span>: No runtime execution (editor-only in 0.4.0-exp.2)</p><p id="-l4ri59_379"><span class="control" id="-l4ri59_385">GraphInterop</span>:</p><div class="code-block" data-lang="csharp">
+using QhunGaming.GraphInterop;
+
+public class MyBehaviour : MonoBehaviour
+{
+    public GraphAsset graphAsset;
+
+    private async void Start()
+    {
+        // Create execution context
+        var context = new GraphContext();
+        context.SetContextVariable(&quot;transform&quot;, transform);
+        context.SetContextVariable(&quot;deltaTime&quot;, Time.deltaTime);
+
+        // Execute graph
+        var executor = new GraphExecutor(graphAsset);
+        await executor.ExecuteAsync(context);
+
+        // Retrieve results
+        // (nodes set output values in context)
+    }
+}
+</div><p id="-l4ri59_381"><span class="control" id="-l4ri59_386">Execution Flow:</span></p><section class="procedure-steps"><h3 id="execution-flow" data-toc="execution-flow">Graph Execution Steps</h3><ol class="list _decimal"><li class="list__item" id="-l4ri59_387"><p><b id="-l4ri59_392">Topological Sort</b>: Order nodes by dependencies</p></li><li class="list__item" id="-l4ri59_388"><p><b id="-l4ri59_393">Input Resolution</b>: Fetch connected values or use defaults</p></li><li class="list__item" id="-l4ri59_389"><p><b id="-l4ri59_394">Node Processing</b>: Execute each node in order</p></li><li class="list__item" id="-l4ri59_390"><p><b id="-l4ri59_395">Output Caching</b>: Store results in context for downstream nodes</p></li><li class="list__item" id="-l4ri59_391"><p><b id="-l4ri59_396">Completion</b>: All nodes processed</p></li></ol></section><p id="-l4ri59_383">See <a href="graph-executor.html" id="-l4ri59_397" data-tooltip="Executes a graph by processing nodes in topological order, resolving connections automatically.">Graph Executor</a> for details.</p></section><section class="chapter"><h3 id="async-node-support" data-toc="async-node-support">Async Node Support</h3><p id="-l4ri59_398"><span class="control" id="-l4ri59_403">GraphToolkit</span>: Not applicable (no execution)</p><p id="-l4ri59_399"><span class="control" id="-l4ri59_404">GraphInterop</span>:</p><div class="code-block" data-lang="csharp">
+public class LoadAssetNode : GraphNode, IAsyncNode
+{
+    protected override void OnDefinePorts(IPortDefinitionContext context)
+    {
+        context.AddInputPort&lt;string&gt;(&quot;address&quot;).Build();
+        context.AddOutputPort&lt;GameObject&gt;(&quot;asset&quot;).Build();
+    }
+
+    public async Task ProcessAsync(GraphContext context)
+    {
+        var address = this.GetInputValue&lt;string&gt;(&quot;address&quot;, context);
+
+        var handle = Addressables.LoadAssetAsync&lt;GameObject&gt;(address);
+        await handle.Task;
+
+        this.SetOutputValue(&quot;asset&quot;, handle.Result, context);
+    }
+}
+</div><p id="-l4ri59_401"><span class="control" id="-l4ri59_405">Supported Async Patterns:</span></p><ul class="list _bullet" id="-l4ri59_402"><li class="list__item" id="-l4ri59_406"><p id="-l4ri59_410"><code class="code" id="-l4ri59_411">async/await</code></p></li><li class="list__item" id="-l4ri59_407"><p id="-l4ri59_412"><code class="code" id="-l4ri59_413">Task&lt;T&gt;</code> return values</p></li><li class="list__item" id="-l4ri59_408"><p id="-l4ri59_414">Addressables integration</p></li><li class="list__item" id="-l4ri59_409"><p id="-l4ri59_415">Custom async operations</p></li></ul></section></section><section class="chapter"><h2 id="gaps" data-toc="gaps">Feature Gaps</h2><p id="-l4ri59_416">Features in GraphToolkit not yet in GraphInterop:</p><section class="chapter"><h3 id="subgraph-system" data-toc="subgraph-system">Subgraph System</h3><p id="-l4ri59_421"><span class="control" id="-l4ri59_426">Status</span>: 📋 Planned</p><p id="-l4ri59_422"><span class="control" id="-l4ri59_427">GraphToolkit API:</span></p><div class="code-block" data-lang="csharp">
+[Subgraph(&quot;.mysubgraph&quot;, typeof(MyParentGraph))]
+public class MySubgraph : Graph { }
+
+public class SubgraphNode : Node, ISubgraphNode
+{
+    public Graph GetSubgraph() { ... }
+}
+</div><p id="-l4ri59_424"><span class="control" id="-l4ri59_428">GraphInterop Roadmap:</span></p><ul class="list _bullet" id="-l4ri59_425"><li class="list__item" id="-l4ri59_429"><p id="-l4ri59_433">Subgraph asset support</p></li><li class="list__item" id="-l4ri59_430"><p id="-l4ri59_434">Subgraph node implementation</p></li><li class="list__item" id="-l4ri59_431"><p id="-l4ri59_435">Variable scoping (Input/Output kinds)</p></li><li class="list__item" id="-l4ri59_432"><p id="-l4ri59_436">Nested graph execution</p></li></ul></section><section class="chapter"><h3 id="context-and-block-nodes" data-toc="context-and-block-nodes">Context and Block Nodes</h3><p id="-l4ri59_437"><span class="control" id="-l4ri59_444">Status</span>: 📋 Planned</p><p id="-l4ri59_438"><span class="control" id="-l4ri59_445">GraphToolkit API:</span></p><div class="code-block" data-lang="csharp">
+public abstract class ContextNode : Node
+{
+    public int blockCount { get; }
+    public BlockNode GetBlock(int index) { ... }
+}
+
+public abstract class BlockNode : Node
+{
+    public ContextNode contextNode { get; }
+}
+</div><p id="-l4ri59_440"><span class="control" id="-l4ri59_446">Use Cases:</span></p><ul class="list _bullet" id="-l4ri59_441"><li class="list__item" id="-l4ri59_447"><p id="-l4ri59_450">State machine states (context = state machine, blocks = states)</p></li><li class="list__item" id="-l4ri59_448"><p id="-l4ri59_451">Sequence containers (context = sequence, blocks = steps)</p></li><li class="list__item" id="-l4ri59_449"><p id="-l4ri59_452">Conditional branches (context = if-node, blocks = then/else)</p></li></ul><p id="-l4ri59_442"><span class="control" id="-l4ri59_453">GraphInterop Plan:</span></p><ul class="list _bullet" id="-l4ri59_443"><li class="list__item" id="-l4ri59_454"><p id="-l4ri59_458">Implement <code class="code" id="-l4ri59_459">ContextNode</code> base class</p></li><li class="list__item" id="-l4ri59_455"><p id="-l4ri59_460">Implement <code class="code" id="-l4ri59_461">BlockNode</code> base class</p></li><li class="list__item" id="-l4ri59_456"><p id="-l4ri59_462">Editor UI for nested nodes</p></li><li class="list__item" id="-l4ri59_457"><p id="-l4ri59_463">Execution flow for block nodes</p></li></ul></section><section class="chapter"><h3 id="delayed-attribute-support" data-toc="delayed-attribute-support">Delayed Attribute Support</h3><p id="-l4ri59_464"><span class="control" id="-l4ri59_468">Status</span>: 📋 Planned</p><p id="-l4ri59_465"><span class="control" id="-l4ri59_469">GraphToolkit Feature:</span></p><div class="code-block" data-lang="csharp">
+context.AddInputPort&lt;float&gt;(&quot;value&quot;)
+    .Delayed() // DelayedAttribute behavior
+    .Build();
+</div><p id="-l4ri59_467"><span class="control" id="-l4ri59_470">Meaning</span>: Port field updates only on focus loss (like Unity's <code class="code" id="-l4ri59_471">[Delayed]</code>)</p></section><section class="chapter"><h3 id="graphlogger-integration" data-toc="graphlogger-integration">GraphLogger Integration</h3><p id="-l4ri59_472"><span class="control" id="-l4ri59_478">Status</span>: 📋 Planned</p><p id="-l4ri59_473"><span class="control" id="-l4ri59_479">GraphToolkit Feature:</span></p><div class="code-block" data-lang="csharp">
+public override void OnGraphChanged(GraphLogger logger)
+{
+    logger.LogError(&quot;Error message&quot;, nodeContext);
+    // Shows error marker on node in editor
+}
+</div><p id="-l4ri59_475"><span class="control" id="-l4ri59_480">GraphInterop Current:</span></p><div class="code-block" data-lang="csharp">
+List&lt;string&gt; errors = Validate();
+// Returns string list, no visual markers
+</div><p id="-l4ri59_477"><span class="control" id="-l4ri59_481">Planned</span>: Integrate error markers into GraphView editor</p></section></section><section class="chapter"><h2 id="api-compatibility-table" data-toc="api-compatibility-table">API Compatibility Table</h2><p id="-l4ri59_482">Summary of GraphToolkit API methods and GraphInterop support:</p><section class="chapter"><h3 id="graph-class" data-toc="graph-class">Graph Class</h3><div class="table-wrapper"><table class="wide" id="-l4ri59_485"><thead><tr class="ijRowHead" id="-l4ri59_486"><th id="-l4ri59_497"><p>Method</p></th><th id="-l4ri59_498"><p>GTK</p></th><th id="-l4ri59_499"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_487"><td id="-l4ri59_500"><p><code class="code" id="-l4ri59_503">name</code></p></td><td id="-l4ri59_501"><p>✅</p></td><td id="-l4ri59_502"><p>✅</p></td></tr><tr id="-l4ri59_488"><td id="-l4ri59_504"><p><code class="code" id="-l4ri59_507">nodeCount</code></p></td><td id="-l4ri59_505"><p>✅</p></td><td id="-l4ri59_506"><p>✅ <code class="code" id="-l4ri59_508">Nodes.Count</code></p></td></tr><tr id="-l4ri59_489"><td id="-l4ri59_509"><p><code class="code" id="-l4ri59_512">GetNode(index)</code></p></td><td id="-l4ri59_510"><p>✅</p></td><td id="-l4ri59_511"><p>✅</p></td></tr><tr id="-l4ri59_490"><td id="-l4ri59_513"><p><code class="code" id="-l4ri59_516">GetNodes()</code></p></td><td id="-l4ri59_514"><p>✅</p></td><td id="-l4ri59_515"><p>✅ <code class="code" id="-l4ri59_517">Nodes</code></p></td></tr><tr id="-l4ri59_491"><td id="-l4ri59_518"><p><code class="code" id="-l4ri59_521">variableCount</code></p></td><td id="-l4ri59_519"><p>✅</p></td><td id="-l4ri59_520"><p>✅ <code class="code" id="-l4ri59_522">Blackboard.Parameters.Count</code></p></td></tr><tr id="-l4ri59_492"><td id="-l4ri59_523"><p><code class="code" id="-l4ri59_526">GetVariable(index)</code></p></td><td id="-l4ri59_524"><p>✅</p></td><td id="-l4ri59_525"><p>✅ <code class="code" id="-l4ri59_527">Blackboard.GetParameter()</code></p></td></tr><tr id="-l4ri59_493"><td id="-l4ri59_528"><p><code class="code" id="-l4ri59_531">GetVariables()</code></p></td><td id="-l4ri59_529"><p>✅</p></td><td id="-l4ri59_530"><p>✅ <code class="code" id="-l4ri59_532">Blackboard.Parameters</code></p></td></tr><tr id="-l4ri59_494"><td id="-l4ri59_533"><p><code class="code" id="-l4ri59_536">OnEnable()</code></p></td><td id="-l4ri59_534"><p>✅</p></td><td id="-l4ri59_535"><p>✅ (ScriptableObject)</p></td></tr><tr id="-l4ri59_495"><td id="-l4ri59_537"><p><code class="code" id="-l4ri59_540">OnDisable()</code></p></td><td id="-l4ri59_538"><p>✅</p></td><td id="-l4ri59_539"><p>✅ (ScriptableObject)</p></td></tr><tr id="-l4ri59_496"><td id="-l4ri59_541"><p><code class="code" id="-l4ri59_544">OnGraphChanged(GraphLogger)</code></p></td><td id="-l4ri59_542"><p>✅</p></td><td id="-l4ri59_543"><p>🚧 <code class="code" id="-l4ri59_545">Validate()</code> (different signature)</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="node-class" data-toc="node-class">Node Class</h3><div class="table-wrapper"><table class="wide" id="-l4ri59_546"><thead><tr class="ijRowHead" id="-l4ri59_547"><th id="-l4ri59_562"><p>Method</p></th><th id="-l4ri59_563"><p>GTK</p></th><th id="-l4ri59_564"><p>GraphInterop</p></th></tr></thead><tbody><tr id="-l4ri59_548"><td id="-l4ri59_565"><p><code class="code" id="-l4ri59_568">OnDefinePorts(context)</code></p></td><td id="-l4ri59_566"><p>✅</p></td><td id="-l4ri59_567"><p>✅</p></td></tr><tr id="-l4ri59_549"><td id="-l4ri59_569"><p><code class="code" id="-l4ri59_572">OnDefineOptions(context)</code></p></td><td id="-l4ri59_570"><p>✅</p></td><td id="-l4ri59_571"><p>✅</p></td></tr><tr id="-l4ri59_550"><td id="-l4ri59_573"><p><code class="code" id="-l4ri59_576">OnEnable()</code></p></td><td id="-l4ri59_574"><p>✅</p></td><td id="-l4ri59_575"><p>✅</p></td></tr><tr id="-l4ri59_551"><td id="-l4ri59_577"><p><code class="code" id="-l4ri59_580">OnDisable()</code></p></td><td id="-l4ri59_578"><p>✅</p></td><td id="-l4ri59_579"><p>✅</p></td></tr><tr id="-l4ri59_552"><td id="-l4ri59_581"><p><code class="code" id="-l4ri59_584">inputPortCount</code></p></td><td id="-l4ri59_582"><p>✅</p></td><td id="-l4ri59_583"><p>✅</p></td></tr><tr id="-l4ri59_553"><td id="-l4ri59_585"><p><code class="code" id="-l4ri59_588">outputPortCount</code></p></td><td id="-l4ri59_586"><p>✅</p></td><td id="-l4ri59_587"><p>✅</p></td></tr><tr id="-l4ri59_554"><td id="-l4ri59_589"><p><code class="code" id="-l4ri59_592">GetInputPort(index)</code></p></td><td id="-l4ri59_590"><p>✅</p></td><td id="-l4ri59_591"><p>✅</p></td></tr><tr id="-l4ri59_555"><td id="-l4ri59_593"><p><code class="code" id="-l4ri59_596">GetOutputPort(index)</code></p></td><td id="-l4ri59_594"><p>✅</p></td><td id="-l4ri59_595"><p>✅</p></td></tr><tr id="-l4ri59_556"><td id="-l4ri59_597"><p><code class="code" id="-l4ri59_600">GetInputPortByName(name)</code></p></td><td id="-l4ri59_598"><p>✅</p></td><td id="-l4ri59_599"><p>✅</p></td></tr><tr id="-l4ri59_557"><td id="-l4ri59_601"><p><code class="code" id="-l4ri59_604">GetOutputPortByName(name)</code></p></td><td id="-l4ri59_602"><p>✅</p></td><td id="-l4ri59_603"><p>✅</p></td></tr><tr id="-l4ri59_558"><td id="-l4ri59_605"><p><code class="code" id="-l4ri59_608">nodeOptionCount</code></p></td><td id="-l4ri59_606"><p>✅</p></td><td id="-l4ri59_607"><p>✅</p></td></tr><tr id="-l4ri59_559"><td id="-l4ri59_609"><p><code class="code" id="-l4ri59_612">GetNodeOption(index)</code></p></td><td id="-l4ri59_610"><p>✅</p></td><td id="-l4ri59_611"><p>✅</p></td></tr><tr id="-l4ri59_560"><td id="-l4ri59_613"><p><code class="code" id="-l4ri59_616">GetNodeOptionByName(name)</code></p></td><td id="-l4ri59_614"><p>✅</p></td><td id="-l4ri59_615"><p>✅</p></td></tr><tr id="-l4ri59_561"><td id="-l4ri59_617"><p><code class="code" id="-l4ri59_620">Process(context)</code></p></td><td id="-l4ri59_618"><p>❌</p></td><td id="-l4ri59_619"><p>✅ (GraphInterop addition)</p></td></tr></tbody></table></div></section></section><section class="chapter"><h2 id="migration-from-graphtoolkit" data-toc="migration-from-graphtoolkit">Migration from GraphToolkit</h2><p id="-l4ri59_621">If you're familiar with GraphToolkit, here's what changes:</p><section class="chapter"><h3 id="terminology-changes" data-toc="terminology-changes">Terminology Changes</h3><div class="table-wrapper"><table class="wide" id="-l4ri59_624"><thead><tr class="ijRowHead" id="-l4ri59_625"><th id="-l4ri59_631"><p>GTK Term</p></th><th id="-l4ri59_632"><p>GraphInterop Term</p></th></tr></thead><tbody><tr id="-l4ri59_626"><td id="-l4ri59_633"><p><code class="code" id="-l4ri59_635">Graph</code></p></td><td id="-l4ri59_634"><p><code class="code" id="-l4ri59_636">GraphAsset</code></p></td></tr><tr id="-l4ri59_627"><td id="-l4ri59_637"><p><code class="code" id="-l4ri59_639">IVariable</code></p></td><td id="-l4ri59_638"><p><code class="code" id="-l4ri59_640">GraphParameter</code></p></td></tr><tr id="-l4ri59_628"><td id="-l4ri59_641"><p><code class="code" id="-l4ri59_643">VariableKind.Local</code></p></td><td id="-l4ri59_642"><p>Default parameter</p></td></tr><tr id="-l4ri59_629"><td id="-l4ri59_644"><p><code class="code" id="-l4ri59_646">VariableKind.Input</code></p></td><td id="-l4ri59_645"><p>📋 Planned (subgraph input)</p></td></tr><tr id="-l4ri59_630"><td id="-l4ri59_647"><p><code class="code" id="-l4ri59_649">VariableKind.Output</code></p></td><td id="-l4ri59_648"><p>📋 Planned (subgraph output)</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="code-migration-example" data-toc="code-migration-example">Code Migration Example</h3><p id="-l4ri59_650"><span class="control" id="-l4ri59_654">GraphToolkit:</span></p><div class="code-block" data-lang="csharp">
+[Graph(&quot;.mygraph&quot;)]
+public class MyGraph : Graph
+{
+    public override void OnGraphChanged(GraphLogger logger)
+    {
+        // Validation
+    }
+}
+</div><p id="-l4ri59_652"><span class="control" id="-l4ri59_655">GraphInterop:</span></p><div class="code-block" data-lang="csharp">
+[CreateAssetMenu(menuName = &quot;My Game/My Graph&quot;)]
+public class MyGraph : GraphAsset
+{
+    public override IEnumerable&lt;ContextVariableDefinition&gt; GetContextVariables()
+    {
+        yield return new ContextVariableDefinition(
+            &quot;player&quot;,
+            typeof(Transform),
+            isRequired: true
+        );
+    }
+}
+</div></section></section><section class="chapter"><h2 id="best-practices" data-toc="best-practices">Best Practices</h2><section class="chapter"><h3 id="1-use-generic-port-builders" data-toc="1-use-generic-port-builders">1. Use Generic Port Builders</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Type-safe
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;).Build();
+
+// ❌ Avoid: Requires manual type handling
+context.AddInputPort(&quot;target&quot;)
+    .WithDataType(typeof(Transform))
+    .Build();
+</div></section><section class="chapter"><h3 id="2-provide-default-values" data-toc="2-provide-default-values">2. Provide Default Values</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Fallback if no connection
+context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;)
+    .WithDefaultValue(1.0f)
+    .Build();
+
+// ❌ Risky: May throw if unconnected
+context.AddInputPort&lt;float&gt;(&quot;multiplier&quot;).Build();
+</div></section><section class="chapter"><h3 id="3-mark-required-inputs" data-toc="3-mark-required-inputs">3. Mark Required Inputs</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Validates at graph validation time
+context.AddInputPort&lt;Transform&gt;(&quot;target&quot;)
+    .Required()
+    .Build();
+</div></section><section class="chapter"><h3 id="4-use-options-for-topology" data-toc="4-use-options-for-topology">4. Use Options for Topology</h3><div class="code-block" data-lang="csharp">
+// ✅ Good: Option affects structure
+context.AddOption&lt;int&gt;(&quot;outputCount&quot;).WithDefaultValue(3).Build();
+
+// ❌ Bad: Should be input port
+context.AddOption&lt;float&gt;(&quot;speed&quot;).Build();
+</div></section></section><section class="chapter"><h2 id="summary" data-toc="summary">Summary</h2><p id="-l4ri59_664">GraphInterop successfully adapts GraphToolkit's well-designed runtime API while adding:</p><ul class="list _bullet" id="-l4ri59_665"><li class="list__item" id="-l4ri59_669"><p id="-l4ri59_675">✅ Stable implementation (vs GTK's experimental status)</p></li><li class="list__item" id="-l4ri59_670"><p id="-l4ri59_676">✅ Graph execution system</p></li><li class="list__item" id="-l4ri59_671"><p id="-l4ri59_677">✅ Async and Burst support</p></li><li class="list__item" id="-l4ri59_672"><p id="-l4ri59_678">✅ Enhanced type system</p></li><li class="list__item" id="-l4ri59_673"><p id="-l4ri59_679">✅ Context variables</p></li><li class="list__item" id="-l4ri59_674"><p id="-l4ri59_680">✅ Parameter organization (categories, sort order)</p></li></ul><p id="-l4ri59_666"><span class="control" id="-l4ri59_681">Future work</span> focuses on GTK's advanced features:</p><ul class="list _bullet" id="-l4ri59_667"><li class="list__item" id="-l4ri59_682"><p id="-l4ri59_685">📋 Subgraphs</p></li><li class="list__item" id="-l4ri59_683"><p id="-l4ri59_686">📋 Context/Block nodes</p></li><li class="list__item" id="-l4ri59_684"><p id="-l4ri59_687">📋 Full GraphLogger integration</p></li></ul><p id="-l4ri59_668">See <a href="feature-roadmap.html" id="-l4ri59_688" data-tooltip="This page outlines planned features, known limitations, and the development roadmap for GraphInterop.">Feature Roadmap</a> for planned features.</p></section><div class="last-modified">28 November 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="feature-comparison-overview.html" class="navigation-links__prev">Feature Comparison Overview</a><a href="graphview-features.html" class="navigation-links__next">GraphView Features in GraphInterop</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.25.3-b857/app.js"></script></body></html>
